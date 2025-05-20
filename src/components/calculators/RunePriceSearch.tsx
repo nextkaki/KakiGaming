@@ -1,6 +1,14 @@
 'use client';
 import { useState } from 'react';
 
+interface Rune {
+  id: string;
+  name: string;
+  engName: string;
+  tier: number;
+}
+
+
 // 룬 데이터
 const runeData = [
   { id: 'el', name: '엘(El)', engName: 'el', tier: 1 },
@@ -40,7 +48,8 @@ const runeData = [
 
 export default function RunePriceSearch() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedRune, setSelectedRune] = useState(null);
+  const [selectedRune, setSelectedRune] = useState<Rune | null>(null);
+
 
   // 검색어에 따라 룬 필터링
   const filteredRunes = runeData.filter(rune => 
@@ -49,11 +58,12 @@ export default function RunePriceSearch() {
   );
 
   // 룬 링크 열기
-  const openRuneLink = (rune) => {
+  const openRuneLink = (rune: Rune) => {
     const url = `https://diablo.trade/listings/items?cursor=1&mode=season%20softcore&rune=${rune.engName}&type=WTB`;
     window.open(url, '_blank' );
     setSelectedRune(rune);
   };
+
 
   return (
     <div className="p-6 bg-white rounded-lg shadow-md">
