@@ -4,8 +4,17 @@
 ![GitHub issues](https://img.shields.io/github/issues/nextkaki/KakiGaming)
 ![GitHub forks](https://img.shields.io/github/forks/nextkaki/KakiGaming)
 ![GitHub stars](https://img.shields.io/github/stars/nextkaki/KakiGaming)
-[![YouTube](https://img.shields.io/badge/YouTube-KakiGaming-red?logo=youtube&logoColor=white)](https://www.youtube.com/channel/UCgnJXcYf0WjXvMi1QKTrb6A)
-[![Chzzk](https://img.shields.io/badge/Chzzk-방송%20보러가기-2DB400?logo=naver&logoColor=white)](https://chzzk.naver.com/8eac3d6cdac51bbceb794196cd4e6a15)
+<p align="left">
+  <a href="https://www.youtube.com/channel/UCgnJXcYf0WjXvMi1QKTrb6A" target="_blank">
+    <img src="https://img.shields.io/badge/YouTube-KakiGaming-red?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube Channel">
+  </a>
+  <a href="https://chzzk.naver.com/8eac3d6cdac51bbceb794196cd4e6a15" target="_blank">
+    <img src="https://img.shields.io/badge/Chzzk-방송 보러가기-2DB400?style=for-the-badge&logo=naver&logoColor=white" alt="Chzzk Live">
+  </a>
+  <a href="https://toon.at/donate/kaki__" target="_blank">
+    <img src="https://img.shields.io/badge/Toonation-후원하기-ff69b4?style=for-the-badge&logo=kofi&logoColor=white" alt="Donate via Toonation">
+  </a>
+</p>
 
 > 게임을 더 깊이, 더 재밌게!  
 > [KakiGaming 유튜브 채널](https://www.youtube.com/channel/UCgnJXcYf0WjXvMi1QKTrb6A)과 함께하는 게임 공략 프로젝트
