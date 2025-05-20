@@ -425,16 +425,18 @@ export default function MPCalculator() {
                         <div className={styles.formGroup}>
                             <label className={styles.formLabel}>개별 MP 봉인 보상률 (%)</label>
                             <input
-                                type="number"
+                                type="text"
                                 value={skill.individualBonus}
-                                onChange={(e) => {
-                                    // 마이너스 값 입력 허용 및 초기화 방지
+                                onChange={(e) => updateSkill(index, "individualBonus", e.target.value)}
+                                onBlur={(e) => {
                                     const value = e.target.value;
-                                    updateSkill(index, "individualBonus", value === "" || value === "-" ? value : Number(value));
+                                    const parsed = parseFloat(value);
+                                    if (!isNaN(parsed)) {
+                                        updateSkill(index, "individualBonus", parsed);
+                                    }
                                 }}
-                                className={styles.formControl}
-                                min="-100"
-                                max="100"
+                                className="w-full p-2 border rounded"
+                                inputMode="decimal" // 모바일 키패드 숫자 유도
                             />
                         </div>
 
