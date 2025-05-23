@@ -1,8 +1,7 @@
-"use client";
+'use client';
 import { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
-// MPCalculator.jsx
 import styles from "./MPCalculator.module.css";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -245,7 +244,7 @@ export default function MPCalculator() {
             }
         });
 
-        // 소수점 1자리까지 반올림
+        // 소수점 3자리까지 유지
         totalMpSeal = parseFloat(totalMpSeal.toFixed(3));
         totalHpSealValue = parseFloat(totalHpSealValue.toFixed(3));
 
@@ -293,7 +292,14 @@ export default function MPCalculator() {
         labels.push("남은 MP");
         data.push(remainingMp);
 
-        const backgroundColors = ["rgba(54, 162, 235, 0.6)", "rgba(255, 99, 132, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)"];
+        const backgroundColors = [
+            "rgba(54, 162, 235, 0.7)",
+            "rgba(255, 99, 132, 0.7)",
+            "rgba(255, 206, 86, 0.7)",
+            "rgba(75, 192, 192, 0.7)",
+            "rgba(153, 102, 255, 0.7)",
+            "rgba(76, 175, 80, 0.7)"
+        ];
 
         setChartData({
             labels,
@@ -302,7 +308,7 @@ export default function MPCalculator() {
                     label: "MP 봉인 및 잔여량 (%)",
                     data,
                     backgroundColor: backgroundColors,
-                    borderColor: backgroundColors.map((color) => color.replace("0.6", "1")),
+                    borderColor: backgroundColors.map((color) => color.replace("0.7", "1")),
                     borderWidth: 1,
                 },
             ],
@@ -372,39 +378,119 @@ export default function MPCalculator() {
         setChartData(null);
     };
 
+    // 차트 옵션 설정
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return `${context.label}: ${context.raw.toFixed(3)}%`;
+                    }
+                },
+                titleFont: {
+                    family: 'Noto Sans KR, sans-serif',
+                    size: 14
+                },
+                bodyFont: {
+                    family: 'Noto Sans KR, sans-serif',
+                    size: 14
+                }
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: '#f5f5f5',
+                    font: {
+                        family: 'Noto Sans KR, sans-serif',
+                        size: 12
+                    }
+                },
+                grid: {
+                    color: 'rgba(255, 255, 255, 0.1)'
+                }
+            },
+            y: {
+                ticks: {
+                    color: '#f5f5f5',
+                    font: {
+                        family: 'Noto Sans KR, sans-serif',
+                        size: 12
+                    }
+                },
+                grid: {
+                    color: 'rgba(255, 255, 255, 0.1)'
+                }
+            }
+        }
+    };
+
     return (
-        <div className={styles.calculator}>
+        <div className={`${styles.calculator} ${styles.darkMode}`}>
+            <h2 className={styles.title}>토치라이트 인피니트 MP봉인 계산기</h2>
+            
             {/* 전역 설정 */}
             <div className={styles.globalSettings}>
-                <h3>전체 설정</h3>
+                <h3 className={styles.sectionTitle}>전체 설정</h3>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "15px" }}>
                     <div className={styles.formGroup}>
                         <label className={styles.formLabel}>캐릭터 MP 봉인 보상률 (%)</label>
-                        <input type="number" value={globalBonus} onChange={(e) => setGlobalBonus(Number(e.target.value))} className={styles.formControl} min="-100" max="100" />
+                        <input 
+                            type="number" 
+                            value={globalBonus} 
+                            onChange={(e) => setGlobalBonus(Number(e.target.value))} 
+                            className={styles.formControl} 
+                            min="-100" 
+                            max="100" 
+                        />
                     </div>
                     <div className={styles.formGroup} style={{ display: "flex", alignItems: "center" }}>
-                        <input type="checkbox" id="pathfinder" checked={pathfinderEnabled} onChange={(e) => setPathfinderEnabled(e.target.checked)} style={{ marginRight: "10px" }} />
-                        <label htmlFor="pathfinder">개척자의 길 사용 (보조 스킬 배율 0.95 고정)</label>
+                        <input 
+                            type="checkbox" 
+                            id="pathfinder" 
+                            checked={pathfinderEnabled} 
+                            onChange={(e) => setPathfinderEnabled(e.target.checked)} 
+                            className={styles.checkbox}
+                        />
+                        <label htmlFor="pathfinder" className={styles.checkboxLabel}>개척자의 길 사용 (보조 스킬 배율 0.95 고정)</label>
                     </div>
                 </div>
             </div>
 
             {/* 스킬 설정 */}
-            <h3>스킬 설정</h3>
+            <h3 className={styles.sectionTitle}>스킬 설정</h3>
             <div className={styles.skillGrid}>
                 {skills.map((skill, index) => (
-                    <div key={index} className={`${styles.skillCard} ${results.skillResults.find((s) => s.index === index && s.exceeded) ? styles.skillCardWarning : ""}`}>
+                    <div 
+                        key={index} 
+                        className={`${styles.skillCard} ${results.skillResults.find((s) => s.index === index && s.exceeded) ? styles.skillCardWarning : ""}`}
+                    >
                         <h4 className={styles.skillTitle}>스킬 {index + 1}</h4>
 
                         <div className={styles.formGroup}>
                             <label className={styles.formLabel}>스킬 이름</label>
-                            <input type="text" value={skill.name} onChange={(e) => updateSkill(index, "name", e.target.value)} className={styles.formControl} placeholder={`스킬 ${index + 1}`} />
+                            <input 
+                                type="text" 
+                                value={skill.name} 
+                                onChange={(e) => updateSkill(index, "name", e.target.value)} 
+                                className={styles.formControl} 
+                                placeholder={`스킬 ${index + 1}`} 
+                            />
                         </div>
 
                         <div className={styles.formGroup}>
                             <label className={styles.formLabel}>MP 봉인율 (%)</label>
                             <div style={{ display: "flex", gap: "8px" }}>
-                                <select value={skill.useCustomSeal ? "custom" : skill.sealRate} onChange={(e) => updateSkill(index, "sealRate", e.target.value)} className={styles.formControl}>
+                                <select 
+                                    value={skill.useCustomSeal ? "custom" : skill.sealRate} 
+                                    onChange={(e) => updateSkill(index, "sealRate", e.target.value)} 
+                                    className={styles.formControl}
+                                >
                                     <option value="0">선택하세요</option>
                                     <option value="10">10%</option>
                                     <option value="15">15%</option>
@@ -418,7 +504,18 @@ export default function MPCalculator() {
                                     <option value="custom">직접 입력</option>
                                 </select>
 
-                                {skill.useCustomSeal && <input type="number" value={skill.customSealRate} onChange={(e) => updateSkill(index, "customSealRate", e.target.value)} className={styles.formControl} placeholder="봉인율" min="0" max="100" style={{ width: "100px" }} />}
+                                {skill.useCustomSeal && (
+                                    <input 
+                                        type="number" 
+                                        value={skill.customSealRate} 
+                                        onChange={(e) => updateSkill(index, "customSealRate", e.target.value)} 
+                                        className={styles.formControl} 
+                                        placeholder="봉인율" 
+                                        min="0" 
+                                        max="100" 
+                                        style={{ width: "100px" }} 
+                                    />
+                                )}
                             </div>
                         </div>
 
@@ -435,22 +532,35 @@ export default function MPCalculator() {
                                         updateSkill(index, "individualBonus", parsed);
                                     }
                                 }}
-                                className="w-full p-2 border rounded"
+                                className={styles.formControl}
                                 inputMode="decimal" // 모바일 키패드 숫자 유도
                             />
                         </div>
 
                         <div className={styles.formGroup}>
                             <div style={{ display: "flex", alignItems: "center", marginBottom: "8px" }}>
-                                <input type="checkbox" id={`hp-seal-${index}`} checked={skill.isHpSeal} onChange={(e) => updateSkill(index, "isHpSeal", e.target.checked)} style={{ marginRight: "10px" }} />
-                                <label htmlFor={`hp-seal-${index}`}>HP 봉인으로 대체</label>
+                                <input 
+                                    type="checkbox" 
+                                    id={`hp-seal-${index}`} 
+                                    checked={skill.isHpSeal} 
+                                    onChange={(e) => updateSkill(index, "isHpSeal", e.target.checked)} 
+                                    className={styles.checkbox}
+                                />
+                                <label htmlFor={`hp-seal-${index}`} className={styles.checkboxLabel}>HP 봉인으로 대체</label>
                             </div>
 
                             {skill.isHpSeal && (
-                                <div style={{ marginLeft: "25px" }}>
+                                <div className={styles.nestedFormGroup}>
                                     <label className={styles.formLabel}>HP 봉인 보정 계수 (%)</label>
-                                    <input type="number" value={skill.hpModifier} onChange={(e) => updateSkill(index, "hpModifier", Number(e.target.value))} className={styles.formControl} min="-100" max="100" />
-                                    <p style={{ fontSize: "12px", color: "#6c757d", marginTop: "4px" }}>기본값: -65% (음수는 패널티)</p>
+                                    <input 
+                                        type="number" 
+                                        value={skill.hpModifier} 
+                                        onChange={(e) => updateSkill(index, "hpModifier", Number(e.target.value))} 
+                                        className={styles.formControl} 
+                                        min="-100" 
+                                        max="100" 
+                                    />
+                                    <p className={styles.helpText}>기본값: -65% (음수는 패널티)</p>
                                 </div>
                             )}
                         </div>
@@ -460,11 +570,24 @@ export default function MPCalculator() {
                             <div>
                                 {skill.auxiliarySkills.map((aux, auxIndex) => (
                                     <div key={auxIndex} className={styles.auxiliaryItem}>
-                                        <input type="number" value={aux.mpMultiplier} onChange={(e) => updateAuxiliarySkill(index, auxIndex, Number(e.target.value))} className={`${styles.formControl} ${styles.auxiliaryInput}`} min="0" max="200" step="5" disabled={pathfinderEnabled} />
-                                        <span style={{ marginRight: "8px" }}>%</span>
+                                        <input 
+                                            type="number" 
+                                            value={aux.mpMultiplier} 
+                                            onChange={(e) => updateAuxiliarySkill(index, auxIndex, Number(e.target.value))} 
+                                            className={`${styles.formControl} ${styles.auxiliaryInput}`} 
+                                            min="0" 
+                                            max="200" 
+                                            step="5" 
+                                            disabled={pathfinderEnabled} 
+                                        />
+                                        <span className={styles.unitLabel}>%</span>
 
                                         {skill.auxiliarySkills.length > 1 && (
-                                            <button onClick={() => removeAuxiliarySkill(index, auxIndex)} className={styles.removeButton} disabled={pathfinderEnabled}>
+                                            <button 
+                                                onClick={() => removeAuxiliarySkill(index, auxIndex)} 
+                                                className={styles.removeButton} 
+                                                disabled={pathfinderEnabled}
+                                            >
                                                 삭제
                                             </button>
                                         )}
@@ -472,11 +595,17 @@ export default function MPCalculator() {
                                 ))}
                             </div>
 
-                            <button onClick={() => addAuxiliarySkill(index)} className={styles.addButton} disabled={pathfinderEnabled}>
+                            <button 
+                                onClick={() => addAuxiliarySkill(index)} 
+                                className={styles.addButton} 
+                                disabled={pathfinderEnabled}
+                            >
                                 + 보조 스킬 추가
                             </button>
 
-                            {pathfinderEnabled && <p style={{ fontSize: "12px", color: "#6c757d", marginTop: "8px" }}>개척자의 길 활성화 시 보조 스킬 배율은 0.95로 고정됩니다.</p>}
+                            {pathfinderEnabled && (
+                                <p className={styles.helpText}>개척자의 길 활성화 시 보조 스킬 배율은 0.95로 고정됩니다.</p>
+                            )}
                         </div>
                     </div>
                 ))}
@@ -484,11 +613,17 @@ export default function MPCalculator() {
 
             {/* 계산 버튼 */}
             <div className={styles.buttonGroup}>
-                <button onClick={calculateMpSeal} className={styles.calculateButton}>
+                <button 
+                    onClick={calculateMpSeal} 
+                    className={styles.calculateButton}
+                >
                     계산하기
                 </button>
 
-                <button onClick={resetCalculator} className={styles.resetButton}>
+                <button 
+                    onClick={resetCalculator} 
+                    className={styles.resetButton}
+                >
                     초기화
                 </button>
             </div>
@@ -498,24 +633,43 @@ export default function MPCalculator() {
                 <h3 className={styles.resultsTitle}>계산 결과</h3>
 
                 {/* 활성화 상태 */}
-                <div className={`${styles.statusBar} ${results.activeSkillCount === 0 ? styles.neutral : results.isActivationPossible ? styles.possible : styles.impossible}`}>
-                    <span style={{ fontWeight: "500" }}>스킬 활성화 상태:</span>
-                    <span style={{ fontWeight: "500" }}>{results.activeSkillCount === 0 ? "활성화된 스킬 없음" : results.hasExceededSkills ? "스킬 활성화 불가능 (봉인률 초과)" : results.isActivationPossible ? "모든 스킬 활성화 가능" : "스킬 활성화 불가능 (자원 부족)"}</span>
+                <div className={`${styles.statusBar} ${
+                    results.activeSkillCount === 0 
+                        ? styles.neutral 
+                        : results.isActivationPossible 
+                            ? styles.possible 
+                            : styles.impossible
+                }`}>
+                    <span className={styles.statusLabel}>스킬 활성화 상태:</span>
+                    <span className={styles.statusValue}>
+                        {results.activeSkillCount === 0 
+                            ? "활성화된 스킬 없음" 
+                            : results.hasExceededSkills 
+                                ? "스킬 활성화 불가능 (봉인률 초과)" 
+                                : results.isActivationPossible 
+                                    ? "모든 스킬 활성화 가능" 
+                                    : "스킬 활성화 불가능 (자원 부족)"}
+                    </span>
                 </div>
 
                 {/* MP 봉인 결과 */}
                 <div className={styles.resultGrid}>
                     <div>
-                        <h4 style={{ marginBottom: "10px" }}>각 스킬별 MP 봉인량</h4>
+                        <h4 className={styles.resultSubtitle}>각 스킬별 MP 봉인량</h4>
 
                         {results.activeSkillCount === 0 ? (
-                            <p style={{ color: "#6c757d" }}>활성화된 스킬이 없습니다.</p>
+                            <p className={styles.noResults}>활성화된 스킬이 없습니다.</p>
                         ) : (
                             <div>
                                 {results.skillResults.map((skill, idx) => (
-                                    <div key={idx} className={`${styles.resultItem} ${skill.exceeded ? styles.resultItemWarning : ""}`}>
+                                    <div 
+                                        key={idx} 
+                                        className={`${styles.resultItem} ${
+                                            skill.exceeded ? styles.resultItemWarning : ""
+                                        }`}
+                                    >
                                         <span>{skill.name}</span>
-                                        <span style={{ fontWeight: "500" }}>{skill.finalSeal.toFixed(3)}%</span>
+                                        <span className={styles.resultValue}>{skill.finalSeal.toFixed(3)}%</span>
                                     </div>
                                 ))}
 
@@ -535,13 +689,18 @@ export default function MPCalculator() {
                     {/* HP 봉인 결과 (HP 봉인이 있는 경우) */}
                     {results.hpSkillCount > 0 && (
                         <div>
-                            <h4 style={{ marginBottom: "10px" }}>HP 봉인 결과</h4>
+                            <h4 className={styles.resultSubtitle}>HP 봉인 결과</h4>
 
                             <div>
                                 {results.hpSkillResults.map((skill, idx) => (
-                                    <div key={idx} className={`${styles.resultItem} ${skill.exceeded ? styles.resultItemWarning : ""}`}>
+                                    <div 
+                                        key={idx} 
+                                        className={`${styles.resultItem} ${
+                                            skill.exceeded ? styles.resultItemWarning : ""
+                                        }`}
+                                    >
                                         <span>{skill.name}</span>
-                                        <span style={{ fontWeight: "500" }}>{skill.finalSeal.toFixed(3)}%</span>
+                                        <span className={styles.resultValue}>{skill.finalSeal.toFixed(3)}%</span>
                                     </div>
                                 ))}
 
@@ -561,26 +720,11 @@ export default function MPCalculator() {
 
                 {/* 차트 표시 */}
                 {chartData && (
-                    <div style={{ marginTop: "20px", height: "300px" }}>
-                        <h4 style={{ marginBottom: "10px" }}>MP 봉인 차트</h4>
+                    <div className={styles.chartContainer}>
+                        <h4 className={styles.resultSubtitle}>MP 봉인 차트</h4>
                         <Bar
                             data={chartData}
-                            options={{
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                plugins: {
-                                    legend: {
-                                        display: false,
-                                    },
-                                    tooltip: {
-                                        callbacks: {
-                                            label: function (context) {
-                                                return `${context.label}: ${context.raw.toFixed(3)}%`;
-                                            },
-                                        },
-                                    },
-                                },
-                            }}
+                            options={chartOptions}
                         />
                     </div>
                 )}
@@ -592,20 +736,20 @@ export default function MPCalculator() {
 
                 <div className={styles.calculationFormula}>최종 봉인율 = (기본 봉인 × 보조 MP 배율 누적) ÷ (1 + MP 봉인 보상 합산) ÷ (1 - MP 봉인 보상 추가율)</div>
 
-                <h4 style={{ marginTop: "15px", marginBottom: "10px" }}>계산 단계:</h4>
+                <h4 className={styles.guideSubtitle}>계산 단계:</h4>
                 <ol className={styles.calculationSteps}>
                     <li className={styles.calculationStep}>기준 봉인 계산: 기본 봉인 × 보조 스킬 MP 배율 누적</li>
                     <li className={styles.calculationStep}>봉인 보상 적용: 기준 봉인 ÷ (1 + 봉인 보상 합산)</li>
                     <li className={styles.calculationStep}>봉인 보상 추가 적용: 보상 반영 ÷ (1 - 봉인 보상 추가율)</li>
                 </ol>
 
-                <h4 style={{ marginTop: "15px", marginBottom: "10px" }}>항목 설명:</h4>
-                <ul style={{ marginLeft: "20px", marginBottom: "15px" }}>
-                    <li style={{ marginBottom: "8px" }}>기본 봉인: 스킬 자체 봉인율 (예: 20%)</li>
-                    <li style={{ marginBottom: "8px" }}>보조 MP 배율 누적: 개척자 사용 시 0.95 × 0.95 × 0.95 (보조 스킬 개수만큼)</li>
-                    <li style={{ marginBottom: "8px" }}>MP 봉인 보상 합산: 전역 + 개별 MP 봉인 보상률 (분모에 적용)</li>
-                    <li style={{ marginBottom: "8px" }}>MP 봉인 보상 추가율: HP 봉인 보정 계수 (음수는 봉인량 증가, 양수는 봉인량 감소)</li>
-                    <li style={{ marginBottom: "8px" }}>음수 보정률(-65%)은 (1 - 0.65) = 0.35로 나누어 계산 (봉인량 증가)</li>
+                <h4 className={styles.guideSubtitle}>항목 설명:</h4>
+                <ul className={styles.guideList}>
+                    <li className={styles.guideItem}>기본 봉인: 스킬 자체 봉인율 (예: 20%)</li>
+                    <li className={styles.guideItem}>보조 MP 배율 누적: 개척자 사용 시 0.95 × 0.95 × 0.95 (보조 스킬 개수만큼)</li>
+                    <li className={styles.guideItem}>MP 봉인 보상 합산: 전역 + 개별 MP 봉인 보상률 (분모에 적용)</li>
+                    <li className={styles.guideItem}>MP 봉인 보상 추가율: HP 봉인 보정 계수 (음수는 봉인량 증가, 양수는 봉인량 감소)</li>
+                    <li className={styles.guideItem}>음수 보정률(-65%)은 (1 - 0.65) = 0.35로 나누어 계산 (봉인량 증가)</li>
                 </ul>
 
                 <div className={styles.warningBox}>⚠️ 주의: 본 계산식은 소수점 계산으로 인해 실제 게임 내 표시 수치와 일부 다를 수 있으며, 이는 게임 내 수치 표시 로직의 오류일 수 있습니다.</div>
