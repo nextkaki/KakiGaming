@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import './globals.css';
 import { Noto_Sans_KR } from 'next/font/google';
 import Header from '@/components/layout/Header';
@@ -16,7 +17,7 @@ export const metadata = {
   description: '디아블로4, 패스 오브 엑자일, 토치라이트 인피니트 등 다양한 게임 공략과 계산기',
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ko" className={notoSansKr.variable}>
       <body className="font-noto bg-[#121212] text-[#f5f5f5]">
