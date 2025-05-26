@@ -1,12 +1,44 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { FC } from "react";
 
 const Header: FC = () => {
-    // 컴포넌트 내용
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    // 클라이언트 사이드에서만 렌더링되도록 처리
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    // 서버 사이드 렌더링 시 기본 구조만 반환
+    if (!mounted) {
+        return (
+            <header className="bg-purple-700 text-white shadow-md">
+                <div className="container mx-auto px-4">
+                    <div className="flex justify-between items-center h-16">
+                        <div className="flex items-center">
+                            <Link href="/" className="text-xl font-bold">
+                                KakiGaming
+                            </Link>
+                        </div>
+                        <div className="md:hidden">
+                            <button className="text-white focus:outline-none">☰</button>
+                        </div>
+                        <nav className="hidden md:flex md:flex-grow justify-center space-x-6">
+                            {/* 서버 렌더링 시 간소화된 메뉴 */}
+                            <div className="py-2">디아블로4</div>
+                            <div className="py-2">패스 오브 엑자일 1</div>
+                            <div className="py-2">패스 오브 엑자일 2</div>
+                            <div className="py-2">토치라이트 인피니트</div>
+                        </nav>
+                        <div className="hidden md:block w-[100px]"></div>
+                    </div>
+                </div>
+            </header>
+        );
+    }
 
     return (
         <header className="bg-purple-700 text-white shadow-md">
@@ -21,12 +53,12 @@ const Header: FC = () => {
                     {/* 모바일 메뉴 버튼 */}
                     <div className="md:hidden">
                         <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white focus:outline-none">
-                            {isMenuOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
+                            {isMenuOpen ? "✕" : "☰"}
                         </button>
                     </div>
 
-                    {/* 데스크톱 메뉴 */}
-                    <nav className="hidden md:flex space-x-6">
+                    {/* 데스크톱 메뉴 - 가운데 정렬 */}
+                    <nav className="hidden md:flex md:flex-grow justify-center space-x-6">
                         <div className="relative group">
                             <Link href="/diablo4" className="py-2 hover:text-purple-200">
                                 디아블로4
@@ -66,14 +98,11 @@ const Header: FC = () => {
                         </div>
                     </nav>
 
-                    <div className="hidden md:flex items-center">
-                        <div className="relative">
-                            <input type="text" placeholder="검색..." className="bg-purple-600 text-white placeholder-purple-300 rounded-full py-1 px-4 focus:outline-none focus:ring-2 focus:ring-purple-400" />
-                        </div>
-                    </div>
+                    {/* 검색 제거하고 빈 공간으로 대체 */}
+                    <div className="hidden md:block w-[100px]"></div>
                 </div>
 
-                {/* 모바일 메뉴 */}
+                {/* 모바일 메뉴 - 검색 제거 */}
                 {isMenuOpen && (
                     <div className="md:hidden py-4">
                         <Link href="/diablo4" className="block py-2 hover:bg-purple-600">
@@ -97,10 +126,6 @@ const Header: FC = () => {
                         <Link href="/torchlight/mp-calculator" className="block py-2 pl-4 text-sm hover:bg-purple-600">
                             - MP봉인 계산
                         </Link>
-
-                        <div className="mt-4">
-                            <input type="text" placeholder="검색..." className="w-full bg-purple-600 text-white placeholder-purple-300 rounded-full py-1 px-4 focus:outline-none focus:ring-2 focus:ring-purple-400" />
-                        </div>
                     </div>
                 )}
             </div>

@@ -12,7 +12,7 @@ export default function TorchlightPage() {
         <div>
             <div className="relative h-64 mb-6 rounded-lg overflow-hidden">
                 <Image src="/images/torchlight-banner.jpg" alt="토치라이트 인피니트" fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                     <h1 className="text-4xl font-bold text-white">토치라이트 인피니트</h1>
                 </div>
             </div>

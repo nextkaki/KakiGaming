@@ -11,8 +11,9 @@ export default function Diablo4Page() {
     return (
         <div>
             <div className="relative h-64 mb-6 rounded-lg overflow-hidden">
-                <Image src="/images/diablo4-banner.jpg" alt="디아블로4" fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <Image src="/images/diablo4-banner.jpg" alt="디아블로4" fill style={{ objectFit: "cover" }}
+                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                     <h1 className="text-4xl font-bold text-white">디아블로4</h1>
                 </div>
             </div>
