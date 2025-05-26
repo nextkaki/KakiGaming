@@ -9,7 +9,7 @@ const Footer: FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div>
                         <h3 className="text-lg font-bold mb-4">KakiGaming</h3>
-                        <p className="text-gray-400">게임 공략과 유틸리티를 제공하는 커뮤니티입니다.</p>
+                        <p className="text-gray-400">게임 공략과 유틸리티를 제공하는 사이트 입니다.</p>
                     </div>
 
                     <div>

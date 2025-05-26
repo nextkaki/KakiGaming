@@ -52,7 +52,7 @@ export default function Home() {
       <h2 className="text-2xl font-bold mb-4">유용한 도구</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
-          <h3 className="text-xl font-bold mb-2">MP봉인 계산기</h3>
+          <h3 className="text-xl text-gray-950 font-bold mb-2">MP봉인 계산기</h3>
           <p className="text-gray-600 mb-4">
             토치라이트 인피니트의 MP봉인 시스템을 계산하여 최적의 스킬 조합을 찾아보세요.
           </p>
@@ -64,7 +64,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
-          <h3 className="text-xl font-bold mb-2">룬 시세 검색</h3>
+          <h3 className="text-xl text-gray-950 font-bold mb-2">룬 시세 검색</h3>
           <p className="text-gray-600 mb-4">
             디아블로4의 룬 시세를 실시간으로 검색하고 비교해보세요.
           </p>
@@ -81,8 +81,8 @@ export default function Home() {
       <AdContainer size="horizontal" className="mb-8" />
       
       {/* 최신 업데이트 */}
-      <h2 className="text-2xl font-bold mb-4">최신 업데이트</h2>
-      <div className="bg-white p-6 rounded-lg shadow-md mb-8">
+      {/* <h2 className="text-2xl font-bold mb-4">최신 업데이트</h2> */}
+      {/* <div className="bg-white p-6 rounded-lg shadow-md mb-8">
         <ul className="space-y-4">
           <li className="border-b pb-4">
             <span className="text-sm text-gray-500">2025.05.20</span>
@@ -100,7 +100,7 @@ export default function Home() {
             <p className="text-gray-600">게임 공략과 유틸리티를 제공하는 KakiGaming 웹사이트가 오픈했습니다.</p>
           </li>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 }

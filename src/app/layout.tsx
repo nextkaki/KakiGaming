@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <aside className="w-full md:w-1/5 mt-6 md:mt-0 md:ml-6">
             {/* 광고 영역 */}
             <div className="bg-[#1e1e1e] p-4 rounded-lg shadow mb-6 h-[600px] flex items-center justify-center border border-dashed border-gray-700">
-              <p className="text-gray-400">광고 영역 (300x600)</p>
+              <p className="text-gray-400">광고 기다립니다.</p>
             </div>
           </aside>
         </div>

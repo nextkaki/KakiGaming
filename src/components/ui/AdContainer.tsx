@@ -10,15 +10,15 @@ export default function AdContainer({ size = 'vertical', className = '' }: AdCon
   switch (size) {
     case 'vertical':
       dimensions = 'h-[600px] w-[300px]';
-      text = '광고 영역 (300x600)';
+      text = '광고 영역 기다립니다.';
       break;
     case 'horizontal':
       dimensions = 'h-[90px] w-full';
-      text = '광고 영역 (728x90)';
+      text = '광고 영역 기다립니다.';
       break;
     case 'square':
       dimensions = 'h-[250px] w-[300px]';
-      text = '광고 영역 (300x250)';
+      text = '광고 영역 기다립니다.';
       break;
   }
   

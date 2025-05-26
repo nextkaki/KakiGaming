@@ -22,7 +22,7 @@ export default function GameCard({ title, description, imageSrc, href }: GameCar
           />
         </div>
         <div className="p-4">
-          <h3 className="text-xl font-bold mb-2">{title}</h3>
+          <h3 className="text-xl text-gray-950 font-bold mb-2">{title}</h3>
           <p className="text-gray-600">{description}</p>
         </div>
       </div>

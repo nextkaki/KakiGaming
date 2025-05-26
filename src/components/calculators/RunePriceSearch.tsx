@@ -100,7 +100,7 @@ export default function RunePriceSearch() {
               className={`${styles.runeButton} ${selectedRune?.id === rune.id ? styles.runeButtonSelected : ''}`}
             >
               <div className={styles.runeName}>{rune.name}</div>
-              <div className={styles.runeTier}>티어 {rune.tier}</div>
+              {/* <div className={styles.runeTier}>티어 {rune.tier}</div> */}
             </button>
           ))
         ) : (
