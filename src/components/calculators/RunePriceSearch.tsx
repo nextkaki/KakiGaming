@@ -1,13 +1,14 @@
 'use client';
 import { useState } from 'react';
+import styles from './RunePriceSearch.module.css';
 
+// Rune 인터페이스 정의
 interface Rune {
   id: string;
   name: string;
   engName: string;
   tier: number;
 }
-
 
 // 룬 데이터
 const runeData = [
@@ -61,7 +62,6 @@ export default function RunePriceSearch() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRune, setSelectedRune] = useState<Rune | null>(null);
 
-
   // 검색어에 따라 룬 필터링
   const filteredRunes = runeData.filter(rune => 
     rune.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -71,66 +71,60 @@ export default function RunePriceSearch() {
   // 룬 링크 열기
   const openRuneLink = (rune: Rune) => {
     const url = `https://diablo.trade/listings/items?cursor=1&mode=season%20softcore&rune=${rune.engName}&type=WTB`;
-    window.open(url, '_blank' );
+    window.open(url, '_blank');
     setSelectedRune(rune);
   };
 
-
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4">디아블로4 룬 시세 검색</h2>
+    <div className={styles.container}>
+      <h2 className={styles.title}>디아블로4 룬 시세 검색</h2>
       
-      <div className="mb-6">
-        <label htmlFor="searchInput" className="block mb-2 font-medium">룬 이름 검색</label>
+      <div className={styles.searchGroup}>
+        <label htmlFor="runeSearch" className={styles.label}>룬 이름 검색</label>
         <input
-          id="searchInput"
+          id="runeSearch"
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="룬 이름을 입력하세요 (예: 베르, ber)"
-          className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+          placeholder="룬 이름을 입력하세요 (예: 베르, Ber)"
+          className={styles.input}
         />
       </div>
       
-      <div className="mb-6">
-        <h3 className="font-medium mb-2">룬 목록</h3>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-          {filteredRunes.map((rune) => (
+      <div className={styles.runeGrid}>
+        {filteredRunes.length > 0 ? (
+          filteredRunes.map(rune => (
             <button
               key={rune.id}
               onClick={() => openRuneLink(rune)}
-              className={`p-2 border rounded-lg text-center hover:bg-purple-50 hover:border-purple-300 transition ${
-                selectedRune?.id === rune.id ? 'bg-purple-100 border-purple-400' : ''
-              }`}
+              className={`${styles.runeButton} ${selectedRune?.id === rune.id ? styles.runeButtonSelected : ''}`}
             >
-              <div className="font-medium">{rune.name}</div>
+              <div className={styles.runeName}>{rune.name}</div>
+              <div className={styles.runeTier}>티어 {rune.tier}</div>
             </button>
-          ))}
-        </div>
-        
-        {filteredRunes.length === 0 && (
-          <p className="text-gray-500 text-center py-4">검색 결과가 없습니다.</p>
+          ))
+        ) : (
+          <div className={styles.noResults}>검색 결과가 없습니다.</div>
         )}
       </div>
       
       {selectedRune && (
-        <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-          <h3 className="font-medium mb-2">{selectedRune.name} 시세 정보</h3>
-          <p className="text-sm text-gray-600 mb-2">
-            외부 사이트에서 최신 시세 정보를 확인하실 수 있습니다.
+        <div className={styles.infoBox}>
+          <h3 className={styles.infoTitle}>{selectedRune.name} 시세 정보</h3>
+          <p className={styles.infoText}>
+            선택한 룬의 현재 거래 시세를 확인하려면 아래 링크를 클릭하세요.
+            diablo.trade 사이트에서 실시간 거래 정보를 확인할 수 있습니다.
           </p>
-          <p className="text-sm">
-            <a 
-              href={`https://diablo.trade/listings/items?cursor=1&mode=season%20softcore&rune=${selectedRune.engName}&type=WTB`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-purple-600 hover:text-purple-800"
-            >
-              diablo.trade에서 {selectedRune.name} 시세 보기 &rarr;
-            </a>
-          </p>
+          <a
+            href={`https://diablo.trade/listings/items?cursor=1&mode=season%20softcore&rune=${selectedRune.engName}&type=WTB`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.infoLink}
+          >
+            {selectedRune.name} 시세 확인하기
+          </a>
         </div>
-       )}
+      )}
     </div>
   );
 }
