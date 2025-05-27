@@ -22,7 +22,7 @@ export default function TorchlightPage() {
                     <div className="bg-white p-6 rounded-lg shadow-md mb-6">
                         <h2 className="text-2xl text-gray-950 font-bold mb-4">토치라이트 인피니트 소개</h2>
                         <p className="text-gray-700 mb-4">개발/배급: XD Inc. 토치라이트 인피니트는 인기 액션 RPG(ARPG) 시리즈인 &apos;토치라이트&apos;의 최신작으로, 2023년 5월 9일에 출시된 작품입니다. 이 게임은 전작 &apos;토치라이트 2&apos;의 이야기를 이어가며, 어둠에 맞서 레이티스 대륙의 빛을 되찾기 위해 여러 히어로들과 함께 모험을 떠나는 내용을 담고 있습니다.</p>
-                        
+
                         <a href="https://game.naver.com/lounge/Torchlight_Infinite/home" className="text-purple-600 font-medium hover:text-purple-800" target="_blank" rel="noopener noreferrer">
                             공식 라운지 커뮤니티 &rarr;
                         </a>
@@ -33,11 +33,20 @@ export default function TorchlightPage() {
                     <div className="bg-white p-6 rounded-lg shadow-md">
                         <h2 className="text-2xl text-gray-950 font-bold mb-4">유용한 도구</h2>
                         <div className="space-y-4">
-                            <div className="border-b pb-4">
+                            <div className="border-b pb-4 mb-3">
                                 <h3 className="font-bold text-gray-950 text-lg mb-2">MP봉인 계산기</h3>
-                                <p className="text-gray-600 mb-2">토치라이트 인피니트의 MP봉인 시스템을 계산하여 최적의 스킬 조합을 찾아보세요.</p>
+                                <p className="text-gray-600 mb-2">MP봉인 시스템을 계산하여 최적의 스킬 조합을 찾아보세요.</p>
                                 <Link href="/torchlight/mp-calculator" className="text-purple-600 font-medium hover:text-purple-800">
-                                    계산기 사용하기 &rarr;
+                                    MP봉인 계산기 사용하기 &rarr;
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="space-y-4">
+                            <div className="border-b pb-4 mb-3">
+                                <h3 className="font-bold text-gray-950 text-lg mb-2">쿨타임 계산기</h3>
+                                <p className="text-gray-600 mb-2">쿨타임 시스템을 계산하여 최적의 빌드를 만들어보세요.</p>
+                                <Link href="/torchlight/cooltime-calculator" className="text-purple-600 font-medium hover:text-purple-800">
+                                    쿨타임 계산기 사용하기 &rarr;
                                 </Link>
                             </div>
                         </div>

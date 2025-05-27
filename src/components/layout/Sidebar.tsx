@@ -18,7 +18,7 @@ const Sidebar: FC<SidebarProps> = ({ className = "" }) => {
                         </Link>
                         <ul className="ml-4 mt-1 space-y-1">
                             <li>
-                                <Link href="/diablo4/rune-price" className="text-gray-600 hover:text-purple-600 text-sm block">
+                                <Link href="/diablo4/rune-price" className="text-gray-600 hover:text-purple-600 block">
                                     룬 시세 검색
                                 </Link>
                             </li>
@@ -40,8 +40,14 @@ const Sidebar: FC<SidebarProps> = ({ className = "" }) => {
                         </Link>
                         <ul className="ml-4 mt-1 space-y-1">
                             <li>
-                                <Link href="/torchlight/mp-calculator" className="text-gray-600 hover:text-purple-600 text-sm block">
-                                    MP봉인 계산
+                                <Link href="/torchlight/mp-calculator" className="text-gray-600 hover:text-purple-600 block">
+                                    MP봉인 계산기
+                                </Link>
+                                
+                            </li>
+                            <li>
+                                <Link href="/torchlight/cooltime-calculator" className="text-gray-600 hover:text-purple-600 block">
+                                    쿨타임 계산기
                                 </Link>
                             </li>
                         </ul>
@@ -54,12 +60,17 @@ const Sidebar: FC<SidebarProps> = ({ className = "" }) => {
                 <ul className="space-y-2">
                     <li>
                         <Link href="/torchlight/mp-calculator" className="text-gray-700 hover:text-purple-600 block">
-                            MP봉인 계산기
+                            토치 - MP봉인 계산기
+                        </Link>
+                    </li>
+                     <li>
+                        <Link href="/torchlight/cooltime-calculator" className="text-gray-700 hover:text-purple-600 block">
+                            토치 - 쿨타임 계산기
                         </Link>
                     </li>
                     <li>
                         <Link href="/diablo4/rune-price" className="text-gray-700 hover:text-purple-600 block">
-                            룬 시세 검색
+                            디아 - 룬 시세 검색
                         </Link>
                     </li>
                 </ul>
