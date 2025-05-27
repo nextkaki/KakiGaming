@@ -34,7 +34,7 @@ export default function CooltimeCalculatorPage() {
 
     return (
         <div className={`${styles.calculator} ${styles.darkMode}`}>
-            <h2 className={styles.title}>쿨타임 계산기</h2>
+            <h2 className={styles.title}>토치라이트 인피니트 쿨타임 계산기</h2>
 
             <div className={styles.globalSettings}>
                 <div className={styles.formGroup}>

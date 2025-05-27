@@ -26,12 +26,12 @@ const Sidebar: FC<SidebarProps> = ({ className = "" }) => {
                     </li>
                     <li>
                         <Link href="/poe1" className="text-gray-700 hover:text-purple-600 block">
-                            패스 오브 엑자일 1
+                            패스 오브 엑자일 1 (미구현)
                         </Link>
                     </li>
                     <li>
                         <Link href="/poe2" className="text-gray-700 hover:text-purple-600 block">
-                            패스 오브 엑자일 2
+                            패스 오브 엑자일 2 (미구현)
                         </Link>
                     </li>
                     <li>
@@ -43,7 +43,6 @@ const Sidebar: FC<SidebarProps> = ({ className = "" }) => {
                                 <Link href="/torchlight/mp-calculator" className="text-gray-600 hover:text-purple-600 block">
                                     MP봉인 계산기
                                 </Link>
-                                
                             </li>
                             <li>
                                 <Link href="/torchlight/cooltime-calculator" className="text-gray-600 hover:text-purple-600 block">
@@ -63,7 +62,7 @@ const Sidebar: FC<SidebarProps> = ({ className = "" }) => {
                             토치 - MP봉인 계산기
                         </Link>
                     </li>
-                     <li>
+                    <li>
                         <Link href="/torchlight/cooltime-calculator" className="text-gray-700 hover:text-purple-600 block">
                             토치 - 쿨타임 계산기
                         </Link>

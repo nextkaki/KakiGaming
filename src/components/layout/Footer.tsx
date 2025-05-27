@@ -43,12 +43,17 @@ const Footer: FC = () => {
                         <ul className="space-y-2">
                             <li>
                                 <Link href="/torchlight/mp-calculator" className="text-gray-400 hover:text-white">
-                                    MP봉인 계산기
+                                    토치 - MP봉인 계산기
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/torchlight/cooltime-calculator" className="text-gray-400 hover:text-white">
+                                    토치 - 쿨타임 계산기
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/diablo4/rune-price" className="text-gray-400 hover:text-white">
-                                    룬 시세 검색
+                                    디아 - 룬 시세 검색
                                 </Link>
                             </li>
                         </ul>

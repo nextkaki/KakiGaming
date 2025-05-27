@@ -9,9 +9,9 @@ export default function Home() {
             <div className="bg-gradient-to-r from-purple-700 to-indigo-800 text-white rounded-lg p-8 mb-8 shadow-lg">
                 <h1 className="text-3xl font-bold mb-4">KakiGaming에 오신 것을 환영합니다</h1>
                 <p className="text-xl mb-6">디아블로4, 패스 오브 엑자일, 토치라이트 인피니트 등 다양한 게임의 공략과 유틸리티를 제공합니다.</p>
-                <Link href="/diablo4" className="inline-block bg-white text-purple-700 px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition">
+                {/* <Link href="/diablo4" className="inline-block bg-white text-purple-700 px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition">
                     시작하기
-                </Link>
+                </Link> */}
             </div>
 
             {/* 게임 카드 섹션 */}
@@ -30,7 +30,14 @@ export default function Home() {
                     <h3 className="text-xl text-gray-950 font-bold mb-2">MP봉인 계산기</h3>
                     <p className="text-gray-600 mb-4">토치라이트 인피니트의 MP봉인 시스템을 계산하여 최적의 스킬 조합을 찾아보세요.</p>
                     <Link href="/torchlight/mp-calculator" className="text-purple-600 font-medium hover:text-purple-800">
-                        계산기 사용하기 &rarr;
+                        사용하기 &rarr;
+                    </Link>
+                </div>
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <h3 className="text-xl text-gray-950 font-bold mb-2">쿨타임 계산기</h3>
+                    <p className="text-gray-600 mb-4">쿨타임 시스템을 계산하여 최적의 빌드를 만들어보세요.</p>
+                    <Link href="/torchlight/cooltime-calculator" className="text-purple-600 font-medium hover:text-purple-800">
+                        사용하기 &rarr;
                     </Link>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
