@@ -1,80 +1,57 @@
+// 파일 경로: /src/components/layout/Sidebar.tsx
+// 역할: 다국어 지원 추가
+'use client';
+
 import Link from "next/link";
-import { FC } from "react";
+import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
 
 interface SidebarProps {
     className?: string;
 }
 
-const Sidebar: FC<SidebarProps> = ({ className = "" }) => {
-    // 컴포넌트 내용
+const Sidebar = ({ className = "" }: SidebarProps) => {
+    const t = useTranslations('common');
+    const params = useParams();
+    const locale = params.locale as string || 'ko';
+    
     return (
-        <aside className={`${className}`}>
-            <div className="bg-white p-4 rounded-lg shadow mb-4">
-                <h3 className="font-bold text-lg mb-3 text-gray-800 border-b pb-2">게임 목록</h3>
+        <div className={`${className}`}>
+            <div className="bg-[#1e1e1e] p-6 rounded-lg shadow-md">
+                <h2 className="text-xl font-bold mb-4 text-white">{t("header.games")}</h2>
                 <ul className="space-y-2">
                     <li>
-                        <Link href="/diablo4" className="text-gray-700 hover:text-purple-600 block">
-                            디아블로4
-                        </Link>
-                        <ul className="ml-4 mt-1 space-y-1">
-                            <li>
-                                <Link href="/diablo4/rune-price" className="text-gray-600 hover:text-purple-600 block">
-                                    룬 시세 검색
-                                </Link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <Link href="/poe1" className="text-gray-700 hover:text-purple-600 block">
-                            패스 오브 엑자일 1 (미구현)
+                        <Link href={`/${locale}/diablo4`} className="text-gray-300 hover:text-white transition block py-1">
+                            {t("header.diablo4")}
                         </Link>
                     </li>
                     <li>
-                        <Link href="/poe2" className="text-gray-700 hover:text-purple-600 block">
-                            패스 오브 엑자일 2 (미구현)
+                        <Link href={`/${locale}/torchlight`} className="text-gray-300 hover:text-white transition block py-1">
+                            {t("header.torchlight")}
                         </Link>
-                    </li>
-                    <li>
-                        <Link href="/torchlight" className="text-gray-700 hover:text-purple-600 block">
-                            토치라이트 인피니트
-                        </Link>
-                        <ul className="ml-4 mt-1 space-y-1">
-                            <li>
-                                <Link href="/torchlight/mp-calculator" className="text-gray-600 hover:text-purple-600 block">
-                                    MP봉인 계산기
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/torchlight/cooltime-calculator" className="text-gray-600 hover:text-purple-600 block">
-                                    쿨타임 계산기
-                                </Link>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
-            </div>
-
-            <div className="bg-white p-4 rounded-lg shadow">
-                <h3 className="font-bold text-lg mb-3 text-gray-800 border-b pb-2">유틸리티</h3>
+                
+                <h2 className="text-xl font-bold mb-4 mt-8 text-white">{t("header.tools")}</h2>
                 <ul className="space-y-2">
                     <li>
-                        <Link href="/torchlight/mp-calculator" className="text-gray-700 hover:text-purple-600 block">
-                            토치 - MP봉인 계산기
+                        <Link href={`/${locale}/diablo4/rune-price`} className="text-gray-300 hover:text-white transition block py-1">
+                            {t("header.rune_price")}
                         </Link>
                     </li>
                     <li>
-                        <Link href="/torchlight/cooltime-calculator" className="text-gray-700 hover:text-purple-600 block">
-                            토치 - 쿨타임 계산기
+                        <Link href={`/${locale}/torchlight/mp-calculator`} className="text-gray-300 hover:text-white transition block py-1">
+                            {t("header.mp_calculator")}
                         </Link>
                     </li>
                     <li>
-                        <Link href="/diablo4/rune-price" className="text-gray-700 hover:text-purple-600 block">
-                            디아 - 룬 시세 검색
+                        <Link href={`/${locale}/torchlight/cooltime-calculator`} className="text-gray-300 hover:text-white transition block py-1">
+                            {t("torchlight.tools.cooltime_calculator.title")}
                         </Link>
                     </li>
                 </ul>
             </div>
-        </aside>
+        </div>
     );
 };
 

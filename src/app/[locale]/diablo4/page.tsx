@@ -1,13 +1,15 @@
+'use client';
+
 import Link from "next/link";
 import Image from "next/image";
 import AdContainer from "@/components/ui/AdContainer";
+import { useParams } from "next/navigation";
 
-export const metadata = {
-    title: "디아블로4 공략 | KakiGaming",
-    description: "디아블로4 공략, 룬 시세 검색 등 다양한 정보를 제공합니다.",
-};
 
 export default function Diablo4Page() {
+    const params = useParams();
+    const locale = (params.locale as string) || "ko";
+
     return (
         <div>
             <div className="relative h-64 mb-6 rounded-lg overflow-hidden">
@@ -31,7 +33,7 @@ export default function Diablo4Page() {
                             <div className="border-b pb-4">
                                 <h3 className="font-bold text-gray-950 text-lg mb-2">룬 시세 검색</h3>
                                 <p className="text-gray-600 mb-2">디아블로4의 룬 시세를 실시간으로 검색하고 비교해보세요.</p>
-                                <Link href="/diablo4/rune-price" className="text-purple-600 font-medium hover:text-purple-800 mr-5">
+                                <Link href={`/${locale}/diablo4/rune-price`} className="text-purple-600 font-medium hover:text-purple-800 mr-5">
                                     시세 확인하기 &rarr;
                                 </Link>
                                 <a href="https://youtu.be/879gcbaRNTc?si=oP2el4sXCPeDpCzo" target="_blank" rel="noopener noreferrer" className="text-purple-600 font-medium hover:text-purple-800 transition mr-5">

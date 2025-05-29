@@ -1,0 +1,110 @@
+{
+  "torchlight": {
+    "title": "Torchlight: Infinite",
+    "intro": {
+      "title": "Introduction to Torchlight Infinite",
+      "description": "Developer/Publisher: XD Inc. Torchlight Infinite is the latest entry in the popular action RPG (ARPG) series 'Torchlight', released on May 9, 2023. It continues the story of 'Torchlight 2', where players team up with heroes to reclaim the light of the continent of Leptis against darkness."
+    },
+    "community": "Official Lounge Community →",
+    "details": "This page provides various guides and information on Torchlight Infinite, as well as an MP Seal Calculator.",
+    "tools": {
+      "title": "Useful Tools",
+      "mp_calculator": {
+        "title": "MP Seal Calculator",
+        "description": "Calculate the MP seal system and find the optimal skill combination.",
+        "link": "Use MP Seal Calculator →"
+      },
+      "cooltime_calculator": {
+        "title": "Cooldown Calculator",
+        "description": "Calculate the cooldown system to build your optimal setup.",
+        "link": "Use Cooldown Calculator →"
+      }
+    }
+  },
+  "diablo4": {
+    "rune_price": {
+      "title": "Diablo 4 Rune Price Search",
+      "description": "Search and compare rune prices in Diablo 4 in real-time. Search by rune name to check current trading prices.",
+      "video_guide": "How to use (Video)",
+      "extension": "Extension"
+    }
+  },
+  "calculator": {
+    "title": "Torchlight Infinite MP Seal Calculator",
+    "intro": "Calculate Torchlight Infinite’s MP seal system to find the optimal skill setup. Enter each skill’s seal rate and auxiliary skill MP multiplier to calculate total MP seal and remaining MP.",
+    "settings": {
+      "title": "Global Settings",
+      "global_bonus": "Character MP Seal Bonus (%)",
+      "pathfinder": "Use Pathfinder (Auxiliary skill multiplier fixed at 0.95)"
+    },
+    "skills": {
+      "title": "Skill Settings"
+    },
+    "skill": {
+      "name": "Skill Name",
+      "seal_rate": "MP Seal Rate (%)",
+      "individual_bonus": "Individual MP Seal Bonus (%)",
+      "is_hp_seal": "Replace with HP Seal",
+      "hp_modifier": "HP Seal Modifier (%)",
+      "auxiliary_label": "Auxiliary Skill MP Multiplier",
+      "auxiliary_add": "+ Add Auxiliary Skill"
+    },
+    "calculate": "Calculate",
+    "reset": "Reset",
+    "results": {
+      "title": "Calculation Results",
+      "status": {
+        "none": "No active skills",
+        "possible": "All skills can be activated",
+        "exceeded": "Cannot activate skills (Seal rate exceeded)",
+        "lack": "Cannot activate skills (Insufficient resources)"
+      },
+      "mp_total": "Total MP Seal:",
+      "mp_remaining": "Remaining MP:",
+      "hp_total": "Total HP Seal:",
+      "hp_remaining": "Remaining HP:"
+    },
+    "chart": {
+      "title": "MP Seal Chart"
+    },
+    "guide": {
+      "title": "Calculation Method Guide",
+      "formula": "Final Seal Rate = (Base Seal × Auxiliary MP Multiplier) ÷ (1 + Total MP Seal Bonus) ÷ (1 - Additional Seal Penalty)",
+      "steps_title": "Calculation Steps:",
+      "step1": "Base Seal: Base seal × Cumulative Auxiliary MP Multiplier",
+      "step2": "Apply Bonus: Base seal ÷ (1 + Total Seal Bonus)",
+      "step3": "Apply Penalty: Adjusted seal ÷ (1 - Additional Bonus Rate)",
+      "terms_title": "Term Descriptions:",
+      "term1": "Base Seal: The base seal rate of the skill (e.g., 20%)",
+      "term2": "Cumulative Auxiliary MP Multiplier: With Pathfinder, multiply 0.95 per auxiliary skill",
+      "term3": "Total MP Seal Bonus: Global + individual bonus rates (used in denominator)",
+      "term4": "Additional Seal Penalty: HP seal modifier (negative increases seal, positive decreases it)",
+      "term5": "A -65% penalty is calculated as (1 - 0.65) = 0.35 (resulting in a higher seal rate)"
+    },
+    "warning": "⚠️ Note: Due to floating-point calculations, values may slightly differ from in-game numbers, which may be due to display logic discrepancies in the game."
+  },
+  "header": {
+    "home": "Home",
+    "games": "Games",
+    "tools": "Tools",
+    "diablo4": "Diablo 4",
+    "poe": "Path of Exile",
+    "poe2": "Path of Exile 2",
+    "torchlight": "Torchlight: Infinite",
+    "rune_price": "Rune Prices",
+    "mp_calculator": "MP Seal Calculator",
+    "language": "Language",
+    "korean": "Korean",
+    "english": "English",
+    "chinese": "Chinese"
+  },
+  "footer": {
+    "copyright": "© {year} KakiGaming. All rights reserved.",
+    "disclaimer": "This site is not affiliated with game companies. All game assets are property of their respective owners."
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "message": "Sorry, the page you requested could not be found.",
+    "backHome": "Back to Home"
+  }
+}

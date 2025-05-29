@@ -1,7 +1,7 @@
 // app/cooltime/page.tsx
 "use client";
 import React, { useState } from "react";
-import { calcCoolTime, calcRequiredCool } from "@/components/utils/cooltimeUtils";
+import { calcCoolTime, calcRequiredCool } from "@/app/utils/cooltimeUtils";
 import { InputBlock, ReadOnlyBlock } from "@/components/calculators/CooltimeBlocks";
 import styles from "@/components/calculators/CooltimeBlocks.module.css";
 

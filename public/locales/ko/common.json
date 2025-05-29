@@ -1,0 +1,128 @@
+{
+    "torchlight": {
+        "title": "토치라이트: 인피니트",
+        "intro_title": "토치라이트 인피니트 소개",
+        "description": "개발/배급: XD Inc. 토치라이트 인피니트는 인기 액션 RPG(ARPG) 시리즈인 '토치라이트'의 최신작으로, 2023년 5월 9일에 출시된 작품입니다. 이 게임은 전작 '토치라이트 2'의 이야기를 이어가며, 어둠에 맞서 레이티스 대륙의 빛을 되찾기 위해 여러 히어로들과 함께 모험을 떠나는 내용을 담고 있습니다.",
+        "official_community": "공식 라운지 커뮤니티",
+        "details": "이 페이지에서는 토치라이트 인피니트의 다양한 공략과 정보, 그리고 MP봉인 계산기 기능을 제공합니다.",
+        "tools": {
+            "title": "유용한 도구",
+            "mp_calculator": {
+                "title": "MP봉인 계산기",
+                "description": "MP봉인 시스템을 계산하여 최적의 스킬 조합을 찾아보세요.",
+                "link": "MP봉인 계산기 사용하기",
+                "use": "MP봉인 계산기 사용하기"
+            },
+            "cooltime_calculator": {
+                "title": "쿨타임 계산기",
+                "description": "쿨타임 시스템을 계산하여 최적의 빌드를 만들어보세요.",
+                "link": "쿨타임 계산기 사용하기",
+                "use": "쿨타임 계산기 사용하기"
+            }
+        }
+    },
+    "diablo4": {
+        "rune_price": {
+            "title": "디아블로4 룬 시세 검색",
+            "description": "디아블로4의 룬 시세를 실시간으로 검색하고 비교해보세요. 룬 이름을 검색하여 현재 거래 가격을 확인할 수 있습니다.",
+            "video_guide": "사용법(영상)",
+            "extension": "확장프로그램"
+        },
+        "tools": {
+            "title": "유용한 도구",
+            "rune_price": {
+                "title": "룬 시세 검색",
+                "description": "디아블로4의 룬 시세를 실시간으로 검색하고 비교해보세요.",
+                "check_price": "시세 확인하기"
+            }
+        }
+    },
+    "calculator": {
+        "title": "토치라이트 인피니트 MP봉인 계산기",
+        "intro": "토치라이트 인피니트의 MP봉인 시스템을 계산하여 최적의 스킬 조합을 찾아보세요. 각 스킬의 봉인율과 보조 스킬 MP 배율을 입력하면 최종 MP 봉인량과 남은 MP를 계산해 드립니다.",
+        "settings": {
+            "title": "전체 설정",
+            "global_bonus": "캐릭터 MP 봉인 보상률 (%)",
+            "pathfinder": "개척자의 길 사용 (보조 스킬 배율 0.95 고정)"
+        },
+        "skills": {
+            "title": "스킬 설정"
+        },
+        "skill": {
+            "name": "스킬 이름",
+            "seal_rate": "MP 봉인율 (%)",
+            "individual_bonus": "개별 MP 봉인 보상률 (%)",
+            "is_hp_seal": "HP 봉인으로 대체",
+            "hp_modifier": "HP 봉인 보정 계수 (%)",
+            "auxiliary_label": "보조 스킬 MP 배율",
+            "auxiliary_add": "+ 보조 스킬 추가"
+        },
+        "calculate": "계산하기",
+        "reset": "초기화",
+        "results": {
+            "title": "계산 결과",
+            "status": {
+                "none": "활성화된 스킬 없음",
+                "possible": "모든 스킬 활성화 가능",
+                "exceeded": "스킬 활성화 불가능 (봉인률 초과)",
+                "lack": "스킬 활성화 불가능 (자원 부족)"
+            },
+            "mp_total": "총 MP 봉인량:",
+            "mp_remaining": "남은 MP:",
+            "hp_total": "총 HP 봉인량:",
+            "hp_remaining": "남은 HP:"
+        },
+        "chart": {
+            "title": "MP 봉인 차트"
+        },
+        "guide": {
+            "title": "계산 방식 안내",
+            "formula": "최종 봉인율 = (기본 봉인 × 보조 MP 배율 누적) ÷ (1 + MP 봉인 보상 합산) ÷ (1 - MP 봉인 보상 추가율)",
+            "steps_title": "계산 단계:",
+            "step1": "기준 봉인 계산: 기본 봉인 × 보조 스킬 MP 배율 누적",
+            "step2": "봉인 보상 적용: 기준 봉인 ÷ (1 + 봉인 보상 합산)",
+            "step3": "봉인 보상 추가 적용: 보상 반영 ÷ (1 - 봉인 보상 추가율)",
+            "terms_title": "항목 설명:",
+            "term1": "기본 봉인: 스킬 자체 봉인율 (예: 20%)",
+            "term2": "보조 MP 배율 누적: 개척자 사용 시 0.95 × 0.95 × 0.95 (보조 스킬 개수만큼)",
+            "term3": "MP 봉인 보상 합산: 전역 + 개별 MP 봉인 보상률 (분모에 적용)",
+            "term4": "MP 봉인 보상 추가율: HP 봉인 보정 계수 (음수는 봉인량 증가, 양수는 봉인량 감소)",
+            "term5": "음수 보정률(-65%)은 (1 - 0.65) = 0.35로 나누어 계산 (봉인량 증가)"
+        },
+        "warning": "⚠️ 주의: 본 계산식은 소수점 계산으로 인해 실제 게임 내 표시 수치와 일부 다를 수 있으며, 이는 게임 내 수치 표시 로직의 오류일 수 있습니다."
+    },
+    "header": {
+        "home": "홈",
+        "games": "게임",
+        "tools": "도구",
+        "diablo4": "디아블로 4",
+        "poe": "패스 오브 엑자일",
+        "poe2": "패스 오브 엑자일 2",
+        "torchlight": "토치라이트: 인피니트",
+        "rune_price": "룬 시세",
+        "mp_calculator": "MP 봉인 계산기",
+        "cooltime_calculator": "쿨타임 계산기",
+        "language": "언어",
+        "korean": "한국어",
+        "english": "영어",
+        "chinese": "중국어"
+    },
+    "footer": {
+        "copyright": "© {year} KakiGaming. 모든 권리 보유.",
+        "disclaimer": "이 사이트는 게임 회사와 관련이 없으며, 모든 게임 자산은 해당 소유자의 재산입니다."
+    },
+    "notFound": {
+        "title": "페이지를 찾을 수 없습니다",
+        "message": "죄송합니다. 요청하신 페이지를 찾을 수 없습니다.",
+        "backHome": "홈으로 돌아가기"
+    },
+    "home": {
+        "hero": {
+            "title": "KakiGaming에 오신 것을 환영합니다",
+            "description": "디아블로4, 패스 오브 엑자일, 토치라이트 인피니트 등 다양한 게임의 공략과 유틸리티를 제공합니다."
+        },
+        "use_tool": "사용하기",
+        "check_price": "시세 확인하기",
+        "popular_games": "인기 게임"
+    }
+}

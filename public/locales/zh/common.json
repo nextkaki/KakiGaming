@@ -1,0 +1,52 @@
+{
+  "torchlight": {
+    "title": "火炬之光：无限",
+    "description": "开发/发行：XD Inc. 火炬之光：无限是人气动作RPG（ARPG）系列火炬之光\"的最新作品，于2023年5月9日发布。这款游戏延续了\"火炬之光2\"的故事，跟随多位英雄一起冒险，对抗黑暗，恢复莱普提斯大陆的光明。",
+    "official_community": "官方社区",
+    "useful_tools": "实用工具",
+    "tools": {
+      "mp_calculator": {
+        "title": "MP封印计算器",
+        "description": "计算MP封印系统，找到最佳技能组合。",
+        "use": "使用MP封印计算器"
+      },
+      "cooltime_calculator": {
+        "title": "冷却时间计算器",
+        "description": "计算冷却时间系统，创建最佳构建。",
+        "use": "使用冷却时间计算器"
+      }
+    }
+  },
+  "diablo4": {
+    "rune_price": {
+      "title": "暗黑破坏神4 符文价格查询",
+      "description": "实时搜索和比较暗黑破坏神4中的符文价格。通过符文名称搜索查看当前交易价格。",
+      "video_guide": "使用方法(视频)",
+      "extension": "浏览器扩展"
+    }
+  },
+  "header": {
+    "home": "首页",
+    "games": "游戏",
+    "tools": "工具",
+    "diablo4": "暗黑破坏神 4",
+    "poe": "流亡黯道",
+    "poe2": "流亡黯道 2",
+    "torchlight": "火炬之光：无限",
+    "rune_price": "符文价格",
+    "mp_calculator": "MP封印计算器",
+    "language": "语言",
+    "korean": "韩语",
+    "english": "英语",
+    "chinese": "中文"
+  },
+  "footer": {
+    "copyright": "© {year} KakiGaming. 版权所有。",
+    "disclaimer": "本网站与游戏公司无关。所有游戏资产均为其各自所有者的财产。"
+  },
+  "notFound": {
+    "title": "页面未找到",
+    "message": "抱歉，您请求的页面无法找到。",
+    "backHome": "返回首页"
+  }
+}

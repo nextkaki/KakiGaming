@@ -1,9 +1,20 @@
+// 파일 경로: /src/components/layout/Header.tsx
+// 역할: 다국어 지원 및 언어 선택 드롭다운이 포함된 헤더 컴포넌트
 "use client";
-import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
-import { FC } from "react";
 
-const Header: FC = () => {
+import { useTranslations } from "next-intl";
+import Link from "next/link";
+import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
+import { usePathname, useRouter, useParams } from "next/navigation";
+
+const Header = () => {
+    const t = useTranslations("common");
+    const router = useRouter();
+    const pathname = usePathname();
+    const params = useParams();
+    const locale = (params.locale as string) || "ko";
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
     const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
@@ -26,6 +37,20 @@ const Header: FC = () => {
         }, 200);
     };
 
+    const changeLanguage = (newLocale: string) => {
+        // 현재 경로에서 로케일 부분을 추출하여 새 로케일로 변경
+        const segments = pathname.split("/");
+        segments[1] = newLocale; // 첫 번째 세그먼트는 로케일
+
+        const newPath = segments.join("/");
+        router.push(newPath);
+
+        // 선택한 언어 저장
+        if (typeof window !== "undefined") {
+            localStorage.setItem("selectedLanguage", newLocale);
+        }
+    };
+
     if (!mounted) return null;
 
     return (
@@ -34,7 +59,7 @@ const Header: FC = () => {
                 <div className="flex items-center justify-between h-16">
                     {/* 왼쪽 로고 */}
                     <div className="shrink-0">
-                        <Link href="/" className="text-xl font-bold text-white">
+                        <Link href={`/${locale}`} className="text-xl font-bold text-white">
                             KakiGaming
                         </Link>
                     </div>
@@ -42,45 +67,63 @@ const Header: FC = () => {
                     {/* 중앙 메뉴 */}
                     <nav className="hidden md:flex gap-10 text-white items-center">
                         <div className="relative" onMouseEnter={() => handleMouseEnter("diablo4")} onMouseLeave={handleMouseLeave}>
-                            <div className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">디아블로4</div>
+                            <div className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">{t("header.diablo4")}</div>
                             {hoveredMenu === "diablo4" && (
                                 <div className="absolute top-full mt-1 w-48 bg-white rounded-md shadow-lg z-10">
-                                    <Link href="/diablo4/rune-price" className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
-                                        룬 시세 검색
+                                    <Link href={`/${locale}/diablo4/rune-price`} className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
+                                        {t("header.rune_price")}
                                     </Link>
                                 </div>
                             )}
                         </div>
 
-                        <div className="relative h-16 flex items-center px-2">
-                            <Link href="/poe1" className="hover:text-purple-200">
-                                패스 오브 엑자일 1
+                        {/* <div className="relative h-16 flex items-center px-2">
+                            <Link href={`/${locale}/poe1`} className="hover:text-purple-200">
+                                {t('header.poe')}
                             </Link>
                         </div>
 
                         <div className="relative h-16 flex items-center px-2">
-                            <Link href="/poe2" className="hover:text-purple-200">
-                                패스 오브 엑자일 2
+                            <Link href={`/${locale}/poe2`} className="hover:text-purple-200">
+                                {t('header.poe2')}
                             </Link>
-                        </div>
+                        </div> */}
 
                         <div className="relative" onMouseEnter={() => handleMouseEnter("torchlight")} onMouseLeave={handleMouseLeave}>
-                            <div className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">토치라이트 인피니트</div>
+                            <div className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">{t("header.torchlight")}</div>
                             {hoveredMenu === "torchlight" && (
                                 <div className="absolute top-full mt-1 w-48 bg-white rounded-md shadow-lg z-10">
-                                    <Link href="/torchlight/mp-calculator" className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
-                                        MP봉인 계산
+                                    <Link href={`/${locale}/torchlight/mp-calculator`} className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
+                                        {t("header.mp_calculator")}
                                     </Link>
-                                    <Link href="/torchlight/cooltime-calculator" className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
-                                        쿨타임 계산기
+                                    <Link href={`/${locale}/torchlight/cooltime-calculator`} className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
+                                        {t("torchlight.tools.cooltime_calculator.title")}
                                     </Link>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* 언어 선택 드롭다운 */}
+                        <div className="relative" onMouseEnter={() => handleMouseEnter("lang")} onMouseLeave={handleMouseLeave}>
+                            <div className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">{t("header.language")}</div>
+                            {hoveredMenu === "lang" && (
+                                <div className="absolute top-full mt-1 w-32 bg-white rounded-md shadow-lg z-10">
+                                    <button onClick={() => changeLanguage("ko")} className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-purple-100">
+                                        {t("header.korean")}
+                                    </button>
+                                    <button onClick={() => changeLanguage("en")} className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-purple-100">
+                                        {t("header.english")}
+                                    </button>
+                                    <button onClick={() => changeLanguage("zh")} className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-purple-100">
+                                        {t("header.chinese")}
+                                    </button>
                                 </div>
                             )}
                         </div>
 
                         <div className="relative h-16 flex items-center px-2">
                             <a href="https://www.youtube.com/@KakiGameHub" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
-                                <img src="/images/youtube-icon.svg" alt="YouTube" className="h-10 w-10" />
+                                <Image src="/images/youtube-icon.svg" alt="YouTube" width={40} height={40} />
                             </a>
                         </div>
                     </nav>
@@ -99,27 +142,39 @@ const Header: FC = () => {
                 {/* 모바일 메뉴 */}
                 {isMenuOpen && (
                     <div className="md:hidden py-4 space-y-1">
-                        <Link href="/diablo4" className="block py-2 hover:bg-purple-600 px-4">
-                            디아블로4
+                        <Link href={`/${locale}/diablo4`} className="block py-2 hover:bg-purple-600 px-4">
+                            {t("header.diablo4")}
                         </Link>
-                        <Link href="/diablo4/rune-price" className="block py-1 pl-6 text-sm hover:bg-purple-600">
-                            - 룬 시세 검색
+                        <Link href={`/${locale}/diablo4/rune-price`} className="block py-1 pl-6 text-sm hover:bg-purple-600">
+                            - {t("header.rune_price")}
                         </Link>
-                        <Link href="/poe1" className="block py-2 hover:bg-purple-600 px-4">
-                            패스 오브 엑자일 1
+                        <Link href={`/${locale}/poe1`} className="block py-2 hover:bg-purple-600 px-4">
+                            {t("header.poe")}
                         </Link>
-                        <Link href="/poe2" className="block py-2 hover:bg-purple-600 px-4">
-                            패스 오브 엑자일 2
+                        <Link href={`/${locale}/poe2`} className="block py-2 hover:bg-purple-600 px-4">
+                            {t("header.poe2")}
                         </Link>
-                        <Link href="/torchlight" className="block py-2 hover:bg-purple-600 px-4">
-                            토치라이트 인피니트
+                        <Link href={`/${locale}/torchlight`} className="block py-2 hover:bg-purple-600 px-4">
+                            {t("header.torchlight")}
                         </Link>
-                        <Link href="/torchlight/mp-calculator" className="block py-1 pl-6 text-sm hover:bg-purple-600">
-                            - MP봉인 계산
+                        <Link href={`/${locale}/torchlight/mp-calculator`} className="block py-1 pl-6 text-sm hover:bg-purple-600">
+                            - {t("header.mp_calculator")}
                         </Link>
-                        <Link href="/torchlight/cooltime-calculator" className="block py-1 pl-6 text-sm hover:bg-purple-600">
-                            - 쿨타임 계산기
+                        <Link href={`/${locale}/torchlight/cooltime-calculator`} className="block py-1 pl-6 text-sm hover:bg-purple-600">
+                            - {t("torchlight.tools.cooltime_calculator.title")}
                         </Link>
+
+                        {/* 모바일 언어 선택 */}
+                        <div className="block py-2 hover:bg-purple-600 px-4">{t("header.language")}</div>
+                        <button onClick={() => changeLanguage("ko")} className="block w-full text-left py-1 pl-6 text-sm hover:bg-purple-600">
+                            - {t("header.korean")}
+                        </button>
+                        <button onClick={() => changeLanguage("en")} className="block w-full text-left py-1 pl-6 text-sm hover:bg-purple-600">
+                            - {t("header.english")}
+                        </button>
+                        <button onClick={() => changeLanguage("zh")} className="block w-full text-left py-1 pl-6 text-sm hover:bg-purple-600">
+                            - {t("header.chinese")}
+                        </button>
                     </div>
                 )}
             </div>
