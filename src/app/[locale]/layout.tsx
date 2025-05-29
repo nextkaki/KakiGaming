@@ -8,6 +8,9 @@ import Footer from "@/components/layout/Footer";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import Script from "next/script";
+// 구글 애널리틱스 및 쿠키 동의 컴포넌트 추가
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import CookieConsent from "@/components/analytics/CookieConsent";
 
 const notoSansKr = Noto_Sans_KR({
     subsets: ["latin"],
@@ -59,6 +62,9 @@ export default async function LocaleLayout({ children, params }: { children: Rea
                 />
             </head>
             <body className="font-noto bg-[#121212] text-[#f5f5f5]">
+                {/* 구글 애널리틱스 추가 */}
+                <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_ID || ""} />
+
                 <NextIntlClientProvider locale={locale} messages={messages}>
                     <Header />
                     <div className="container mx-auto px-4 py-8">
@@ -74,6 +80,9 @@ export default async function LocaleLayout({ children, params }: { children: Rea
                         </div>
                     </div>
                     <Footer />
+                    
+                    {/* 쿠키 동의 배너 추가 */}
+                    <CookieConsent />
                 </NextIntlClientProvider>
             </body>
         </html>
