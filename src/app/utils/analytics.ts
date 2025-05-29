@@ -6,7 +6,7 @@ declare global {
     gtag: (
       command: string,
       action: string,
-      params?: Record<string, any>
+      params?: Record<string, unknown>
     ) => void;
   }
 }
