@@ -58,7 +58,7 @@ export async function fetchLatestUpdates(
  * @param content README.md 파일 내용
  * @returns 최신 업데이트 항목 배열
  */
-function extractUpdateSection(content: string): UpdateItem[] {
+export function extractUpdateSection(content: string): UpdateItem[] {
   // "최신 업데이트 소식" 섹션 찾기
   const sectionRegex = /## 최신 업데이트 소식\s*\n([\s\S]*?)(?:\n##|$)/;
   const sectionMatch = content.match(sectionRegex);
@@ -71,7 +71,19 @@ function extractUpdateSection(content: string): UpdateItem[] {
   
   // 각 업데이트 항목 추출 (날짜 형식: YYYY-MM-DD 또는 YYYY.MM.DD)
   const updateItems: UpdateItem[] = [];
-  const itemRegex = /(?:^|\n)(?:\*|-|\d+\.)\s*(?:\[?(\d{4}[-.]\d{2}[-.]\d{2})\]?)[:\s]+(.*?)(?:\n|$)/g;
+  
+  // 각 줄마다 “- YYYY-MM-DD: 제목 혹은 - YYYY.MM.DD: 제목” 형태로 매칭
+  // ^    : 각 줄의 시작
+  // (?:  : 진짜 항목 마커.  "*", "-", 혹은 "번호." (예: "1.")
+  // ) 
+  // \s*  : 마커 뒤에 오는 공백
+  // (?:\[?(\d{4}[-.]\d{2}[-.]\d{2})\]?) : 날짜 (캡처그룹 1번), [ ]로 감쌀 수도
+  // [\s:]+ : 날짜와 제목 사이 구분자 (공백 또는 콜론)
+  // (.+)  : 제목+설명 전체 (캡처그룹 2번) — 뒤 공백/줄 끝까지
+  // $     : 줄 끝
+  // gm    : g = 전역검색, m = 다중행 모드
+  const itemRegex = /^ *(?:\*|-|\d+\.)\s*(?:\[?(\d{4}[-.]\d{2}[-.]\d{2})\]?)[\s:]+(.+)$/gm;
+
   
   let match;
   while ((match = itemRegex.exec(sectionContent)) !== null) {
@@ -115,7 +127,7 @@ export async function getLatestUpdates(maxItems: number = 5): Promise<UpdateItem
 /**
  * API 오류 또는 데이터 없음 상황에서 사용할 폴백 데이터
  */
-function getFallbackUpdates(): UpdateItem[] {
+export function getFallbackUpdates(): UpdateItem[] {
   return [
     {
       date: new Date().toISOString().split('T')[0],
