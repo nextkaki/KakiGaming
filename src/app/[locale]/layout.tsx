@@ -60,6 +60,8 @@ export default async function LocaleLayout({ children, params }: { children: Rea
             `,
                     }}
                 />
+                {/* 애드센스 메인 스크립트: 한 번만 로드 */}
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-6995816590006068" crossOrigin="anonymous"></script>
             </head>
             <body className="font-noto bg-[#121212] text-[#f5f5f5]">
                 {/* 구글 애널리틱스 추가 */}
@@ -80,7 +82,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
                         </div>
                     </div>
                     <Footer />
-                    
+
                     {/* 쿠키 동의 배너 추가 */}
                     <CookieConsent />
                 </NextIntlClientProvider>
