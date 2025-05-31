@@ -60,8 +60,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
             `,
                     }}
                 />
-                {/* 애드센스 메인 스크립트: 한 번만 로드 */}
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-6995816590006068" crossOrigin="anonymous"></script>
+                <Script id="adsense-main" strategy="afterInteractive" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6995816590006068" crossOrigin="anonymous" />
             </head>
             <body className="font-noto bg-[#121212] text-[#f5f5f5]">
                 {/* 구글 애널리틱스 추가 */}
