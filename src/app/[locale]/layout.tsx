@@ -46,6 +46,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
     return (
         <html lang={locale} className={notoSansKr.variable}>
             <head>
+                <meta name="google-adsense-account" content="ca-pub-6995816590006068"></meta>
                 {/* Google Analytics */}
                 <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-VNF9KXKBDY" />
                 <Script
