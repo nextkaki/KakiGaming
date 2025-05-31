@@ -3,10 +3,8 @@
 import Link from "next/link";
 import GameCard from "@/components/ui/GameCard";
 import AdContainer from "@/components/ui/AdContainer";
-import UpdatesSection from "@/components/ui/UpdatesSection";
 import { useTranslations } from 'next-intl';
 import { usePathname, useParams } from 'next/navigation';
-import { Suspense } from 'react';
 
 // 클라이언트 컴포넌트
 export default function Home() {
