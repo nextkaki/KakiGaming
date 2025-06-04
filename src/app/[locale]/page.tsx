@@ -43,15 +43,15 @@ export default function Home() {
                     href={`/${locale}/torchlight`} 
                 />
                 <GameCard 
-                    title={t('header.poe')} 
-                    imageSrc="/images/poe1.jpg" 
-                    href={`/${locale}/poe1`} 
+                    title={t('header.eldenring')} 
+                    imageSrc="/images/eldenring.jpg" 
+                    href={`/${locale}/eldenring`} 
                 />
-                <GameCard 
+                {/* <GameCard 
                     title={t('header.poe2')} 
                     imageSrc="/images/poe2.jpg" 
                     href={`/${locale}/poe2`} 
-                />
+                /> */}
             </div>
 
             {/* 유틸리티 섹션 */}

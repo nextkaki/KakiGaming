@@ -1,5 +1,3 @@
-// 파일 경로: /src/components/layout/Sidebar.tsx
-// 역할: 다국어 지원 추가
 'use client';
 
 import Link from "next/link";
@@ -30,6 +28,11 @@ const Sidebar = ({ className = "" }: SidebarProps) => {
                             {t("header.torchlight")}
                         </Link>
                     </li>
+                    <li>
+                        <Link href={`/${locale}/eldenring`} className="text-gray-300 hover:text-white transition block py-1">
+                            {t("header.eldenring")}
+                        </Link>
+                    </li>
                 </ul>
                 
                 <h2 className="text-xl font-bold mb-4 mt-8 text-white">{t("header.tools")}</h2>
@@ -47,6 +50,11 @@ const Sidebar = ({ className = "" }: SidebarProps) => {
                     <li>
                         <Link href={`/${locale}/torchlight/cooltime-calculator`} className="text-gray-300 hover:text-white transition block py-1">
                             {t("torchlight.tools.cooltime_calculator.title")}
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href={`/${locale}/eldenring/nightlord`} className="text-gray-300 hover:text-white transition block py-1">
+                            {t("header.nightlord")}
                         </Link>
                     </li>
                 </ul>

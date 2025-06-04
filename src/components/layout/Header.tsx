@@ -1,5 +1,3 @@
-// 파일 경로: /src/components/layout/Header.tsx
-// 역할: 다국어 지원 및 언어 선택 드롭다운이 포함된 헤더 컴포넌트
 "use client";
 
 import { useTranslations } from "next-intl";
@@ -67,9 +65,11 @@ const Header = () => {
                     {/* 중앙 메뉴 */}
                     <nav className="hidden md:flex gap-10 text-white items-center">
                         <div className="relative" onMouseEnter={() => handleMouseEnter("diablo4")} onMouseLeave={handleMouseLeave}>
-                            <div className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">{t("header.diablo4")}</div>
+                            <Link href={`/${locale}/diablo4`} className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">
+                                {t("header.diablo4")}
+                            </Link>
                             {hoveredMenu === "diablo4" && (
-                                <div className="absolute top-full mt-1 w-48 bg-white rounded-md shadow-lg z-10">
+                                <div className="absolute top-full mt-1 w-48 bg-white rounded-md shadow-lg overflow-hidden z-10">
                                     <Link href={`/${locale}/diablo4/rune-price`} className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
                                         {t("header.rune_price")}
                                     </Link>
@@ -90,9 +90,11 @@ const Header = () => {
                         </div> */}
 
                         <div className="relative" onMouseEnter={() => handleMouseEnter("torchlight")} onMouseLeave={handleMouseLeave}>
-                            <div className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">{t("header.torchlight")}</div>
+                            <Link href={`/${locale}/torchlight`} className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">
+                                {t("header.torchlight")}
+                            </Link>
                             {hoveredMenu === "torchlight" && (
-                                <div className="absolute top-full mt-1 w-48 bg-white rounded-md shadow-lg z-10">
+                                <div className="absolute top-full mt-1 w-48 bg-white rounded-md shadow-lg overflow-hidden z-10">
                                     <Link href={`/${locale}/torchlight/mp-calculator`} className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
                                         {t("header.mp_calculator")}
                                     </Link>
@@ -103,11 +105,24 @@ const Header = () => {
                             )}
                         </div>
 
+                        <div className="relative" onMouseEnter={() => handleMouseEnter("eldenring")} onMouseLeave={handleMouseLeave}>
+                            <Link href={`/${locale}/eldenring`} className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">
+                                {t("header.eldenring")}
+                            </Link>
+                            {hoveredMenu === "eldenring" && (
+                                <div className="absolute top-full mt-1 w-48 bg-white rounded-md shadow-lg overflow-hidden z-10">
+                                    <Link href={`/${locale}/eldenring/nightlord`} className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
+                                        {t("header.nightlord")}
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
+
                         {/* 언어 선택 드롭다운 */}
                         <div className="relative" onMouseEnter={() => handleMouseEnter("lang")} onMouseLeave={handleMouseLeave}>
                             <div className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">{t("header.language")}</div>
                             {hoveredMenu === "lang" && (
-                                <div className="absolute top-full mt-1 w-32 bg-white rounded-md shadow-lg z-10">
+                                <div className="absolute top-full mt-1 w-48 bg-white rounded-md shadow-lg overflow-hidden z-10">
                                     <button onClick={() => changeLanguage("ko")} className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-purple-100">
                                         {t("header.korean")}
                                     </button>
@@ -162,6 +177,12 @@ const Header = () => {
                         </Link>
                         <Link href={`/${locale}/torchlight/cooltime-calculator`} className="block py-1 pl-6 text-sm hover:bg-purple-600">
                             - {t("torchlight.tools.cooltime_calculator.title")}
+                        </Link>
+                        <Link href={`/${locale}/eldenring`} className="block py-2 hover:bg-purple-600 px-4">
+                            {t("header.eldenring")}
+                        </Link>
+                        <Link href={`/${locale}/eldenring/nightlord`} className="block py-1 pl-6 text-sm hover:bg-purple-600">
+                            - {t("header.nightlord")}
                         </Link>
 
                         {/* 모바일 언어 선택 */}
