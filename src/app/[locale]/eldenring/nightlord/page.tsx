@@ -1,13 +1,11 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useParams } from "next/navigation";
 import Image from "next/image";
 import AdContainer from "@/components/ui/AdContainer";
 
 export default function EldenringNightlord() {
     const t = useTranslations("common");
-    const params = useParams();
 
     return (
         <div className="space-y-8">
@@ -21,7 +19,7 @@ export default function EldenringNightlord() {
             <div className="bg-gray-800 rounded-lg p-6 shadow-lg text-white">
                 <h2 className="text-2xl font-bold mb-4">초보자를 위한 가이드</h2>
                 <div className="prose prose-invert max-w-none">
-                    <p className="mb-4">"이런것들이 있구나~" 하고 눈에 익혀두고 배운다 생각하세요. 이런 '구성요소'들이 어떤 역할을 하는지 알게 된다면 '스스로' 동선을 짤 수 있게 됩니다.</p>
+                    <p className="mb-4">&quot;이런것들이 있구나~&quot; 하고 눈에 익혀두고 배운다 생각하세요. 이런 &apos;구성요소&apos;들이 어떤 역할을 하는지 알게 된다면 &apos;스스로&apos; 동선을 짤 수 있게 됩니다.</p>
                     <div className="bg-gray-700 p-4 rounded-lg mb-6">
                         <p className="font-semibold text-amber-400">💡 가이드 활용 팁</p>
                         <p>
@@ -44,7 +42,7 @@ export default function EldenringNightlord() {
                             <h3 className="text-xl font-semibold mb-3">착륙 지점 확인하기</h3>
                             <ul className="list-disc pl-5 space-y-2">
                                 <li>
-                                    맵을 <span className="text-amber-400">축소</span>해서 넓게 보고 "어디에 뭐가 있구나~" 정도만 눈으로 확인하세요.
+                                    맵을 <span className="text-amber-400">축소</span>해서 넓게 보고 &quot;어디에 뭐가 있구나~&quot; 정도만 눈으로 확인하세요.
                                 </li>
                                 <li>
                                     어디쯤 내리겠구나 생각하고 착륙 지점 <span className="text-amber-400">인근</span>에는 무엇이 있는지 파악하세요.
@@ -155,7 +153,7 @@ export default function EldenringNightlord() {
                                     <li>레벨업 포인트</li>
                                     <li>보스 처치 [룬]</li>
                                 </ul>
-                                <p className="mt-2 text-sm italic">* 잡몹 "무리"들이 '보스' 역할을 할 때도 있습니다.</p>
+                                <p className="mt-2 text-sm italic">* 잡몹 &quot;무리&quot;들이 &apos;보스&apos; 역할을 할 때도 있습니다.</p>
 
                                 {/* 이미지 컨테이너 추가 */}
                                 <div className="mt-4 bg-gray-900 p-2 rounded-lg">
@@ -183,7 +181,7 @@ export default function EldenringNightlord() {
                                 <li>공격력이 높은 아이템은 좋습니다.</li>
                                 <li>[옵션]이 나에게 맞는 것을 고르세요.</li>
                                 <li>
-                                    <span className="text-amber-400">사용하지 않더라도 '소지'해도 효과를 얻습니다</span>
+                                    <span className="text-amber-400">사용하지 않더라도 &apos;소지&apos;해도 효과를 얻습니다</span>
                                 </li>
                             </ul>
 
@@ -400,7 +398,7 @@ export default function EldenringNightlord() {
                             <h3 className="text-xl font-semibold mb-3">원혼 시스템</h3>
                             <p className="mb-4">나를 도와주는 [보조 공격 수단]입니다.</p>
                             <ul className="list-disc pl-5 space-y-2">
-                                <li>비석을 활성화하면 캐릭터 주변에 '원혼'이 생깁니다.</li>
+                                <li>비석을 활성화하면 캐릭터 주변에 &apos;원혼&apos;이 생깁니다.</li>
                                 <li>원혼이 [적]을 타겟팅해서 대미지를 부여합니다.</li>
                             </ul>
 
