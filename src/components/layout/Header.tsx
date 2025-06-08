@@ -146,6 +146,12 @@ const Header = () => {
                             )}
                         </div>
 
+                        <div className="relative">
+                            <a href="https://toon.at/donate/kaki__" target="_blank" rel="noopener noreferrer" className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">
+                                {t("header.donation")}
+                            </a>
+                        </div>
+
                         <div className="relative h-16 flex items-center px-2">
                             <a href="https://www.youtube.com/@KakiGameHub" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
                                 <Image src="/images/youtube-icon.svg" alt="YouTube" width={40} height={40} />
