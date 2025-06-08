@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useTranslations } from 'next-intl';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 
 interface SidebarProps {
     className?: string;
@@ -11,7 +11,10 @@ interface SidebarProps {
 const Sidebar = ({ className = "" }: SidebarProps) => {
     const t = useTranslations('common');
     const params = useParams();
-    const locale = params.locale as string || 'ko';
+    const pathname = usePathname();
+    const locale = (params.locale as string) || 'ko';
+
+    const currentSection = pathname.split('/')[2];
     
     return (
         <div className={`${className}`}>
@@ -21,6 +24,11 @@ const Sidebar = ({ className = "" }: SidebarProps) => {
                     <li>
                         <Link href={`/${locale}/diablo4`} className="text-gray-300 hover:text-white transition block py-1">
                             {t("header.diablo4")}
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href={`/${locale}/poe1`} className="text-gray-300 hover:text-white transition block py-1">
+                            {t("header.poe")}
                         </Link>
                     </li>
                     <li>
@@ -35,29 +43,48 @@ const Sidebar = ({ className = "" }: SidebarProps) => {
                     </li>
                 </ul>
                 
-                <h2 className="text-xl font-bold mb-4 mt-8 text-white">{t("header.tools")}</h2>
-                <ul className="space-y-2">
-                    <li>
-                        <Link href={`/${locale}/diablo4/rune-price`} className="text-gray-300 hover:text-white transition block py-1">
-                            {t("header.rune_price")}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href={`/${locale}/torchlight/mp-calculator`} className="text-gray-300 hover:text-white transition block py-1">
-                            {t("header.mp_calculator")}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href={`/${locale}/torchlight/cooltime-calculator`} className="text-gray-300 hover:text-white transition block py-1">
-                            {t("torchlight.tools.cooltime_calculator.title")}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href={`/${locale}/eldenring/nightlord`} className="text-gray-300 hover:text-white transition block py-1">
-                            {t("header.nightlord")}
-                        </Link>
-                    </li>
-                </ul>
+                {(currentSection === 'diablo4' || currentSection === 'torchlight' || currentSection === 'eldenring' || currentSection === 'poe1') && (
+                    <>
+                        <h2 className="text-xl font-bold mb-4 mt-8 text-white">{t("header.menu")}</h2>
+                        <ul className="space-y-2">
+                            {currentSection === 'diablo4' && (
+                                <li>
+                                    <Link href={`/${locale}/diablo4/rune-price`} className="text-gray-300 hover:text-white transition block py-1">
+                                        {t("header.rune_price")}
+                                    </Link>
+                                </li>
+                            )}
+                            {currentSection === 'torchlight' && (
+                                <>
+                                    <li>
+                                        <Link href={`/${locale}/torchlight/mp-calculator`} className="text-gray-300 hover:text-white transition block py-1">
+                                            {t("header.mp_calculator")}
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link href={`/${locale}/torchlight/cooltime-calculator`} className="text-gray-300 hover:text-white transition block py-1">
+                                            {t("torchlight.tools.cooltime_calculator.title")}
+                                        </Link>
+                                    </li>
+                                </>
+                            )}
+                            {currentSection === 'eldenring' && (
+                                <li>
+                                    <Link href={`/${locale}/eldenring/nightlord`} className="text-gray-300 hover:text-white transition block py-1">
+                                        {t("eldenring.beginner")}
+                                    </Link>
+                                </li>
+                            )}
+                            {currentSection === 'poe1' && (
+                                <li>
+                                    <Link href={`/${locale}/eldenring/nightlord`} className="text-gray-300 hover:text-white transition block py-1">
+                                        {t("poe.quicklinks.shorts")}
+                                    </Link>
+                                </li>
+                            )}
+                        </ul>
+                    </>
+                )}
             </div>
         </div>
     );

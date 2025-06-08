@@ -47,11 +47,11 @@ export default function Home() {
                     imageSrc="/images/eldenring.jpg" 
                     href={`/${locale}/eldenring`} 
                 />
-                {/* <GameCard 
-                    title={t('header.poe2')} 
-                    imageSrc="/images/poe2.jpg" 
-                    href={`/${locale}/poe2`} 
-                /> */}
+                <GameCard 
+                    title={t('header.poe')} 
+                    imageSrc="/images/poe1.jpg" 
+                    href={`/${locale}/poe1`} 
+                />
             </div>
 
             {/* 유틸리티 섹션 */}

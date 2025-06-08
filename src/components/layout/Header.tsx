@@ -77,13 +77,23 @@ const Header = () => {
                             )}
                         </div>
 
-                        {/* <div className="relative h-16 flex items-center px-2">
-                            <Link href={`/${locale}/poe1`} className="hover:text-purple-200">
-                                {t('header.poe')}
+                        <div className="relative" onMouseEnter={() => handleMouseEnter("poe")} onMouseLeave={handleMouseLeave}>
+                            <Link href={`/${locale}/poe1`} className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">
+                                {t("header.poe")}
                             </Link>
+                            {hoveredMenu === "poe" && (
+                                <div className="absolute top-full mt-1 w-48 bg-white rounded-md shadow-lg overflow-hidden z-10">
+                                    {/* <Link href={`/${locale}/poe1`} className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
+                                        {t("poe.list_build")}
+                                    </Link> */}
+                                    <Link href={`/${locale}/poe1/quicklinks`} className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
+                                        {t("poe.quicklinks.shorts")}
+                                    </Link>
+                                </div>
+                            )}
                         </div>
 
-                        <div className="relative h-16 flex items-center px-2">
+                        {/* <div className="relative h-16 flex items-center px-2">
                             <Link href={`/${locale}/poe2`} className="hover:text-purple-200">
                                 {t('header.poe2')}
                             </Link>
