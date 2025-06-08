@@ -8,12 +8,6 @@ import { usePathname, useParams } from 'next/navigation';
 import Head from 'next/head';
 
 
-
-export const metadata = {
-  title: 'KakiGaming - 게임 가이드 & 계산기',
-  description: '디아블로4, 토치라이트 등 다양한 게임의 공략과 계산기를 제공합니다.',
-};
-
 // 클라이언트 컴포넌트
 export default function Home() {
     const t = useTranslations('common');
