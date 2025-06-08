@@ -7,6 +7,9 @@ import Image from "next/image";
 import AdContainer from "@/components/ui/AdContainer";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
+import Head from 'next/head';
+
+
 
 export const metadata = {
     title: '토치라이트 인피니트 가이드 | KakiGaming',
@@ -19,6 +22,11 @@ export default function TorchlightPage() {
     const locale = (params.locale as string) || "ko";
 
     return (
+        <>
+            <Head>
+                <title>토치라이트 인피니트 가이드 | KakiGaming</title>
+                <meta name="description" content="토치라이트 인피니트의 공략과 계산기 정보를 제공합니다." />
+            </Head>
         <div>
             <div className="relative h-64 mb-6 rounded-lg overflow-hidden">
                 <Image src="/images/torchlight-banner.jpg" alt={t("torchlight.title")} fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
@@ -66,5 +74,6 @@ export default function TorchlightPage() {
                 </div>
             </div>
         </div>
+        </>
     );
 }
