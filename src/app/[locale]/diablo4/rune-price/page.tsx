@@ -6,13 +6,6 @@ import RunePriceSearch from "@/components/calculators/RunePriceSearch";
 import { useTranslations } from 'next-intl';
 import Head from 'next/head';
 
-
-
-export const metadata = {
-    title: '디아블로4 룬 시세 검색 | KakiGaming',
-    description: '디아블로4 룬 가격을 실시간으로 확인할 수 있는 검색 도구입니다.',
-};
-
 export default function RunePricePage() {
     const t = useTranslations('common');
 

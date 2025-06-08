@@ -6,13 +6,6 @@ import Link from 'next/link';
 import AdContainer from '@/components/ui/AdContainer';
 import Head from 'next/head';
 
-
-
-export const metadata = {
-    title: '패스 오브 엑자일 가이드 | KakiGaming',
-    description: '패스 오브 엑자일 관련 가이드와 유용한 링크를 제공합니다.',
-};
-
 export default function PoePage() {
     const t = useTranslations('common');
     const params = useParams();
