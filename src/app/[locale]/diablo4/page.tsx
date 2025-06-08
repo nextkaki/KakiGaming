@@ -5,6 +5,12 @@ import Image from "next/image";
 import AdContainer from "@/components/ui/AdContainer";
 import { useParams } from "next/navigation";
 
+export const metadata = {
+    title: '디아블로4 가이드 | KakiGaming',
+    description: '디아블로4 정보와 룬 시세 검색 기능을 제공합니다.',
+};
+
+
 
 export default function Diablo4Page() {
     const params = useParams();

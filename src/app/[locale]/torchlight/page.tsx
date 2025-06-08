@@ -8,6 +8,11 @@ import AdContainer from "@/components/ui/AdContainer";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 
+export const metadata = {
+    title: '토치라이트 인피니트 가이드 | KakiGaming',
+    description: '토치라이트 인피니트의 공략과 계산기 정보를 제공합니다.',
+};
+
 export default function TorchlightPage() {
     const t = useTranslations("common");
     const params = useParams();
