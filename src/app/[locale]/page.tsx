@@ -5,6 +5,9 @@ import GameCard from "@/components/ui/GameCard";
 import AdContainer from "@/components/ui/AdContainer";
 import { useTranslations } from 'next-intl';
 import { usePathname, useParams } from 'next/navigation';
+import Head from 'next/head';
+
+
 
 // 클라이언트 컴포넌트
 export default function Home() {
@@ -12,8 +15,13 @@ export default function Home() {
     const pathname = usePathname();
     const params = useParams();
     const locale = params.locale as string || pathname.split('/')[1] || 'ko';
-    
+
     return (
+        <>
+            <Head>
+                <title>KakiGaming - 게임 가이드 &amp; 계산기</title>
+                <meta name="description" content="디아블로4, 토치라이트 등 다양한 게임의 공략과 계산기를 제공합니다." />
+            </Head>
         <div>
             {/* 히어로 섹션 */}
             <div className="bg-gradient-to-r from-purple-700 to-indigo-800 text-white rounded-lg p-8 mb-8 shadow-lg">
@@ -147,5 +155,6 @@ export default function Home() {
                 `
             }} />
         </div>
+        </>
     );
 }

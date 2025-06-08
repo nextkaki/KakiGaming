@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import { calcCoolTime, calcRequiredCool } from "@/app/utils/cooltimeUtils";
 import { InputBlock, ReadOnlyBlock } from "@/components/calculators/CooltimeBlocks";
 import styles from "@/components/calculators/CooltimeBlocks.module.css";
+import Head from 'next/head';
+
+
 
 export default function CooltimeCalculatorPage() {
     const [myCool, setMyCool] = useState(0);
@@ -33,6 +36,11 @@ export default function CooltimeCalculatorPage() {
     });
 
     return (
+        <>
+            <Head>
+                <title>쿨타임 계산기 - 토치라이트 인피니트 | KakiGaming</title>
+                <meta name="description" content="스킬 쿨타임을 계산해 최적의 토치라이트 인피니트 세팅을 찾아보세요." />
+            </Head>
         <div className={`${styles.calculator} ${styles.darkMode}`}>
             <h2 className={styles.title}>토치라이트 인피니트 쿨타임 계산기</h2>
 
@@ -95,5 +103,6 @@ export default function CooltimeCalculatorPage() {
                 클라이언트 적용을 위해 0.034초로 약간의 여유를 두는 것이 안전합니다.
             </div>
         </div>
+        </>
     );
 }

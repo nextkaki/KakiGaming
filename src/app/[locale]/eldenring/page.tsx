@@ -4,6 +4,9 @@ import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import AdContainer from "@/components/ui/AdContainer";
+import Head from 'next/head';
+
+
 
 export default function EldenringPage() {
     const t = useTranslations("common");
@@ -11,6 +14,11 @@ export default function EldenringPage() {
     const locale = (params.locale as string) || "ko";
 
     return (
+        <>
+        <Head>
+            <title>엘든링: 밤의 통치자 가이드 | KakiGaming</title>
+            <meta name="description" content="엘든링 스핀오프 작품 밤의 통치자에 대한 정보를 제공합니다." />
+        </Head>
         <div className="space-y-8">
             {/* 히어로 섹션 */}
             <div className="bg-gradient-to-r from-amber-800 to-gray-900 text-white rounded-lg p-8 mb-8 shadow-lg">
@@ -36,5 +44,6 @@ export default function EldenringPage() {
             {/* 광고 배너 */}
             <AdContainer size="horizontal" className="mb-8" />
         </div>
+        </>
     );
 }

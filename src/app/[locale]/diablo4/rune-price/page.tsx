@@ -4,11 +4,19 @@
 
 import RunePriceSearch from "@/components/calculators/RunePriceSearch";
 import { useTranslations } from 'next-intl';
+import Head from 'next/head';
+
+
 
 export default function RunePricePage() {
     const t = useTranslations('common');
-    
+
     return (
+        <>
+            <Head>
+                <title>디아블로4 룬 시세 검색 | KakiGaming</title>
+                <meta name="description" content="디아블로4 룬 가격을 실시간으로 확인할 수 있는 검색 도구입니다." />
+            </Head>
         <div>
             <h1 className="text-3xl font-bold mb-6">{t('diablo4.rune_price.title')}</h1>
             <p className="mb-6">{t('diablo4.rune_price.description')}</p>
@@ -25,5 +33,6 @@ export default function RunePricePage() {
 
             <RunePriceSearch />
         </div>
+        </>
     );
 }

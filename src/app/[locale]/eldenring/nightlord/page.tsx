@@ -3,11 +3,19 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import AdContainer from "@/components/ui/AdContainer";
+import Head from 'next/head';
+
+
 
 export default function EldenringNightlord() {
     const t = useTranslations("common");
 
     return (
+        <>
+        <Head>
+            <title>밤의 통치자 초보자 가이드 - 엘든링 | KakiGaming</title>
+            <meta name="description" content="엘든링 밤의 통치자를 처음 플레이하는 유저를 위한 단계별 가이드입니다." />
+        </Head>
         <div className="space-y-8">
             {/* 히어로 섹션 */}
             <div className="bg-gradient-to-r from-amber-800 to-gray-900 text-white rounded-lg p-8 mb-8 shadow-lg">
@@ -453,5 +461,6 @@ export default function EldenringNightlord() {
             {/* 광고 배너 */}
             <AdContainer size="horizontal" className="mb-8" />
         </div>
+        </>
     );
 }

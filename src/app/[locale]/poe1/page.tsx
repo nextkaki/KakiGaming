@@ -4,6 +4,9 @@ import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import AdContainer from '@/components/ui/AdContainer';
+import Head from 'next/head';
+
+
 
 export default function PoePage() {
     const t = useTranslations('common');
@@ -11,6 +14,11 @@ export default function PoePage() {
     const locale = params.locale as string || 'ko';
 
     return (
+        <>
+            <Head>
+                <title>패스 오브 엑자일 가이드 | KakiGaming</title>
+                <meta name="description" content="패스 오브 엑자일 관련 가이드와 유용한 링크를 제공합니다." />
+            </Head>
         <div className="space-y-8">
             {/* 히어로 섹션 */}
             <div className="bg-gradient-to-r from-blue-800 to-gray-900 text-white rounded-lg p-8 mb-8 shadow-lg">
@@ -33,5 +41,6 @@ export default function PoePage() {
             {/* 광고 배너 */}
             <AdContainer size="horizontal" className="mb-8" />
         </div>
+        </>
     );
 }

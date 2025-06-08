@@ -4,6 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import AdContainer from "@/components/ui/AdContainer";
 import { useParams } from "next/navigation";
+import Head from 'next/head';
+
+
 
 
 export default function Diablo4Page() {
@@ -11,7 +14,12 @@ export default function Diablo4Page() {
     const locale = (params.locale as string) || "ko";
 
     return (
-        <div>
+        <>
+            <Head>
+                <title>디아블로4 가이드 | KakiGaming</title>
+                <meta name="description" content="디아블로4 정보와 룬 시세 검색 기능을 제공합니다." />
+            </Head>
+            <div>
             <div className="relative h-64 mb-6 rounded-lg overflow-hidden">
                 <Image src="/images/diablo4-banner.jpg" alt="디아블로4" fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                 <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
@@ -66,5 +74,6 @@ export default function Diablo4Page() {
                 </div>
             </div>
         </div>
+        </>
     );
 }

@@ -4,6 +4,9 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import AdContainer from '@/components/ui/AdContainer';
 import { useState } from 'react';
+import Head from 'next/head';
+
+
 
 // 퀵 링크 아이템 타입 정의
 interface QuickLinkItem {
@@ -17,7 +20,7 @@ interface QuickLinkItem {
 
 export default function PoeQuickLinks() {
   const t = useTranslations('common.poe');
-  
+
   // 카테고리 필터링을 위한 상태
   const [activeCategory, setActiveCategory] = useState<string>('all');
   
@@ -217,6 +220,11 @@ export default function PoeQuickLinks() {
     : quickLinks.filter(link => link.category === activeCategory);
 
   return (
+    <>
+      <Head>
+        <title>패스 오브 엑자일 퀵 링크 모음 | KakiGaming</title>
+        <meta name="description" content="유용한 PoE 관련 사이트와 도구 링크를 한곳에 모았습니다." />
+      </Head>
     <div className="space-y-8">
       {/* 히어로 섹션 */}
       <div className="bg-gradient-to-r from-blue-800 to-gray-900 text-white rounded-lg p-8 mb-8 shadow-lg">
@@ -289,5 +297,6 @@ export default function PoeQuickLinks() {
       </div> */}
 
     </div>
+    </>
   );
 }
