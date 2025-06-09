@@ -45,24 +45,6 @@ export default async function LocaleLayout({ children, params }: { children: Rea
 
     return (
         <html lang={locale} className={notoSansKr.variable}>
-            <head>
-                <meta name="google-adsense-account" content="ca-pub-6995816590006068"></meta>
-                {/* Google Analytics */}
-                <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-VNF9KXKBDY" />
-                <Script
-                    id="gtag-init"
-                    strategy="afterInteractive"
-                    dangerouslySetInnerHTML={{
-                        __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-VNF9KXKBDY');
-            `,
-                    }}
-                />
-                <Script id="adsense-main" strategy="afterInteractive" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6995816590006068" crossOrigin="anonymous" />
-            </head>
             <body className="font-noto bg-[#121212] text-[#f5f5f5]">
                 {/* 구글 애널리틱스 추가 */}
                 <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_ID || ""} />

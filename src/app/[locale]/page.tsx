@@ -6,14 +6,17 @@ import AdContainer from "@/components/ui/AdContainer";
 import { useTranslations } from 'next-intl';
 import { usePathname, useParams } from 'next/navigation';
 
+
+
 // 클라이언트 컴포넌트
 export default function Home() {
     const t = useTranslations('common');
     const pathname = usePathname();
     const params = useParams();
     const locale = params.locale as string || pathname.split('/')[1] || 'ko';
-    
+
     return (
+        <>
         <div>
             {/* 히어로 섹션 */}
             <div className="bg-gradient-to-r from-purple-700 to-indigo-800 text-white rounded-lg p-8 mb-8 shadow-lg">
@@ -147,5 +150,6 @@ export default function Home() {
                 `
             }} />
         </div>
+        </>
     );
 }

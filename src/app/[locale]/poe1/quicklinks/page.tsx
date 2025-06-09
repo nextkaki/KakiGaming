@@ -5,6 +5,8 @@ import Image from 'next/image';
 import AdContainer from '@/components/ui/AdContainer';
 import { useState } from 'react';
 
+
+
 // 퀵 링크 아이템 타입 정의
 interface QuickLinkItem {
   id: string;
@@ -17,7 +19,7 @@ interface QuickLinkItem {
 
 export default function PoeQuickLinks() {
   const t = useTranslations('common.poe');
-  
+
   // 카테고리 필터링을 위한 상태
   const [activeCategory, setActiveCategory] = useState<string>('all');
   
@@ -217,6 +219,7 @@ export default function PoeQuickLinks() {
     : quickLinks.filter(link => link.category === activeCategory);
 
   return (
+    <>
     <div className="space-y-8">
       {/* 히어로 섹션 */}
       <div className="bg-gradient-to-r from-blue-800 to-gray-900 text-white rounded-lg p-8 mb-8 shadow-lg">
@@ -289,5 +292,6 @@ export default function PoeQuickLinks() {
       </div> */}
 
     </div>
+    </>
   );
 }

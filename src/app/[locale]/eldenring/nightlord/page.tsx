@@ -4,10 +4,13 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import AdContainer from "@/components/ui/AdContainer";
 
+
+
 export default function EldenringNightlord() {
     const t = useTranslations("common");
 
     return (
+        <>
         <div className="space-y-8">
             {/* 히어로 섹션 */}
             <div className="bg-gradient-to-r from-amber-800 to-gray-900 text-white rounded-lg p-8 mb-8 shadow-lg">
@@ -453,5 +456,6 @@ export default function EldenringNightlord() {
             {/* 광고 배너 */}
             <AdContainer size="horizontal" className="mb-8" />
         </div>
+        </>
     );
 }

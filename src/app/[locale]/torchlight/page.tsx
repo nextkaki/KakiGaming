@@ -8,12 +8,15 @@ import AdContainer from "@/components/ui/AdContainer";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 
+
+
 export default function TorchlightPage() {
     const t = useTranslations("common");
     const params = useParams();
     const locale = (params.locale as string) || "ko";
 
     return (
+        <>
         <div>
             <div className="relative h-64 mb-6 rounded-lg overflow-hidden">
                 <Image src="/images/torchlight-banner.jpg" alt={t("torchlight.title")} fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
@@ -61,5 +64,6 @@ export default function TorchlightPage() {
                 </div>
             </div>
         </div>
+        </>
     );
 }

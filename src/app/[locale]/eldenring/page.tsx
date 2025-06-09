@@ -5,12 +5,15 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import AdContainer from "@/components/ui/AdContainer";
 
+
+
 export default function EldenringPage() {
     const t = useTranslations("common");
     const params = useParams();
     const locale = (params.locale as string) || "ko";
 
     return (
+        <>
         <div className="space-y-8">
             {/* 히어로 섹션 */}
             <div className="bg-gradient-to-r from-amber-800 to-gray-900 text-white rounded-lg p-8 mb-8 shadow-lg">
@@ -36,5 +39,6 @@ export default function EldenringPage() {
             {/* 광고 배너 */}
             <AdContainer size="horizontal" className="mb-8" />
         </div>
+        </>
     );
 }

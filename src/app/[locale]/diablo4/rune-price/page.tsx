@@ -5,10 +5,13 @@
 import RunePriceSearch from "@/components/calculators/RunePriceSearch";
 import { useTranslations } from 'next-intl';
 
+
+
 export default function RunePricePage() {
     const t = useTranslations('common');
-    
+
     return (
+        <>
         <div>
             <h1 className="text-3xl font-bold mb-6">{t('diablo4.rune_price.title')}</h1>
             <p className="mb-6">{t('diablo4.rune_price.description')}</p>
@@ -25,5 +28,6 @@ export default function RunePricePage() {
 
             <RunePriceSearch />
         </div>
+        </>
     );
 }
