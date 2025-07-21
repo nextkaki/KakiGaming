@@ -66,6 +66,11 @@ const Sidebar = ({ className = "" }: SidebarProps) => {
                                             {t("torchlight.tools.cooltime_calculator.title")}
                                         </Link>
                                     </li>
+                                    <li>
+                                        <Link href={`/${locale}/torchlight/mystic-calculator`} className="text-gray-300 hover:text-white transition block py-1">
+                                            {t("torchlight.tools.mystic_calculator.title")}
+                                        </Link>
+                                    </li>
                                 </>
                             )}
                             {currentSection === 'eldenring' && (

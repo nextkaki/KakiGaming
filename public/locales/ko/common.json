@@ -18,6 +18,12 @@
                 "description": "쿨타임 시스템을 계산하여 최적의 빌드를 만들어보세요.",
                 "link": "쿨타임 계산기 사용하기",
                 "use": "쿨타임 계산기 사용하기"
+            },
+            "mystic_calculator": {
+                "title": "미스릴 계산기",
+                "description": "미스릴을 계산하여 최적의 빌드를 만들어보세요.",
+                "link": "미스릴 계산기 사용하기",
+                "use": "미스릴 계산기 사용하기"
             }
         }
     },
@@ -124,6 +130,7 @@
         "rune_price": "룬 시세",
         "mp_calculator": "MP 봉인 계산기",
         "cooltime_calculator": "쿨타임 계산기",
+        "mystic_calculator": "미스틱 계산기",
         "language": "언어",
         "korean": "한국어",
         "english": "영어",

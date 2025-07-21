@@ -42,12 +42,23 @@ export default function TorchlightPageClient() {
                                 </Link>
                             </div>
                         </div>
+
                         <div className="space-y-4">
                             <div className="border-b pb-4 mb-3">
                                 <h3 className="font-bold text-gray-950 text-lg mb-2">{t("torchlight.tools.cooltime_calculator.title")}</h3>
                                 <p className="text-gray-600 mb-2">{t("torchlight.tools.cooltime_calculator.description")}</p>
                                 <Link href={`/${locale}/torchlight/cooltime-calculator`} className="text-purple-600 font-medium hover:text-purple-800">
                                     {t("torchlight.tools.cooltime_calculator.use")} &rarr;
+                                </Link>
+                            </div>
+                        </div>
+
+                        <div className="space-y-4">
+                            <div className="border-b pb-4 mb-3">
+                                <h3 className="font-bold text-gray-950 text-lg mb-2">{t("torchlight.tools.mystic_calculator.title")}</h3>
+                                <p className="text-gray-600 mb-2">{t("torchlight.tools.mystic_calculator.description")}</p>
+                                <Link href={`/${locale}/torchlight/mystic-calculator`} className="text-purple-600 font-medium hover:text-purple-800">
+                                    {t("torchlight.tools.mystic_calculator.use")} &rarr;
                                 </Link>
                             </div>
                         </div>
