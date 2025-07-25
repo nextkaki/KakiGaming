@@ -50,7 +50,7 @@ export default function Home() {
     const [result, setResult] = useState<CalculationResult | null>(null);
     const [optimizationResults, setOptimizationResults] = useState<OptimizationResult[]>([]);
     const [isOptimizing, setIsOptimizing] = useState<boolean>(false);
-    const [devotionMPThreshold, setDevotionMPThreshold] = useState<number>(2900);
+    const [devotionMPThreshold, setDevotionMPThreshold] = useState<number>(2800);
 
     // 최적화 범위 설정
     const [minMP, setMinMP] = useState<number>(7000);
@@ -138,7 +138,7 @@ export default function Home() {
 
         // === 정토 상태 미스릴 수치 계산 ===
         const devotionMithrilPerTrigger = Math.floor(mithrilMax * 0.1);
-        const mpPerDevotionTrigger = devotionMPThreshold; // 사용자 입력값 (기본 2900)
+        const mpPerDevotionTrigger = devotionMPThreshold; // 사용자 입력값 (기본 2800)
 
         // 정토 상태에서 지속적인 공격으로 인한 초당 MP 소모 계산
         // 정토 상태에서는 공격당 현재 MP의 8% 소모 (최대 MP 기준으로 계산)
@@ -284,16 +284,21 @@ export default function Home() {
                             <input type="number" value={maxMP} onChange={(e) => setMaxMP(Number(e.target.value))} className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="10000" />
                         </div>
                         <div>
-                            <label className="block text-white text-sm font-medium mb-2">추가 MP 소모율 (%)</label>
-                            <select value={additionalConsumptionRate} onChange={(e) => setAdditionalConsumptionRate(Number(e.target.value))} className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option value={4} className="bg-gray-800">
-                                    4%
-                                </option>
-                                <option value={8} className="bg-gray-800">
-                                    8%
-                                </option>
-                            </select>
+                            <label className="block text-white text-sm font-medium mb-2">
+                                추가 MP 소모율 (%)
+                            </label>
+                            <input
+                                type="number"
+                                min="0"
+                                max="100"
+                                step="1"
+                                value={additionalConsumptionRate}
+                                onChange={(e) => setAdditionalConsumptionRate(Number(e.target.value))}
+                                className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="8"
+                            />
                         </div>
+
                         <div>
                             <label className="block text-white text-sm font-medium mb-2">초당 공격횟수 (APS)</label>
                             <input type="number" step="0.1" value={attacksPerSecond} onChange={(e) => setAttacksPerSecond(Number(e.target.value))} className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="8" />
@@ -316,7 +321,7 @@ export default function Home() {
                         </div>
                         <div>
                             <label className="block text-white text-sm font-medium mb-2">극진한 경배 소모값</label>
-                            <input type="number" value={devotionMPThreshold} onChange={(e) => setDevotionMPThreshold(Number(e.target.value))} className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="2900" />
+                            <input type="number" value={devotionMPThreshold} onChange={(e) => setDevotionMPThreshold(Number(e.target.value))} className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="2800" />
                         </div>
                     </div>
 
