@@ -33,13 +33,15 @@ interface CalculationResult {
 }
 
 interface OptimizationResult {
-    maxMP: number;
-    additionalConsumptionRate: number;
-    totalAttacks: number;
-    mithrilPerSecond: number;
-    warmupTime: number;
-    score: number;
+  maxMP: number;
+  additionalConsumptionRate: number;
+  totalAttacks: number;
+  mithrilPerSecond: number;
+  mithrilBalance: number; // 추가
+  warmupTime: number;
+  score: number;
 }
+
 
 export default function Home() {
     const [maxMP, setMaxMP] = useState<number>(10000);
@@ -83,15 +85,17 @@ export default function Home() {
             let baseMithril: number;
 
             if (currentMP >= mpThreshold) {
-                stanceConsumption = Math.min(currentMP, 1000); // 10% 또는 1000 중 작은 값
+                // MP 10% 이상일 때: 미봉인된 최대 MP의 10% 소모
+                stanceConsumption = Math.floor(maxMP * 0.1); //
                 baseMithril = 10;
             } else {
-                stanceConsumption = Math.min(currentMP, 100); // 1% 또는 100 중 작은 값
+                // MP 10% 미만일 때: 미봉인된 최대 MP의 1% 소모
+                stanceConsumption = Math.floor(maxMP * 0.01); //
                 baseMithril = 5;
             }
 
-            // 추가 MP 소모 (극진한 경배)
-            const additionalConsumption = currentMP > 0 ? Math.floor(currentMP * (additionalConsumptionRate / 100)) : 0;
+            // 추가 MP 소모 (극진한 경배) - MP 10% 미만일 때는 소모량 0
+            const additionalConsumption = currentMP > 0 && currentMP >= mpThreshold ? Math.floor(currentMP * (additionalConsumptionRate / 100)) : 0;
 
             // 총 MP 소모
             const totalConsumption = stanceConsumption + additionalConsumption;
@@ -100,12 +104,14 @@ export default function Home() {
             currentMP = Math.max(0, currentMP - totalConsumption);
             cumulativeConsumption += totalConsumption;
 
-            // 극진한 경배 보너스 확인 (devotionMPThreshold마다)
-            const devotionBonus = Math.floor(cumulativeConsumption / devotionMPThreshold) > devotionTriggers ? Math.floor(mithrilMax * 0.1) : 0; // 미스릴 최대치의 10%
+            // 극진한 경배 보너스 확인 (devotionMPThreshold 마다)
+            // 누적 소모량 기준으로 총 발동 횟수 계산
+            const totalDevotionTriggers = Math.floor(cumulativeConsumption / devotionMPThreshold);
+            const newDevotionTriggers = totalDevotionTriggers - devotionTriggers;
+            const devotionBonus = newDevotionTriggers * Math.floor(mithrilMax * 0.1);
 
-            if (devotionBonus > 0) {
-                devotionTriggers++;
-            }
+            // 발동 횟수 업데이트
+            devotionTriggers = totalDevotionTriggers;
 
             // 미스릴 업데이트
             totalMithril += baseMithril + devotionBonus;
@@ -121,7 +127,7 @@ export default function Home() {
                 baseMithril,
                 devotionBonus,
                 totalMithril,
-                remainingMP: currentMP,
+                remainingMP: currentMP
             });
 
             attackNumber++;
@@ -141,8 +147,8 @@ export default function Home() {
         const mpPerDevotionTrigger = devotionMPThreshold; // 사용자 입력값 (기본 2800)
 
         // 정토 상태에서 지속적인 공격으로 인한 초당 MP 소모 계산
-        // 정토 상태에서는 공격당 현재 MP의 8% 소모 (최대 MP 기준으로 계산)
-        const sustainedMPConsumptionPerAttack = maxMP * (additionalConsumptionRate / 100); // 8% 소모
+        // MP가 10% 이상일 때만 추가 소모 발생
+        const sustainedMPConsumptionPerAttack = maxMP >= maxMP * 0.1 ? maxMP * (additionalConsumptionRate / 100) : 0;
         const sustainedMPConsumptionPerSecond = sustainedMPConsumptionPerAttack * attacksPerSecond;
 
         // 초당 극진한 경배 발동 횟수
@@ -171,8 +177,10 @@ export default function Home() {
         while (tempCumulative < mpNeededFor40 && estimatedAttacks < 100) {
             estimatedAttacks++;
             const tempThreshold = maxMP * 0.1;
-            const tempStanceConsumption = tempMP >= tempThreshold ? Math.min(tempMP, 1000) : Math.min(tempMP, 100);
-            const tempAdditionalConsumption = tempMP > 0 ? Math.floor(tempMP * (additionalConsumptionRate / 100)) : 0;
+            const tempStanceConsumption = tempMP >= tempThreshold ? Math.min(Math.floor(maxMP * 0.1), tempMP) : Math.min(Math.floor(maxMP * 0.01), tempMP);
+
+            // 추가 소모도 MP 10% 미만일 때는 0으로 수정
+            const tempAdditionalConsumption = tempMP > 0 && tempMP >= tempThreshold ? Math.floor(tempMP * (additionalConsumptionRate / 100)) : 0;
             const tempTotalConsumption = tempStanceConsumption + tempAdditionalConsumption;
 
             tempMP = Math.max(0, tempMP - tempTotalConsumption);
@@ -209,13 +217,14 @@ export default function Home() {
         const results: OptimizationResult[] = [];
 
         // MP 범위: minMP ~ maxMPRange (1000 단위)
-        // 추가 소모율: 4%, 8% (4의 배수)
+        // 추가 소모율: 사용자가 설정한 범위 또는 기본값들
         for (let mp = minMP; mp <= maxMPRange; mp += 1000) {
+            // 여러 추가 소모율 테스트 (4%, 6%, 8%, 10%, 12% 등)
             for (const rate of [4, 8]) {
                 // 계산을 위한 임시 값 설정
                 const calculatedMithril = 100 + (mp / 1000) * 10;
 
-                // 간단한 계산 로직 (실제 calculateMithril 함수 사용하면 너무 복잡)
+                // 간단한 계산 로직
                 let currentMP = mp;
                 let cumulativeConsumption = 0;
                 let totalMithril = 0;
@@ -224,39 +233,48 @@ export default function Home() {
                 const mpThreshold = mp * 0.1;
 
                 while (totalMithril < calculatedMithril && attackNumber <= 50) {
-                    const stanceConsumption = currentMP >= mpThreshold ? Math.min(currentMP, 1000) : Math.min(currentMP, 100);
+                    // 수정: 미봉인된 최대 MP 기준으로 10%/1% 계산
+                    const stanceConsumption = currentMP >= mpThreshold ? Math.min(Math.floor(mp * 0.1), currentMP) : Math.min(Math.floor(mp * 0.01), currentMP);
+
                     const baseMithril = currentMP >= mpThreshold ? 10 : 5;
 
-                    const additionalConsumption = currentMP > 0 ? Math.floor(currentMP * (rate / 100)) : 0;
+                    // 추가 소모도 MP 10% 미만일 때는 0
+                    const additionalConsumption = currentMP > 0 && currentMP >= mpThreshold ? Math.floor(currentMP * (rate / 100)) : 0;
+
                     const totalConsumption = stanceConsumption + additionalConsumption;
 
                     currentMP = Math.max(0, currentMP - totalConsumption);
                     cumulativeConsumption += totalConsumption;
 
-                    const devotionBonus = Math.floor(cumulativeConsumption / devotionMPThreshold) > devotionTriggers ? Math.floor(calculatedMithril * 0.1) : 0;
+                   // 수정된 극진한 경배 계산
+                    const totalDevotionTriggersNow = Math.floor(cumulativeConsumption / devotionMPThreshold);
+                    const newDevotionTriggers = totalDevotionTriggersNow - devotionTriggers;
+                    const devotionBonus = newDevotionTriggers * Math.floor(calculatedMithril * 0.1);
 
-                    if (devotionBonus > 0) {
-                        devotionTriggers++;
-                    }
-
+                    devotionTriggers = totalDevotionTriggersNow;
                     totalMithril += baseMithril + devotionBonus;
                     attackNumber++;
                 }
 
                 const warmupTime = (attackNumber - 1) / attacksPerSecond;
-                const mithrilPerSecond = totalMithril / warmupTime;
 
-                // 점수 계산: 초당 미스릴 40+ 달성하면서 공격 횟수가 적을수록 좋음
-                // 점수 = (초당 미스릴 - 40) × 10 + (50 - 공격횟수) × 20
-                // 높은 초당 미스릴과 적은 공격횟수를 모두 고려
-                const score = mithrilPerSecond >= 40 ? (mithrilPerSecond - 40) * 10 + Math.max(0, 50 - (attackNumber - 1)) * 20 : 0;
+                // 정토 상태 미스릴 수지 계산 추가
+                const sustainedMPConsumptionPerAttack = mp * (rate / 100);
+                const sustainedMPConsumptionPerSecond = sustainedMPConsumptionPerAttack * attacksPerSecond;
+                const devotionTriggersPerSecond = sustainedMPConsumptionPerSecond / devotionMPThreshold;
+                const devotionMithrilPerSecond = devotionTriggersPerSecond * Math.floor(calculatedMithril * 0.1);
+                const mithrilBalance = devotionMithrilPerSecond - 40;
+
+                // 점수 계산: 정토 상태 수지가 양수이면서 공격 횟수가 적을수록 좋음
+                const score = mithrilBalance >= 0 ? mithrilBalance * 10 + Math.max(0, 50 - (attackNumber - 1)) * 20 : 0;
 
                 if (score > 0) {
                     results.push({
                         maxMP: mp,
                         additionalConsumptionRate: rate,
                         totalAttacks: attackNumber - 1,
-                        mithrilPerSecond,
+                        mithrilPerSecond: devotionMithrilPerSecond, // 정토 상태 기준
+                        mithrilBalance: mithrilBalance, // 수지 추가
                         warmupTime,
                         score,
                     });
@@ -284,19 +302,8 @@ export default function Home() {
                             <input type="number" value={maxMP} onChange={(e) => setMaxMP(Number(e.target.value))} className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="10000" />
                         </div>
                         <div>
-                            <label className="block text-white text-sm font-medium mb-2">
-                                추가 MP 소모율 (%)
-                            </label>
-                            <input
-                                type="number"
-                                min="0"
-                                max="100"
-                                step="1"
-                                value={additionalConsumptionRate}
-                                onChange={(e) => setAdditionalConsumptionRate(Number(e.target.value))}
-                                className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                placeholder="8"
-                            />
+                            <label className="block text-white text-sm font-medium mb-2">추가 MP 소모율 (%)</label>
+                            <input type="number" min="0" max="100" step="1" value={additionalConsumptionRate} onChange={(e) => setAdditionalConsumptionRate(Number(e.target.value))} className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="8" />
                         </div>
 
                         <div>
@@ -330,6 +337,9 @@ export default function Home() {
                         <div className="mt-4 p-3 bg-white/5 rounded-lg border border-white/20">
                             <div className="text-white/70 text-sm">
                                 <strong>미스릴 최대치 계산:</strong> 100 + ({maxMP.toLocaleString()} ÷ 1000 × 10) = <strong className="text-white">{mithrilMax}</strong>
+                            </div>
+                            <div className="text-white/70 text-sm">
+                                <strong>추가 MP 소모 규칙:</strong> 현재 MP가 최대 MP의 10% 미만인 경우, 추가 MP 소모량이 0으로 고정됩니다.
                             </div>
                         </div>
                     )}
