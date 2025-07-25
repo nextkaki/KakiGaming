@@ -33,15 +33,14 @@ interface CalculationResult {
 }
 
 interface OptimizationResult {
-  maxMP: number;
-  additionalConsumptionRate: number;
-  totalAttacks: number;
-  mithrilPerSecond: number;
-  mithrilBalance: number; // 추가
-  warmupTime: number;
-  score: number;
+    maxMP: number;
+    additionalConsumptionRate: number;
+    totalAttacks: number;
+    mithrilPerSecond: number;
+    mithrilBalance: number; // 추가
+    warmupTime: number;
+    score: number;
 }
-
 
 export default function Home() {
     const [maxMP, setMaxMP] = useState<number>(10000);
@@ -86,11 +85,11 @@ export default function Home() {
 
             if (currentMP >= mpThreshold) {
                 // MP 10% 이상일 때: 미봉인된 최대 MP의 10% 소모
-                stanceConsumption = Math.floor(maxMP * 0.1); //
+                stanceConsumption = Math.min(Math.floor(maxMP * 0.1), currentMP);
                 baseMithril = 10;
             } else {
-                // MP 10% 미만일 때: 미봉인된 최대 MP의 1% 소모
-                stanceConsumption = Math.floor(maxMP * 0.01); //
+                // MP 10% 미만일 때: 소모량 0, 미스릴 5 획득
+                stanceConsumption = 0; // ✅ 소모량 0
                 baseMithril = 5;
             }
 
@@ -127,7 +126,7 @@ export default function Home() {
                 baseMithril,
                 devotionBonus,
                 totalMithril,
-                remainingMP: currentMP
+                remainingMP: currentMP,
             });
 
             attackNumber++;
@@ -177,10 +176,13 @@ export default function Home() {
         while (tempCumulative < mpNeededFor40 && estimatedAttacks < 100) {
             estimatedAttacks++;
             const tempThreshold = maxMP * 0.1;
-            const tempStanceConsumption = tempMP >= tempThreshold ? Math.min(Math.floor(maxMP * 0.1), tempMP) : Math.min(Math.floor(maxMP * 0.01), tempMP);
 
-            // 추가 소모도 MP 10% 미만일 때는 0으로 수정
+            // 수정: MP 10% 미만일 때 자세 소모 0
+            const tempStanceConsumption = tempMP >= tempThreshold ? Math.min(Math.floor(maxMP * 0.1), tempMP) : 0; // 10% 미만일 때 0
+
+            // 추가 소모도 10% 미만일 때는 0
             const tempAdditionalConsumption = tempMP > 0 && tempMP >= tempThreshold ? Math.floor(tempMP * (additionalConsumptionRate / 100)) : 0;
+
             const tempTotalConsumption = tempStanceConsumption + tempAdditionalConsumption;
 
             tempMP = Math.max(0, tempMP - tempTotalConsumption);
@@ -216,9 +218,9 @@ export default function Home() {
         setIsOptimizing(true);
         const results: OptimizationResult[] = [];
 
-        // MP 범위: minMP ~ maxMPRange (1000 단위)
+        // MP 범위: minMP ~ maxMPRange (100 단위)
         // 추가 소모율: 사용자가 설정한 범위 또는 기본값들
-        for (let mp = minMP; mp <= maxMPRange; mp += 1000) {
+        for (let mp = minMP; mp <= maxMPRange; mp += 100) {
             // 여러 추가 소모율 테스트 (4%, 6%, 8%, 10%, 12% 등)
             for (const rate of [4, 8]) {
                 // 계산을 위한 임시 값 설정
@@ -234,7 +236,7 @@ export default function Home() {
 
                 while (totalMithril < calculatedMithril && attackNumber <= 50) {
                     // 수정: 미봉인된 최대 MP 기준으로 10%/1% 계산
-                    const stanceConsumption = currentMP >= mpThreshold ? Math.min(Math.floor(mp * 0.1), currentMP) : Math.min(Math.floor(mp * 0.01), currentMP);
+                    const stanceConsumption = currentMP >= mpThreshold ? Math.min(Math.floor(mp * 0.1), currentMP) : 0; // 10% 미만일 때 0
 
                     const baseMithril = currentMP >= mpThreshold ? 10 : 5;
 
@@ -246,7 +248,7 @@ export default function Home() {
                     currentMP = Math.max(0, currentMP - totalConsumption);
                     cumulativeConsumption += totalConsumption;
 
-                   // 수정된 극진한 경배 계산
+                    // 수정된 극진한 경배 계산
                     const totalDevotionTriggersNow = Math.floor(cumulativeConsumption / devotionMPThreshold);
                     const newDevotionTriggers = totalDevotionTriggersNow - devotionTriggers;
                     const devotionBonus = newDevotionTriggers * Math.floor(calculatedMithril * 0.1);
@@ -284,7 +286,7 @@ export default function Home() {
 
         // 점수 순으로 정렬하여 상위 10개만 표시
         results.sort((a, b) => b.score - a.score);
-        setOptimizationResults(results.slice(0, 10));
+        setOptimizationResults(results.slice(0, 50));
         setIsOptimizing(false);
     };
 
@@ -371,7 +373,7 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="mt-3 text-white/70 text-sm">
-                                <strong>테스트 조건:</strong> MP {minMP.toLocaleString()} ~ {maxMPRange.toLocaleString()} (1000 단위), 추가 소모율 4%, 8%
+                                <strong>테스트 조건:</strong> MP {minMP.toLocaleString()} ~ {maxMPRange.toLocaleString()} (100 단위), 추가 소모율 4%, 8%
                             </div>
                         </div>
                     )}
