@@ -25,6 +25,16 @@ interface CalculationResult {
     devotionMithrilPerSecond: number;
     mithrilBalance: number;
     warmupTime: number;
+    // 새로 추가되는 부분
+    sustainedMPAnalysis: {
+        mpConsumptionPerAttack: number;
+        mpConsumptionPerSecond: number;
+        mpConsumptionPer4Second: number;
+        mpRecoveryPerAttack: number;
+        mpRecoveryPerSecond: number;
+        netMPChangePerSecond: number;
+        canSustainMP: boolean;
+    };
     sustainabilityAnalysis: {
         canSustain: boolean;
         deficit: number;
@@ -150,6 +160,7 @@ export default function Home() {
         const sustainedMPConsumptionPerAttack = maxMP >= maxMP * 0.1 ? maxMP * (additionalConsumptionRate / 100) : 0;
         const sustainedMPConsumptionPerSecond = sustainedMPConsumptionPerAttack * attacksPerSecond;
 
+
         // 초당 극진한 경배 발동 횟수
         const devotionTriggersPerSecond = sustainedMPConsumptionPerSecond / mpPerDevotionTrigger;
 
@@ -158,6 +169,16 @@ export default function Home() {
 
         // 정토 상태 미스릴 수치 = 극진한 경배 획득 - 초당 소모(40)
         const mithrilBalance = devotionMithrilPerSecond - 40;
+
+        // === 새로 추가: 정토 상태 MP 분석 ===
+        const mpRecoveryPerAttack = maxMP * 0.2; // 20% 회복
+        // 정토 상태에서는 항상 최대 MP 유지되므로 매 공격마다 최대 MP 기준으로 계산
+        const mpConsumptionPerAttack = maxMP >= mpThreshold ? Math.floor(maxMP * (additionalConsumptionRate / 100)) : 0;
+
+        const mpConsumptionPerSecond = mpConsumptionPerAttack * attacksPerSecond;
+        const mpConsumptionPerSecond4 = (mpConsumptionPerAttack * attacksPerSecond) * 4;
+        const mpRecoveryPerSecond = mpRecoveryPerAttack * attacksPerSecond;
+        const netMPChangePerSecond = mpRecoveryPerSecond - mpConsumptionPerSecond;
 
         // 지속 가능성 분석
         const canSustain = mithrilBalance >= 0; // 수치가 0 이상이면 지속 가능
@@ -190,17 +211,26 @@ export default function Home() {
         }
 
         const attacksNeededFor40 = estimatedAttacks / attacksPerSecond;
-
         return {
             attacks,
             totalAttacks: attackNumber - 1,
             finalMithril: totalMithril,
             devotionTriggers,
             success: totalMithril >= mithrilMax,
-            mithrilPerSecond: warmupMithrilPerSecond, // 예열 단계용
-            devotionMithrilPerSecond: devotionMithrilPerSecond, // 정토 상태 극진한 경배 획득
-            mithrilBalance: mithrilBalance, // 정토 상태 수치
+            mithrilPerSecond: warmupMithrilPerSecond,
+            devotionMithrilPerSecond: devotionMithrilPerSecond,
+            mithrilBalance: mithrilBalance,
             warmupTime,
+            // 새로 추가되는 부분
+            sustainedMPAnalysis: {
+                mpConsumptionPerAttack: mpConsumptionPerAttack,
+                mpConsumptionPerSecond: mpConsumptionPerSecond,
+                mpConsumptionPer4Second: mpConsumptionPerSecond4,
+                mpRecoveryPerAttack: mpRecoveryPerAttack,
+                mpRecoveryPerSecond: mpRecoveryPerSecond,
+                netMPChangePerSecond: netMPChangePerSecond,
+                canSustainMP: netMPChangePerSecond >= 0,
+            },
             sustainabilityAnalysis: {
                 canSustain,
                 deficit,
@@ -260,14 +290,14 @@ export default function Home() {
 
                 const warmupTime = (attackNumber - 1) / attacksPerSecond;
 
-                // 정토 상태 미스릴 수지 계산 추가
+                // 정토 상태 미스릴 수치 계산 추가
                 const sustainedMPConsumptionPerAttack = mp * (rate / 100);
                 const sustainedMPConsumptionPerSecond = sustainedMPConsumptionPerAttack * attacksPerSecond;
                 const devotionTriggersPerSecond = sustainedMPConsumptionPerSecond / devotionMPThreshold;
                 const devotionMithrilPerSecond = devotionTriggersPerSecond * Math.floor(calculatedMithril * 0.1);
                 const mithrilBalance = devotionMithrilPerSecond - 40;
 
-                // 점수 계산: 정토 상태 수지가 양수이면서 공격 횟수가 적을수록 좋음
+                // 점수 계산: 정토 상태 수치가 양수이면서 공격 횟수가 적을수록 좋음
                 const score = mithrilBalance >= 0 ? mithrilBalance * 10 + Math.max(0, 50 - (attackNumber - 1)) * 20 : 0;
 
                 if (score > 0) {
@@ -276,7 +306,7 @@ export default function Home() {
                         additionalConsumptionRate: rate,
                         totalAttacks: attackNumber - 1,
                         mithrilPerSecond: devotionMithrilPerSecond, // 정토 상태 기준
-                        mithrilBalance: mithrilBalance, // 수지 추가
+                        mithrilBalance: mithrilBalance, // 수치 추가
                         warmupTime,
                         score,
                     });
@@ -433,6 +463,52 @@ export default function Home() {
                                     <strong>극진한 경배 설명:</strong> MP {devotionMPThreshold} 소모마다 미스릴 최대치의 10% 획득. 정토 상태에서 미스릴 유지에 핵심적인 역할을 합니다.
                                     <br />
                                     <strong>극진한 경배로 미스릴 40 달성:</strong> 약 {result.sustainabilityAnalysis.attacksNeededFor40.toFixed(2)}초 소요
+                                </div>
+                            </div>
+
+                            {/* 새로 추가: 정토 상태 MP 분석 섹션 */}
+                            <div>
+                                <h3 className="text-xl font-bold text-white mb-4 mt-4">정토 상태 MP 분석</h3>
+
+                                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                                    <div className="bg-white/20 rounded-lg p-4">
+                                        <div className="text-white/70 text-sm">공격당 MP 소모</div>
+                                        <div className="text-2xl font-bold text-red-400">{result.sustainedMPAnalysis.mpConsumptionPerAttack.toFixed(0)}</div>
+                                        <div className="text-xs text-white/60 mt-1">최대 MP의 {additionalConsumptionRate}%</div>
+                                    </div>
+
+                                    <div className="bg-white/20 rounded-lg p-4">
+                                        <div className="text-white/70 text-sm">초당 MP 소모</div>
+                                        <div className="text-2xl font-bold text-red-400">{result.sustainedMPAnalysis.mpConsumptionPerSecond.toFixed(0)}</div>
+                                        <div className="text-xs text-white/60 mt-1">{attacksPerSecond} APS 기준</div>
+                                    </div>
+
+                                    <div className="bg-white/20 rounded-lg p-4">
+                                        <div className="text-white/70 text-sm">최근 MP 소모</div>
+                                        <div className="text-2xl font-bold text-red-400">{result.sustainedMPAnalysis.mpConsumptionPer4Second.toFixed(0)}</div>
+                                        <div className="text-xs text-white/60 mt-1">
+                                            초당 MP 소모 x 4초
+                                        </div>
+                                    </div>
+                                  
+                                    <div className="bg-white/20 rounded-lg p-4">
+                                        <div className="text-white/70 text-sm">MP 수치</div>
+                                        <div className={`text-2xl font-bold ${result.sustainedMPAnalysis.netMPChangePerSecond >= 0 ? "text-green-400" : "text-red-400"}`}>
+                                            {result.sustainedMPAnalysis.netMPChangePerSecond >= 0 ? "+" : ""}
+                                            {result.sustainedMPAnalysis.netMPChangePerSecond.toFixed(0)}
+                                        </div>
+                                        <div className="text-xs text-white/60 mt-1">
+                                            회복 {result.sustainedMPAnalysis.mpRecoveryPerSecond.toFixed(0)} - 소모 {result.sustainedMPAnalysis.mpConsumptionPerSecond.toFixed(0)}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="p-3 bg-white/5 rounded-lg border border-white/20">
+                                    <div className="text-white/70 text-sm">
+                                        <strong>정토 상태 MP 순환:</strong>
+                                        <br />• 공격당 회복: {result.sustainedMPAnalysis.mpRecoveryPerAttack.toFixed(0)} MP (최대 MP의 20%) <br />• 공격당 소모: {result.sustainedMPAnalysis.mpConsumptionPerAttack.toFixed(0)} MP (최대 MP의 {additionalConsumptionRate}%)
+                                        <br />• MP 지속 가능성: {result.sustainedMPAnalysis.canSustainMP ? "가능" : "불가능"}
+                                    </div>
                                 </div>
                             </div>
                         </div>
