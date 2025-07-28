@@ -114,6 +114,9 @@ const Header = () => {
                                     <Link href={`/${locale}/torchlight/mystic-calculator`} className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
                                         {t("torchlight.tools.mystic_calculator.title")}
                                     </Link>
+                                    <Link href={`/${locale}/torchlight/pen-calculator`} className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
+                                        {t("torchlight.tools.pen_calculator.title")}
+                                    </Link>
                                 </div>
                             )}
                         </div>
