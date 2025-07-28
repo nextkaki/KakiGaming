@@ -71,6 +71,11 @@ const Sidebar = ({ className = "" }: SidebarProps) => {
                                             {t("torchlight.tools.mystic_calculator.title")}
                                         </Link>
                                     </li>
+                                    <li>
+                                        <Link href={`/${locale}/torchlight/pen-calculator`} className="text-gray-300 hover:text-white transition block py-1">
+                                            {t("torchlight.tools.pen_calculator.title")}
+                                        </Link>
+                                    </li>
                                 </>
                             )}
                             {currentSection === 'eldenring' && (
