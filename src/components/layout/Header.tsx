@@ -52,25 +52,25 @@ const Header = () => {
     if (!mounted) return null;
 
     return (
-        <header className="bg-purple-700 text-white shadow-md">
+        <header className="bg-gray-200 text-black shadow-md">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-16">
                     {/* 왼쪽 로고 */}
                     <div className="shrink-0">
-                        <Link href={`/${locale}`} className="text-xl font-bold text-white">
+                        <Link href={`/${locale}`} className="text-xl font-bold text-black">
                             KakiGaming
                         </Link>
                     </div>
 
                     {/* 중앙 메뉴 */}
-                    <nav className="hidden md:flex gap-10 text-white items-center">
+                    <nav className="hidden md:flex gap-10 text-black items-center">
                         <div className="relative" onMouseEnter={() => handleMouseEnter("diablo4")} onMouseLeave={handleMouseLeave}>
-                            <Link href={`/${locale}/diablo4`} className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">
+                            <Link href={`/${locale}/diablo4`} className="h-16 flex items-center px-2 cursor-pointer hover:text-gray-700">
                                 {t("header.diablo4")}
                             </Link>
                             {hoveredMenu === "diablo4" && (
-                                <div className="absolute top-full mt-1 w-48 bg-white rounded-md shadow-lg overflow-hidden z-10">
-                                    <Link href={`/${locale}/diablo4/rune-price`} className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
+                                <div className="absolute top-full mt-1 w-48 bg-gray-200 rounded-md shadow-lg overflow-hidden z-10">
+                                    <Link href={`/${locale}/diablo4/rune-price`} className="block px-4 py-2 text-black hover:bg-gray-300">
                                         {t("header.rune_price")}
                                     </Link>
                                 </div>
@@ -78,15 +78,15 @@ const Header = () => {
                         </div>
 
                         <div className="relative" onMouseEnter={() => handleMouseEnter("poe")} onMouseLeave={handleMouseLeave}>
-                            <Link href={`/${locale}/poe1`} className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">
+                            <Link href={`/${locale}/poe1`} className="h-16 flex items-center px-2 cursor-pointer hover:text-gray-700">
                                 {t("header.poe")}
                             </Link>
                             {hoveredMenu === "poe" && (
-                                <div className="absolute top-full mt-1 w-48 bg-white rounded-md shadow-lg overflow-hidden z-10">
-                                    {/* <Link href={`/${locale}/poe1`} className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
+                                <div className="absolute top-full mt-1 w-48 bg-gray-200 rounded-md shadow-lg overflow-hidden z-10">
+                                    {/* <Link href={`/${locale}/poe1`} className="block px-4 py-2 text-black hover:bg-gray-300">
                                         {t("poe.list_build")}
                                     </Link> */}
-                                    <Link href={`/${locale}/poe1/quicklinks`} className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
+                                    <Link href={`/${locale}/poe1/quicklinks`} className="block px-4 py-2 text-black hover:bg-gray-300">
                                         {t("poe.quicklinks.shorts")}
                                     </Link>
                                 </div>
@@ -94,41 +94,41 @@ const Header = () => {
                         </div>
 
                         {/* <div className="relative h-16 flex items-center px-2">
-                            <Link href={`/${locale}/poe2`} className="hover:text-purple-200">
+                            <Link href={`/${locale}/poe2`} className="hover:text-gray-700">
                                 {t('header.poe2')}
                             </Link>
                         </div> */}
 
                         <div className="relative" onMouseEnter={() => handleMouseEnter("torchlight")} onMouseLeave={handleMouseLeave}>
-                            <Link href={`/${locale}/torchlight`} className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">
+                            <Link href={`/${locale}/torchlight`} className="h-16 flex items-center px-2 cursor-pointer hover:text-gray-700">
                                 {t("header.torchlight")}
                             </Link>
                             {hoveredMenu === "torchlight" && (
-                                <div className="absolute top-full mt-1 w-48 bg-white rounded-md shadow-lg overflow-hidden z-10">
-                                    <Link href={`/${locale}/torchlight/mp-calculator`} className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
-                                        {t("header.mp_calculator")}
+                                <div className="absolute top-full mt-1 w-48 bg-gray-200 rounded-md shadow-lg overflow-hidden z-10">
+                                    <Link href={`/${locale}/torchlight/mp-calculator`} className="block px-4 py-2 text-black hover:bg-gray-300">
+                                    {t("header.mp_calculator")}
                                     </Link>
-                                    <Link href={`/${locale}/torchlight/cooltime-calculator`} className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
-                                        {t("torchlight.tools.cooltime_calculator.title")}
+                                    <Link href={`/${locale}/torchlight/cooltime-calculator`} className="block px-4 py-2 text-black hover:bg-gray-300">
+                                    {t("torchlight.tools.cooltime_calculator.title")}
                                     </Link>
-                                    <Link href={`/${locale}/torchlight/mystic-calculator`} className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
-                                        {t("torchlight.tools.mystic_calculator.title")}
+                                    <Link href={`/${locale}/torchlight/mystic-calculator`} className="block px-4 py-2 text-black hover:bg-gray-300">
+                                    {t("torchlight.tools.mystic_calculator.title")}
                                     </Link>
-                                    <Link href={`/${locale}/torchlight/pen-calculator`} className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
-                                        {t("torchlight.tools.pen_calculator.title")}
+                                    <Link href={`/${locale}/torchlight/pen-calculator`} className="block px-4 py-2 text-black hover:bg-gray-300">
+                                    {t("torchlight.tools.pen_calculator.title")}
                                     </Link>
                                 </div>
                             )}
                         </div>
 
                         <div className="relative" onMouseEnter={() => handleMouseEnter("eldenring")} onMouseLeave={handleMouseLeave}>
-                            <Link href={`/${locale}/eldenring`} className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">
+                            <Link href={`/${locale}/eldenring`} className="h-16 flex items-center px-2 cursor-pointer hover:text-gray-700">
                                 {t("header.eldenring")}
                             </Link>
                             {hoveredMenu === "eldenring" && (
-                                <div className="absolute top-full mt-1 w-48 bg-white rounded-md shadow-lg overflow-hidden z-10">
-                                    <Link href={`/${locale}/eldenring/nightlord`} className="block px-4 py-2 text-gray-800 hover:bg-purple-100">
-                                        {t("header.nightlord")}
+                                <div className="absolute top-full mt-1 w-48 bg-gray-200 rounded-md shadow-lg overflow-hidden z-10">
+                                    <Link href={`/${locale}/eldenring/nightlord`} className="block px-4 py-2 text-black hover:bg-gray-300">
+                                    {t("header.nightlord")}
                                     </Link>
                                 </div>
                             )}
@@ -136,24 +136,24 @@ const Header = () => {
 
                         {/* 언어 선택 드롭다운 */}
                         <div className="relative" onMouseEnter={() => handleMouseEnter("lang")} onMouseLeave={handleMouseLeave}>
-                            <div className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">{t("header.language")}</div>
+                            <div className="h-16 flex items-center px-2 cursor-pointer hover:text-gray-700">{t("header.language")}</div>
                             {hoveredMenu === "lang" && (
-                                <div className="absolute top-full mt-1 w-48 bg-white rounded-md shadow-lg overflow-hidden z-10">
-                                    <button onClick={() => changeLanguage("ko")} className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-purple-100">
-                                        {t("header.korean")}
+                                <div className="absolute top-full mt-1 w-48 bg-gray-200 rounded-md shadow-lg overflow-hidden z-10">
+                                    <button onClick={() => changeLanguage("ko")} className="block w-full text-left px-4 py-2 text-black hover:bg-gray-300">
+                                    {t("header.korean")}
                                     </button>
-                                    <button onClick={() => changeLanguage("en")} className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-purple-100">
-                                        {t("header.english")}
+                                    <button onClick={() => changeLanguage("en")} className="block w-full text-left px-4 py-2 text-black hover:bg-gray-300">
+                                    {t("header.english")}
                                     </button>
-                                    <button onClick={() => changeLanguage("zh")} className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-purple-100">
-                                        {t("header.chinese")}
+                                    <button onClick={() => changeLanguage("zh")} className="block w-full text-left px-4 py-2 text-black hover:bg-gray-300">
+                                    {t("header.chinese")}
                                     </button>
                                 </div>
                             )}
                         </div>
 
                         <div className="relative">
-                            <a href="https://toon.at/donate/kaki__" target="_blank" rel="noopener noreferrer" className="h-16 flex items-center px-2 cursor-pointer hover:text-purple-200">
+                            <a href="https://toon.at/donate/kaki__" target="_blank" rel="noopener noreferrer" className="h-16 flex items-center px-2 cursor-pointer hover:text-gray-700">
                                 {t("header.donation")}
                             </a>
                         </div>
@@ -170,7 +170,7 @@ const Header = () => {
 
                     {/* 모바일 메뉴 버튼 */}
                     <div className="md:hidden ml-auto">
-                        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white focus:outline-none text-xl">
+                        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-black focus:outline-none text-xl">
                             {isMenuOpen ? "✕" : "☰"}
                         </button>
                     </div>
@@ -179,43 +179,43 @@ const Header = () => {
                 {/* 모바일 메뉴 */}
                 {isMenuOpen && (
                     <div className="md:hidden py-4 space-y-1">
-                        <Link href={`/${locale}/diablo4`} className="block py-2 hover:bg-purple-600 px-4">
+                        <Link href={`/${locale}/diablo4`} className="block py-2 hover:bg-gray-300 px-4">
                             {t("header.diablo4")}
                         </Link>
-                        <Link href={`/${locale}/diablo4/rune-price`} className="block py-1 pl-6 text-sm hover:bg-purple-600">
+                        <Link href={`/${locale}/diablo4/rune-price`} className="block py-1 pl-6 text-sm hover:bg-gray-300">
                             - {t("header.rune_price")}
                         </Link>
-                        <Link href={`/${locale}/poe1`} className="block py-2 hover:bg-purple-600 px-4">
+                        <Link href={`/${locale}/poe1`} className="block py-2 hover:bg-gray-300 px-4">
                             {t("header.poe")}
                         </Link>
-                        <Link href={`/${locale}/poe2`} className="block py-2 hover:bg-purple-600 px-4">
+                        <Link href={`/${locale}/poe2`} className="block py-2 hover:bg-gray-300 px-4">
                             {t("header.poe2")}
                         </Link>
-                        <Link href={`/${locale}/torchlight`} className="block py-2 hover:bg-purple-600 px-4">
+                        <Link href={`/${locale}/torchlight`} className="block py-2 hover:bg-gray-300 px-4">
                             {t("header.torchlight")}
                         </Link>
-                        <Link href={`/${locale}/torchlight/mp-calculator`} className="block py-1 pl-6 text-sm hover:bg-purple-600">
+                        <Link href={`/${locale}/torchlight/mp-calculator`} className="block py-1 pl-6 text-sm hover:bg-gray-300">
                             - {t("header.mp_calculator")}
                         </Link>
-                        <Link href={`/${locale}/torchlight/cooltime-calculator`} className="block py-1 pl-6 text-sm hover:bg-purple-600">
+                        <Link href={`/${locale}/torchlight/cooltime-calculator`} className="block py-1 pl-6 text-sm hover:bg-gray-300">
                             - {t("torchlight.tools.cooltime_calculator.title")}
                         </Link>
-                        <Link href={`/${locale}/eldenring`} className="block py-2 hover:bg-purple-600 px-4">
+                        <Link href={`/${locale}/eldenring`} className="block py-2 hover:bg-gray-300 px-4">
                             {t("header.eldenring")}
                         </Link>
-                        <Link href={`/${locale}/eldenring/nightlord`} className="block py-1 pl-6 text-sm hover:bg-purple-600">
+                        <Link href={`/${locale}/eldenring/nightlord`} className="block py-1 pl-6 text-sm hover:bg-gray-300">
                             - {t("header.nightlord")}
                         </Link>
 
                         {/* 모바일 언어 선택 */}
-                        <div className="block py-2 hover:bg-purple-600 px-4">{t("header.language")}</div>
-                        <button onClick={() => changeLanguage("ko")} className="block w-full text-left py-1 pl-6 text-sm hover:bg-purple-600">
+                        <div className="block py-2 hover:bg-gray-300 px-4">{t("header.language")}</div>
+                        <button onClick={() => changeLanguage("ko")} className="block w-full text-left py-1 pl-6 text-sm hover:bg-gray-300">
                             - {t("header.korean")}
                         </button>
-                        <button onClick={() => changeLanguage("en")} className="block w-full text-left py-1 pl-6 text-sm hover:bg-purple-600">
+                        <button onClick={() => changeLanguage("en")} className="block w-full text-left py-1 pl-6 text-sm hover:bg-gray-300">
                             - {t("header.english")}
                         </button>
-                        <button onClick={() => changeLanguage("zh")} className="block w-full text-left py-1 pl-6 text-sm hover:bg-purple-600">
+                        <button onClick={() => changeLanguage("zh")} className="block w-full text-left py-1 pl-6 text-sm hover:bg-gray-300">
                             - {t("header.chinese")}
                         </button>
                     </div>

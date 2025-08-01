@@ -16,13 +16,13 @@ export default function MainPageClient() {
     return (
         <div>
             {/* 히어로 섹션 */}
-            <div className="bg-gradient-to-r from-purple-700 to-indigo-800 text-white rounded-lg p-8 mb-8 shadow-lg">
+            <div className="bg-gray-200 text-black rounded-lg p-8 mb-8 shadow-lg">
                 <h1 className="text-3xl font-bold mb-4">{t("home.hero.title")}</h1>
                 <p className="text-xl mb-6">{t("home.hero.description")}</p>
             </div>
 
             {/* 최신 업데이트 섹션 */}
-            <div className="bg-gradient-to-r from-indigo-700 to-purple-800 text-white rounded-lg p-6 mb-8 shadow-lg">
+            <div className="bg-gray-200 text-black rounded-lg p-6 mb-8 shadow-lg">
                 <h2 className="text-2xl font-bold mb-4">최신 업데이트 소식</h2>
                 <div id="updates-container">{/* 이 부분은 클라이언트 측에서 JavaScript로 업데이트 내용을 로드합니다 */}</div>
             </div>
@@ -39,24 +39,24 @@ export default function MainPageClient() {
             {/* 유틸리티 섹션 */}
             <h2 className="text-2xl font-bold mb-4">{t("home.use_tool")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
-                    <h3 className="text-xl text-gray-950 font-bold mb-2">{t("torchlight.tools.mp_calculator.title")}</h3>
-                    <p className="text-gray-600 mb-4">{t("torchlight.tools.mp_calculator.description")}</p>
-                    <Link href={`/${locale}/torchlight/mp-calculator`} className="text-purple-600 font-medium hover:text-purple-800">
+                <div className="bg-gray-200 p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <h3 className="text-xl text-black font-bold mb-2">{t("torchlight.tools.mp_calculator.title")}</h3>
+                    <p className="text-gray-700 mb-4">{t("torchlight.tools.mp_calculator.description")}</p>
+                    <Link href={`/${locale}/torchlight/mp-calculator`} className="text-black font-medium hover:text-gray-700">
                         {t("home.use_tool")} &rarr;
                     </Link>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
-                    <h3 className="text-xl text-gray-950 font-bold mb-2">{t("torchlight.tools.cooltime_calculator.title")}</h3>
-                    <p className="text-gray-600 mb-4">{t("torchlight.tools.cooltime_calculator.description")}</p>
-                    <Link href={`/${locale}/torchlight/cooltime-calculator`} className="text-purple-600 font-medium hover:text-purple-800">
+                <div className="bg-gray-200 p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <h3 className="text-xl text-black font-bold mb-2">{t("torchlight.tools.cooltime_calculator.title")}</h3>
+                    <p className="text-gray-700 mb-4">{t("torchlight.tools.cooltime_calculator.description")}</p>
+                    <Link href={`/${locale}/torchlight/cooltime-calculator`} className="text-black font-medium hover:text-gray-700">
                         {t("home.use_tool")} &rarr;
                     </Link>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
-                    <h3 className="text-xl text-gray-950 font-bold mb-2">{t("diablo4.tools.rune_price.title")}</h3>
-                    <p className="text-gray-600 mb-4">{t("diablo4.tools.rune_price.description")}</p>
-                    <Link href={`/${locale}/diablo4/rune-price`} className="text-purple-600 font-medium hover:text-purple-800">
+                <div className="bg-gray-200 p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <h3 className="text-xl text-black font-bold mb-2">{t("diablo4.tools.rune_price.title")}</h3>
+                    <p className="text-gray-700 mb-4">{t("diablo4.tools.rune_price.description")}</p>
+                    <Link href={`/${locale}/diablo4/rune-price`} className="text-black font-medium hover:text-gray-700">
                         {t("home.check_price")} &rarr;
                     </Link>
                 </div>
@@ -87,12 +87,12 @@ export default function MainPageClient() {
                                 let html = '<div class="space-y-3">';
                                 displayUpdates.forEach(update => {
                                     html += \`
-                                        <div class="bg-black bg-opacity-20 rounded-lg p-3 hover:bg-opacity-30 transition">
+                                        <div class="bg-gray-100 rounded-lg p-3 hover:bg-gray-200 transition">
                                             <div class="flex justify-between items-center mb-1">
                                                 <h3 class="font-medium text-lg">\${update.title}</h3>
-                                                <span class="text-xs bg-purple-900 px-2 py-1 rounded-full">\${update.date}</span>
+                                                <span class="text-xs bg-gray-300 px-2 py-1 rounded-full">\${update.date}</span>
                                             </div>
-                                            \${update.description ? \`<p class="text-sm text-gray-200">\${update.description}</p>\` : ''}
+                                            \${update.description ? \`<p class="text-sm text-gray-700">\${update.description}</p>\` : ''}
                                         </div>
                                     \`;
                                 });
@@ -109,19 +109,19 @@ export default function MainPageClient() {
                             const container = document.getElementById('updates-container');
                             container.innerHTML = \`
                                 <div class="space-y-3">
-                                    <div class="bg-black bg-opacity-20 rounded-lg p-3 hover:bg-opacity-30 transition">
+                                    <div class="bg-gray-100 rounded-lg p-3 hover:bg-gray-200 transition">
                                         <div class="flex justify-between items-center mb-1">
                                             <h3 class="font-medium text-lg">토치라이트 인피니트 MP 봉인 계산기 업데이트</h3>
-                                            <span class="text-xs bg-purple-900 px-2 py-1 rounded-full">\${new Date().toISOString().split('T')[0]}</span>
+                                            <span class="text-xs bg-gray-300 px-2 py-1 rounded-full">\${new Date().toISOString().split('T')[0]}</span>
                                         </div>
-                                        <p class="text-sm text-gray-200">정확도 향상 및 UI 개선</p>
+                                        <p class="text-sm text-gray-700">정확도 향상 및 UI 개선</p>
                                     </div>
-                                    <div class="bg-black bg-opacity-20 rounded-lg p-3 hover:bg-opacity-30 transition">
+                                    <div class="bg-gray-100 rounded-lg p-3 hover:bg-gray-200 transition">
                                         <div class="flex justify-between items-center mb-1">
                                             <h3 class="font-medium text-lg">디아블로 4 시즌 4 룬 가격 정보 추가</h3>
-                                            <span class="text-xs bg-purple-900 px-2 py-1 rounded-full">\${new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]}</span>
+                                            <span class="text-xs bg-gray-300 px-2 py-1 rounded-full">\${new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]}</span>
                                         </div>
-                                        <p class="text-sm text-gray-200">최신 시즌 데이터 반영</p>
+                                        <p class="text-sm text-gray-700">최신 시즌 데이터 반영</p>
                                     </div>
                                 </div>
                             \`;
