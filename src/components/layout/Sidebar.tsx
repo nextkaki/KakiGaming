@@ -18,26 +18,26 @@ const Sidebar = ({ className = "" }: SidebarProps) => {
     
     return (
         <div className={`${className}`}>
-            <div className="bg-black p-6 rounded-lg shadow-md">
-                <h2 className="text-xl font-bold mb-4 text-white">{t("header.games")}</h2>
+            <div className="bg-gray-200 p-6 rounded-lg shadow-md">
+                <h2 className="text-xl font-bold mb-4 text-black">{t("header.games")}</h2>
                 <ul className="space-y-2">
                     <li>
-                        <Link href={`/${locale}/diablo4`} className="text-gray-300 hover:text-white transition block py-1">
+                        <Link href={`/${locale}/diablo4`} className="text-black hover:text-gray-700 transition block py-1">
                             {t("header.diablo4")}
                         </Link>
                     </li>
                     <li>
-                        <Link href={`/${locale}/poe1`} className="text-gray-300 hover:text-white transition block py-1">
+                        <Link href={`/${locale}/poe1`} className="text-black hover:text-gray-700 transition block py-1">
                             {t("header.poe")}
                         </Link>
                     </li>
                     <li>
-                        <Link href={`/${locale}/torchlight`} className="text-gray-300 hover:text-white transition block py-1">
+                        <Link href={`/${locale}/torchlight`} className="text-black hover:text-gray-700 transition block py-1">
                             {t("header.torchlight")}
                         </Link>
                     </li>
                     <li>
-                        <Link href={`/${locale}/eldenring`} className="text-gray-300 hover:text-white transition block py-1">
+                        <Link href={`/${locale}/eldenring`} className="text-black hover:text-gray-700 transition block py-1">
                             {t("header.eldenring")}
                         </Link>
                     </li>
@@ -45,11 +45,11 @@ const Sidebar = ({ className = "" }: SidebarProps) => {
                 
                 {(currentSection === 'diablo4' || currentSection === 'torchlight' || currentSection === 'eldenring' || currentSection === 'poe1') && (
                     <>
-                        <h2 className="text-xl font-bold mb-4 mt-8 text-white">{t("header.menu")}</h2>
+                        <h2 className="text-xl font-bold mb-4 mt-8 text-black">{t("header.menu")}</h2>
                         <ul className="space-y-2">
                             {currentSection === 'diablo4' && (
                                 <li>
-                                    <Link href={`/${locale}/diablo4/rune-price`} className="text-gray-300 hover:text-white transition block py-1">
+                                    <Link href={`/${locale}/diablo4/rune-price`} className="text-black hover:text-gray-700 transition block py-1">
                                         {t("header.rune_price")}
                                     </Link>
                                 </li>
@@ -57,22 +57,22 @@ const Sidebar = ({ className = "" }: SidebarProps) => {
                             {currentSection === 'torchlight' && (
                                 <>
                                     <li>
-                                        <Link href={`/${locale}/torchlight/mp-calculator`} className="text-gray-300 hover:text-white transition block py-1">
+                                        <Link href={`/${locale}/torchlight/mp-calculator`} className="text-black hover:text-gray-700 transition block py-1">
                                             {t("header.mp_calculator")}
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href={`/${locale}/torchlight/cooltime-calculator`} className="text-gray-300 hover:text-white transition block py-1">
+                                        <Link href={`/${locale}/torchlight/cooltime-calculator`} className="text-black hover:text-gray-700 transition block py-1">
                                             {t("torchlight.tools.cooltime_calculator.title")}
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href={`/${locale}/torchlight/mystic-calculator`} className="text-gray-300 hover:text-white transition block py-1">
+                                        <Link href={`/${locale}/torchlight/mystic-calculator`} className="text-black hover:text-gray-700 transition block py-1">
                                             {t("torchlight.tools.mystic_calculator.title")}
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href={`/${locale}/torchlight/pen-calculator`} className="text-gray-300 hover:text-white transition block py-1">
+                                        <Link href={`/${locale}/torchlight/pen-calculator`} className="text-black hover:text-gray-700 transition block py-1">
                                             {t("torchlight.tools.pen_calculator.title")}
                                         </Link>
                                     </li>
@@ -80,14 +80,14 @@ const Sidebar = ({ className = "" }: SidebarProps) => {
                             )}
                             {currentSection === 'eldenring' && (
                                 <li>
-                                    <Link href={`/${locale}/eldenring/nightlord`} className="text-gray-300 hover:text-white transition block py-1">
+                                    <Link href={`/${locale}/eldenring/nightlord`} className="text-black hover:text-gray-700 transition block py-1">
                                         {t("eldenring.beginner")}
                                     </Link>
                                 </li>
                             )}
                             {currentSection === 'poe1' && (
                                 <li>
-                                    <Link href={`/${locale}/eldenring/nightlord`} className="text-gray-300 hover:text-white transition block py-1">
+                                    <Link href={`/${locale}/eldenring/nightlord`} className="text-black hover:text-gray-700 transition block py-1">
                                         {t("poe.quicklinks.shorts")}
                                     </Link>
                                 </li>
