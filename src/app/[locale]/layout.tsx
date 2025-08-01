@@ -63,7 +63,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
                 />
                 <Script id="adsense-main" strategy="afterInteractive" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6995816590006068" crossOrigin="anonymous" />
             </head>
-            <body className="font-noto bg-[#121212] text-[#f5f5f5]">
+            <body className="font-noto bg-black text-white">
                 {/* 구글 애널리틱스 추가 */}
                 <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_ID || ""} />
 
@@ -75,7 +75,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
                             <main className="w-full md:w-3/5">{children}</main>
                             <aside className="w-full md:w-1/5 mt-6 md:mt-0">
                                 {/* 광고 영역 */}
-                                <div className="bg-[#1e1e1e] p-4 rounded-lg shadow h-[600px] flex items-center justify-center border border-dashed border-gray-700">
+                                <div className="bg-black p-4 rounded-lg shadow h-[600px] flex items-center justify-center border border-dashed border-gray-700">
                                     <p className="text-gray-400">광고 영역</p>
                                 </div>
                             </aside>

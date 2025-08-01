@@ -10,7 +10,7 @@ interface GameCardProps {
 export default function GameCard({ title, imageSrc, href }: GameCardProps) {
   return (
     <Link href={href} className="block">
-      <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition">
+      <div className="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition">
         <div className="relative h-48">
           <Image 
             src={imageSrc} 
@@ -21,7 +21,7 @@ export default function GameCard({ title, imageSrc, href }: GameCardProps) {
           />
         </div>
         <div className="p-4">
-          <h3 className="text-xl text-gray-950 font-bold mb-2">{title}</h3>
+          <h3 className="text-xl text-white font-bold mb-2">{title}</h3>
         </div>
       </div>
     </Link>

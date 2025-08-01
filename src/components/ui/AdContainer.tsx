@@ -23,8 +23,8 @@ export default function AdContainer({ size = 'vertical', className = '' }: AdCon
   }
   
   return (
-    <div className={`${dimensions} ${className} bg-gray-100 flex items-center justify-center border border-dashed border-gray-300 rounded`}>
-      <p className="text-gray-400">{text}</p>
+    <div className={`${dimensions} ${className} bg-gray-800 flex items-center justify-center border border-dashed border-gray-700 rounded`}>
+      <p className="text-gray-300">{text}</p>
     </div>
   );
 }
