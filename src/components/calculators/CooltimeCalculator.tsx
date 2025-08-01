@@ -68,7 +68,7 @@ export default function CooltimeCalculator() {
                 <div className="overflow-auto">
                     <table className="table-auto w-full border text-sm">
                         <thead>
-                            <tr className="bg-gray-800 text-xl">
+                            <tr className="bg-gray-300 text-xl">
                                 <th className="border px-2">목표 프레임 수</th>
                                 <th className="border px-2">쿨타임(초)</th>
                                 <th className="border px-2">쿨타임 최소값</th>

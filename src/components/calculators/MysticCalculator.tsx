@@ -323,27 +323,27 @@ export default function Home() {
     return (
         <div className={`${styles.calculator} ${styles.darkMode}`}>
             <div className="max-w-6xl mx-auto">
-                <h1 className="text-4xl font-bold text-white text-center mb-8">언설리드 블레이드 미스릴 계산기</h1>
+                <h1 className="text-4xl font-bold text-black text-center mb-8">언설리드 블레이드 미스릴 계산기</h1>
 
                 {/* 입력 섹션 */}
-                <div className="bg-white/10 backdrop-blur-md rounded-lg p-6 mb-6">
-                    <h2 className="text-2xl font-semibold text-white mb-4">설정 (수치 변경 시 반드시 계산하기 클릭)</h2>
+                <div className="bg-gray-100 backdrop-blur-md rounded-lg p-6 mb-6">
+                    <h2 className="text-2xl font-semibold text-black mb-4">설정 (수치 변경 시 반드시 계산하기 클릭)</h2>
                     <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                         <div>
-                            <label className="block text-white text-sm font-medium mb-2">미봉인된 최대 MP</label>
-                            <input type="number" value={maxMP} onChange={(e) => setMaxMP(Number(e.target.value))} className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="10000" />
+                            <label className="block text-black text-sm font-medium mb-2">미봉인된 최대 MP</label>
+                            <input type="number" value={maxMP} onChange={(e) => setMaxMP(Number(e.target.value))} className="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-black placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="10000" />
                         </div>
                         <div>
-                            <label className="block text-white text-sm font-medium mb-2">추가 MP 소모율 (%)</label>
-                            <input type="number" min="0" max="100" step="1" value={additionalConsumptionRate} onChange={(e) => setAdditionalConsumptionRate(Number(e.target.value))} className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="8" />
+                            <label className="block text-black text-sm font-medium mb-2">추가 MP 소모율 (%)</label>
+                            <input type="number" min="0" max="100" step="1" value={additionalConsumptionRate} onChange={(e) => setAdditionalConsumptionRate(Number(e.target.value))} className="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-black placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="8" />
                         </div>
 
                         <div>
-                            <label className="block text-white text-sm font-medium mb-2">초당 공격횟수 (APS)</label>
-                            <input type="number" step="0.1" value={attacksPerSecond} onChange={(e) => setAttacksPerSecond(Number(e.target.value))} className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="8" />
+                            <label className="block text-black text-sm font-medium mb-2">초당 공격횟수 (APS)</label>
+                            <input type="number" step="0.1" value={attacksPerSecond} onChange={(e) => setAttacksPerSecond(Number(e.target.value))} className="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-black placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="8" />
                         </div>
                         <div>
-                            <label className="block text-white text-sm font-medium mb-2">미스릴 최대치</label>
+                            <label className="block text-black text-sm font-medium mb-2">미스릴 최대치</label>
                             <div className="flex gap-2">
                                 <input
                                     type="number"
@@ -353,56 +353,56 @@ export default function Home() {
                                         setAutoCalculateMithril(false);
                                     }}
                                     disabled={autoCalculateMithril}
-                                    className={`w-full px-3 py-2 border border-white/30 rounded-md text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 ${autoCalculateMithril ? "bg-white/10 cursor-not-allowed" : "bg-white/20"}`}
+                                    className={`w-full px-3 py-2 border border-gray-300 rounded-md text-black placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 ${autoCalculateMithril ? "bg-gray-100 cursor-not-allowed" : "bg-gray-100"}`}
                                     placeholder="200"
                                 />
                             </div>
                         </div>
                         <div>
-                            <label className="block text-white text-sm font-medium mb-2">극진한 경배 소모값</label>
-                            <input type="number" value={devotionMPThreshold} onChange={(e) => setDevotionMPThreshold(Number(e.target.value))} className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="2800" />
+                            <label className="block text-black text-sm font-medium mb-2">극진한 경배 소모값</label>
+                            <input type="number" value={devotionMPThreshold} onChange={(e) => setDevotionMPThreshold(Number(e.target.value))} className="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-black placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="2800" />
                         </div>
                     </div>
 
                     {/* 미스릴 최대치 공식 표시 */}
                     {autoCalculateMithril && (
-                        <div className="mt-4 p-3 bg-white/5 rounded-lg border border-white/20">
-                            <div className="text-white/70 text-sm">
-                                <strong>미스릴 최대치 계산:</strong> 100 + ({maxMP.toLocaleString()} ÷ 1000 × 10) = <strong className="text-white">{mithrilMax}</strong>
+                        <div className="mt-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                            <div className="text-gray-700 text-sm">
+                                <strong>미스릴 최대치 계산:</strong> 100 + ({maxMP.toLocaleString()} ÷ 1000 × 10) = <strong className="text-black">{mithrilMax}</strong>
                             </div>
-                            <div className="text-white/70 text-sm">
+                            <div className="text-gray-700 text-sm">
                                 <strong>추가 MP 소모 규칙:</strong> 현재 MP가 최대 MP의 10% 미만인 경우, 추가 MP 소모량이 0으로 고정됩니다.
                             </div>
                         </div>
                     )}
 
                     <div className="flex gap-4 mt-4">
-                        <button onClick={handleCalculate} className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors">
+                        <button onClick={handleCalculate} className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-black font-semibold rounded-lg transition-colors">
                             계산하기
                         </button>
-                        <button onClick={() => setShowOptimizationSettings(!showOptimizationSettings)} className="px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-lg transition-colors">
+                        <button onClick={() => setShowOptimizationSettings(!showOptimizationSettings)} className="px-6 py-3 bg-gray-600 hover:bg-gray-700 text-black font-semibold rounded-lg transition-colors">
                             최적화 설정
                         </button>
-                        <button onClick={optimizeSettings} disabled={isOptimizing} className="px-6 py-3 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-600 text-white font-semibold rounded-lg transition-colors">
+                        <button onClick={optimizeSettings} disabled={isOptimizing} className="px-6 py-3 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-600 text-black font-semibold rounded-lg transition-colors">
                             {isOptimizing ? "최적화 중..." : "최적 설정 찾기"}
                         </button>
                     </div>
 
                     {/* 최적화 설정 */}
                     {showOptimizationSettings && (
-                        <div className="mt-4 p-4 bg-white/5 rounded-lg border border-white/20">
-                            <h3 className="text-lg font-semibold text-white mb-3">최적화 범위 설정</h3>
+                        <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 className="text-lg font-semibold text-black mb-3">최적화 범위 설정</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label className="block text-white text-sm font-medium mb-2">최소 MP</label>
-                                    <input type="number" value={minMP} onChange={(e) => setMinMP(Number(e.target.value))} className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="7000" />
+                                    <label className="block text-black text-sm font-medium mb-2">최소 MP</label>
+                                    <input type="number" value={minMP} onChange={(e) => setMinMP(Number(e.target.value))} className="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-black placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="7000" />
                                 </div>
                                 <div>
-                                    <label className="block text-white text-sm font-medium mb-2">최대 MP</label>
-                                    <input type="number" value={maxMPRange} onChange={(e) => setMaxMPRange(Number(e.target.value))} className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="25000" />
+                                    <label className="block text-black text-sm font-medium mb-2">최대 MP</label>
+                                    <input type="number" value={maxMPRange} onChange={(e) => setMaxMPRange(Number(e.target.value))} className="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-black placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="25000" />
                                 </div>
                             </div>
-                            <div className="mt-3 text-white/70 text-sm">
+                            <div className="mt-3 text-gray-700 text-sm">
                                 <strong>테스트 조건:</strong> MP {minMP.toLocaleString()} ~ {maxMPRange.toLocaleString()} (100 단위), 추가 소모율 4%, 8%
                             </div>
                         </div>
@@ -413,53 +413,53 @@ export default function Home() {
                 {result && (
                     <div className="space-y-6">
                         {/* 요약 */}
-                        <div className="bg-white/10 backdrop-blur-md rounded-lg p-6">
-                            <h2 className="text-2xl font-semibold text-white mb-4">계산 결과</h2>
+                        <div className="bg-gray-100 backdrop-blur-md rounded-lg p-6">
+                            <h2 className="text-2xl font-semibold text-black mb-4">계산 결과</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-                                <div className="bg-white/20 rounded-lg p-4">
-                                    <div className="text-white/70 text-sm">총 공격 횟수</div>
-                                    <div className="text-2xl font-bold text-white">{result.totalAttacks}번</div>
+                                <div className="bg-gray-100 rounded-lg p-4">
+                                    <div className="text-gray-700 text-sm">총 공격 횟수</div>
+                                    <div className="text-2xl font-bold text-black">{result.totalAttacks}번</div>
                                 </div>
-                                <div className="bg-white/20 rounded-lg p-4">
-                                    <div className="text-white/70 text-sm">최종 미스릴</div>
-                                    <div className="text-2xl font-bold text-white">{result.finalMithril}</div>
+                                <div className="bg-gray-100 rounded-lg p-4">
+                                    <div className="text-gray-700 text-sm">최종 미스릴</div>
+                                    <div className="text-2xl font-bold text-black">{result.finalMithril}</div>
                                 </div>
-                                <div className="bg-white/20 rounded-lg p-4">
-                                    <div className="text-white/70 text-sm">극진한 경배 발동</div>
-                                    <div className="text-2xl font-bold text-white">{result.devotionTriggers}회</div>
+                                <div className="bg-gray-100 rounded-lg p-4">
+                                    <div className="text-gray-700 text-sm">극진한 경배 발동</div>
+                                    <div className="text-2xl font-bold text-black">{result.devotionTriggers}회</div>
                                 </div>
-                                <div className="bg-white/20 rounded-lg p-4">
-                                    <div className="text-white/70 text-sm">예열 완료 시간</div>
+                                <div className="bg-gray-100 rounded-lg p-4">
+                                    <div className="text-gray-700 text-sm">예열 완료 시간</div>
                                     <div className="text-2xl font-bold text-yellow-400">{result.warmupTime.toFixed(2)}초</div>
                                 </div>
-                                <div className="bg-white/20 rounded-lg p-4">
-                                    <div className="text-white/70 text-sm">상태</div>
+                                <div className="bg-gray-100 rounded-lg p-4">
+                                    <div className="text-gray-700 text-sm">상태</div>
                                     <div className={`text-2xl font-bold ${result.success ? "text-green-400" : "text-red-400"}`}>{result.success ? "예열 완료" : "실패"}</div>
                                 </div>
                             </div>
                         </div>
 
                         {/* 미스릴 효율성 분석 */}
-                        <div className="bg-white/10 backdrop-blur-md rounded-lg p-6">
-                            <h3 className="text-xl font-semibold text-white mb-4">미스릴 효율성 분석</h3>
+                        <div className="bg-gray-100 backdrop-blur-md rounded-lg p-6">
+                            <h3 className="text-xl font-semibold text-black mb-4">미스릴 효율성 분석</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div className="bg-white/20 rounded-lg p-4">
-                                    <div className="text-white/70 text-sm">정토 상태 미스릴 수치</div>
+                                <div className="bg-gray-100 rounded-lg p-4">
+                                    <div className="text-gray-700 text-sm">정토 상태 미스릴 수치</div>
                                     <div className={`text-2xl font-bold ${result.mithrilBalance >= 0 ? "text-green-400" : "text-red-400"}`}>
                                         {result.mithrilBalance >= 0 ? "+" : ""}
                                         {result.mithrilBalance.toFixed(3)}
                                     </div>
-                                    <div className="text-xs text-white/60 mt-1">획득 {result.devotionMithrilPerSecond.toFixed(3)} - 소모 40.000</div>
+                                    <div className="text-xs text-gray-600 mt-1">획득 {result.devotionMithrilPerSecond.toFixed(3)} - 소모 40.000</div>
                                 </div>
-                                <div className="bg-white/20 rounded-lg p-4">
-                                    <div className="text-white/70 text-sm">지속 가능성</div>
+                                <div className="bg-gray-100 rounded-lg p-4">
+                                    <div className="text-gray-700 text-sm">지속 가능성</div>
                                     <div className={`text-2xl font-bold ${result.sustainabilityAnalysis.canSustain ? "text-green-400" : "text-red-400"}`}>{result.sustainabilityAnalysis.canSustain ? "가능" : "불가능"}</div>
                                     {!result.sustainabilityAnalysis.canSustain && <div className="text-xs text-red-300 mt-1">부족: {result.sustainabilityAnalysis.deficit.toFixed(3)}</div>}
                                 </div>
                             </div>
 
-                            <div className="mt-4 p-3 bg-white/5 rounded-lg border border-white/20">
-                                <div className="text-white/70 text-sm">
+                            <div className="mt-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                                <div className="text-gray-700 text-sm">
                                     <strong>극진한 경배 설명:</strong> MP {devotionMPThreshold} 소모마다 미스릴 최대치의 10% 획득. 정토 상태에서 미스릴 유지에 핵심적인 역할을 합니다.
                                     <br />
                                     <strong>극진한 경배로 미스릴 40 달성:</strong> 약 {result.sustainabilityAnalysis.attacksNeededFor40.toFixed(2)}초 소요
@@ -468,43 +468,43 @@ export default function Home() {
 
                             {/* 새로 추가: 정토 상태 MP 분석 섹션 */}
                             <div>
-                                <h3 className="text-xl font-bold text-white mb-4 mt-4">정토 상태 MP 분석</h3>
+                                <h3 className="text-xl font-bold text-black mb-4 mt-4">정토 상태 MP 분석</h3>
 
                                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-                                    <div className="bg-white/20 rounded-lg p-4">
-                                        <div className="text-white/70 text-sm">공격당 MP 소모</div>
+                                    <div className="bg-gray-100 rounded-lg p-4">
+                                        <div className="text-gray-700 text-sm">공격당 MP 소모</div>
                                         <div className="text-2xl font-bold text-red-400">{result.sustainedMPAnalysis.mpConsumptionPerAttack.toFixed(0)}</div>
-                                        <div className="text-xs text-white/60 mt-1">최대 MP의 {additionalConsumptionRate}%</div>
+                                        <div className="text-xs text-gray-600 mt-1">최대 MP의 {additionalConsumptionRate}%</div>
                                     </div>
 
-                                    <div className="bg-white/20 rounded-lg p-4">
-                                        <div className="text-white/70 text-sm">초당 MP 소모</div>
+                                    <div className="bg-gray-100 rounded-lg p-4">
+                                        <div className="text-gray-700 text-sm">초당 MP 소모</div>
                                         <div className="text-2xl font-bold text-red-400">{result.sustainedMPAnalysis.mpConsumptionPerSecond.toFixed(0)}</div>
-                                        <div className="text-xs text-white/60 mt-1">{attacksPerSecond} APS 기준</div>
+                                        <div className="text-xs text-gray-600 mt-1">{attacksPerSecond} APS 기준</div>
                                     </div>
 
-                                    <div className="bg-white/20 rounded-lg p-4">
-                                        <div className="text-white/70 text-sm">최근 MP 소모</div>
+                                    <div className="bg-gray-100 rounded-lg p-4">
+                                        <div className="text-gray-700 text-sm">최근 MP 소모</div>
                                         <div className="text-2xl font-bold text-red-400">{result.sustainedMPAnalysis.mpConsumptionPer4Second.toFixed(0)}</div>
-                                        <div className="text-xs text-white/60 mt-1">
+                                        <div className="text-xs text-gray-600 mt-1">
                                             초당 MP 소모 x 4초
                                         </div>
                                     </div>
                                   
-                                    <div className="bg-white/20 rounded-lg p-4">
-                                        <div className="text-white/70 text-sm">MP 수치</div>
+                                    <div className="bg-gray-100 rounded-lg p-4">
+                                        <div className="text-gray-700 text-sm">MP 수치</div>
                                         <div className={`text-2xl font-bold ${result.sustainedMPAnalysis.netMPChangePerSecond >= 0 ? "text-green-400" : "text-red-400"}`}>
                                             {result.sustainedMPAnalysis.netMPChangePerSecond >= 0 ? "+" : ""}
                                             {result.sustainedMPAnalysis.netMPChangePerSecond.toFixed(0)}
                                         </div>
-                                        <div className="text-xs text-white/60 mt-1">
+                                        <div className="text-xs text-gray-600 mt-1">
                                             회복 {result.sustainedMPAnalysis.mpRecoveryPerSecond.toFixed(0)} - 소모 {result.sustainedMPAnalysis.mpConsumptionPerSecond.toFixed(0)}
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="p-3 bg-white/5 rounded-lg border border-white/20">
-                                    <div className="text-white/70 text-sm">
+                                <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
+                                    <div className="text-gray-700 text-sm">
                                         <strong>정토 상태 MP 순환:</strong>
                                         <br />• 공격당 회복: {result.sustainedMPAnalysis.mpRecoveryPerAttack.toFixed(0)} MP (최대 MP의 20%) <br />• 공격당 소모: {result.sustainedMPAnalysis.mpConsumptionPerAttack.toFixed(0)} MP (최대 MP의 {additionalConsumptionRate}%)
                                         <br />• MP 지속 가능성: {result.sustainedMPAnalysis.canSustainMP ? "가능" : "불가능"}
@@ -514,12 +514,12 @@ export default function Home() {
                         </div>
 
                         {/* 상세 테이블 */}
-                        <div className="bg-white/10 backdrop-blur-md rounded-lg p-6">
-                            <h3 className="text-xl font-semibold text-white mb-4">상세 공격 내역</h3>
+                        <div className="bg-gray-100 backdrop-blur-md rounded-lg p-6">
+                            <h3 className="text-xl font-semibold text-black mb-4">상세 공격 내역</h3>
                             <div className="overflow-x-auto">
-                                <table className="w-full text-sm text-white">
+                                <table className="w-full text-sm text-black">
                                     <thead>
-                                        <tr className="border-b border-white/20">
+                                        <tr className="border-b border-gray-200">
                                             <th className="text-left p-2">공격</th>
                                             <th className="text-left p-2">시작 MP</th>
                                             <th className="text-left p-2">자세 소모</th>
@@ -534,7 +534,7 @@ export default function Home() {
                                     </thead>
                                     <tbody>
                                         {result.attacks.map((attack, index) => (
-                                            <tr key={index} className="border-b border-white/10 hover:bg-white/5">
+                                            <tr key={index} className="border-b border-gray-200 hover:bg-gray-50">
                                                 <td className="p-2">{attack.attackNumber}</td>
                                                 <td className="p-2">{attack.startingMP.toLocaleString()}</td>
                                                 <td className="p-2">{attack.stanceConsumption}</td>
@@ -556,22 +556,22 @@ export default function Home() {
 
                 {/* 최적화 결과 */}
                 {optimizationResults.length > 0 && (
-                    <div className="bg-white/10 backdrop-blur-md rounded-lg p-6">
-                        <h3 className="text-xl font-semibold text-white mb-4">최적 설정 추천</h3>
+                    <div className="bg-gray-100 backdrop-blur-md rounded-lg p-6">
+                        <h3 className="text-xl font-semibold text-black mb-4">최적 설정 추천</h3>
 
                         {/* 점수 설명 */}
-                        <div className="mb-4 p-3 bg-white/5 rounded-lg border border-white/20">
-                            <div className="text-white/70 text-sm">
+                        <div className="mb-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                            <div className="text-gray-700 text-sm">
                                 <strong>점수 계산 방식:</strong> (초당 미스릴 - 40) × 10 + (50 - 공격횟수) × 20
                                 <br />
-                                <span className="text-white/60">높은 초당 미스릴과 적은 공격횟수를 모두 고려하여 최적 효율을 찾습니다.</span>
+                                <span className="text-gray-600">높은 초당 미스릴과 적은 공격횟수를 모두 고려하여 최적 효율을 찾습니다.</span>
                             </div>
                         </div>
 
                         <div className="overflow-x-auto">
-                            <table className="w-full text-sm text-white">
+                            <table className="w-full text-sm text-black">
                                 <thead>
-                                    <tr className="border-b border-white/20">
+                                    <tr className="border-b border-gray-200">
                                         <th className="text-left p-2">순위</th>
                                         <th className="text-left p-2">최대 MP</th>
                                         <th className="text-left p-2">추가 소모율</th>
@@ -584,7 +584,7 @@ export default function Home() {
                                 </thead>
                                 <tbody>
                                     {optimizationResults.map((opt, index) => (
-                                        <tr key={index} className="border-b border-white/10 hover:bg-white/5">
+                                        <tr key={index} className="border-b border-gray-200 hover:bg-gray-50">
                                             <td className="p-2">{index + 1}</td>
                                             <td className="p-2">{opt.maxMP.toLocaleString()}</td>
                                             <td className="p-2">{opt.additionalConsumptionRate}%</td>
@@ -598,7 +598,7 @@ export default function Home() {
                                                         setMaxMP(opt.maxMP);
                                                         setAdditionalConsumptionRate(opt.additionalConsumptionRate);
                                                     }}
-                                                    className="px-2 py-1 bg-blue-600 hover:bg-blue-700 text-white text-xs rounded"
+                                                    className="px-2 py-1 bg-blue-600 hover:bg-blue-700 text-black text-xs rounded"
                                                 >
                                                     적용
                                                 </button>
