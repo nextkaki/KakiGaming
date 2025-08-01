@@ -229,32 +229,32 @@ export default function PenetrationCalculator() {
             <div className="grid grid-cols-2 gap-2 mt-2">
               <button
                 onClick={() => setQuickDamage(50000)}
-                className="p-2 bg-cyan-600 hover:bg-cyan-700 rounded text-sm font-medium"
+                className="p-2 bg-cyan-600 hover:bg-cyan-700 rounded text-sm font-medium text-white"
               >
                 5천만
               </button>
               <button
                 onClick={() => setQuickDamage(500000)}
-                className="p-2 bg-cyan-600 hover:bg-cyan-700 rounded text-sm font-medium"
+                className="p-2 bg-cyan-600 hover:bg-cyan-700 rounded text-sm font-medium text-white"
               >
                 5억
               </button>
               <button
                 onClick={() => setQuickDamage(5000000)}
-                className="p-2 bg-cyan-600 hover:bg-cyan-700 rounded text-sm font-medium"
+                className="p-2 bg-cyan-600 hover:bg-cyan-700 rounded text-sm font-medium text-white"
               >
                 50억
               </button>
               <button
                 onClick={() => setQuickDamage(50000000)}
-                className="p-2 bg-cyan-600 hover:bg-cyan-700 rounded text-sm font-medium"
+                className="p-2 bg-cyan-600 hover:bg-cyan-700 rounded text-sm font-medium text-white"
               >
                 500억
               </button>
             </div>
             <button
               onClick={() => setQuickDamage(500000000)}
-              className="w-full p-2 bg-cyan-600 hover:bg-cyan-700 rounded text-sm font-medium mt-2"
+              className="w-full p-2 bg-cyan-600 hover:bg-cyan-700 rounded text-sm font-medium mt-2 text-white" 
             >
               5000억
             </button>
