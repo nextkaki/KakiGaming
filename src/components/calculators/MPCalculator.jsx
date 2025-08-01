@@ -405,26 +405,26 @@ export default function MPCalculator() {
         scales: {
             x: {
                 ticks: {
-                    color: '#f5f5f5',
+                    color: '#000',
                     font: {
                         family: 'Noto Sans KR, sans-serif',
                         size: 12
                     }
                 },
                 grid: {
-                    color: 'rgba(255, 255, 255, 0.1)'
+                    color: 'rgba(0, 0, 0, 0.1)'
                 }
             },
             y: {
                 ticks: {
-                    color: '#f5f5f5',
+                    color: '#000',
                     font: {
                         family: 'Noto Sans KR, sans-serif',
                         size: 12
                     }
                 },
                 grid: {
-                    color: 'rgba(255, 255, 255, 0.1)'
+                    color: 'rgba(0, 0, 0, 0.1)'
                 }
             }
         }

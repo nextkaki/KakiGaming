@@ -143,14 +143,14 @@ export default function PenetrationCalculator() {
 
   return (
     <div className={`${styles.calculator} ${styles.darkMode}`}>
-      <h2 className="text-3xl font-bold mb-6 text-center text-white">
+      <h2 className="text-3xl font-bold mb-6 text-center text-black">
         토치라이트 인피니트 관통 계산기
       </h2>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* 입력 섹션 */}
         <div className="space-y-6">
-          <h3 className="text-xl font-semibold text-white mb-4">입력 값</h3>
+          <h3 className="text-xl font-semibold text-black mb-4">입력 값</h3>
           
           {/* 유저 아머 수치 */}
           <div className="space-y-2">
@@ -159,7 +159,7 @@ export default function PenetrationCalculator() {
               type="number"
               value={userArmor}
               onChange={(e) => setUserArmor(Number(e.target.value))}
-              className="w-full p-3 bg-gray-800 border border-gray-600 rounded-md text-white"
+              className="w-full p-3 bg-gray-100 border border-gray-300 rounded-md text-black"
               placeholder="0"
             />
           </div>
@@ -173,9 +173,9 @@ export default function PenetrationCalculator() {
               onChange={(e) => setMonsterLevel(Number(e.target.value))}
               min="1"
               max="90"
-              className="w-full p-3 bg-gray-800 border border-gray-600 rounded-md text-white"
+              className="w-full p-3 bg-gray-100 border border-gray-300 rounded-md text-black"
             />
-            <p className="text-xs text-gray-400">적 레벨 입력 시 몬스터 아머 수치 변경됨. // 몬스터 최대 레벨 90</p>
+            <p className="text-xs text-gray-600">적 레벨 입력 시 몬스터 아머 수치 변경됨. // 몬스터 최대 레벨 90</p>
           </div>
 
           {/* 몬스터 기본 저항 */}
@@ -185,7 +185,7 @@ export default function PenetrationCalculator() {
               type="number"
               value={monsterBaseResist}
               onChange={(e) => setMonsterBaseResist(Number(e.target.value))}
-              className="w-full p-3 bg-gray-800 border border-gray-600 rounded-md text-white"
+              className="w-full p-3 bg-gray-100 border border-gray-300 rounded-md text-black"
               placeholder="30"
             />
           </div>
@@ -197,7 +197,7 @@ export default function PenetrationCalculator() {
               type="number"
               value={userArmorPen}
               onChange={(e) => setUserArmorPen(Number(e.target.value))}
-              className="w-full p-3 bg-gray-800 border border-gray-600 rounded-md text-white"
+              className="w-full p-3 bg-gray-100 border border-gray-300 rounded-md text-black"
               placeholder="0"
             />
           </div>
@@ -209,7 +209,7 @@ export default function PenetrationCalculator() {
               type="number"
               value={userResistPen}
               onChange={(e) => setUserResistPen(Number(e.target.value))}
-              className="w-full p-3 bg-gray-800 border border-gray-600 rounded-md text-white"
+              className="w-full p-3 bg-gray-100 border border-gray-300 rounded-md text-black"
               placeholder="0"
             />
           </div>
@@ -221,7 +221,7 @@ export default function PenetrationCalculator() {
               type="number"
               value={userBaseDmg}
               onChange={(e) => setUserBaseDmg(Number(e.target.value))}
-              className="w-full p-3 bg-gray-800 border border-gray-600 rounded-md text-white"
+              className="w-full p-3 bg-gray-100 border border-gray-300 rounded-md text-black"
               placeholder="500000000"
             />
             
@@ -259,7 +259,7 @@ export default function PenetrationCalculator() {
               5000억
             </button>
             
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-gray-600">
               유저 기본 대미지는 예상 값을 입력해 주세요. 단위는 1,000 (1천)
             </p>
           </div>
@@ -267,12 +267,12 @@ export default function PenetrationCalculator() {
 
         {/* 결과 섹션 */}
         <div className="space-y-6">
-          <h3 className="text-xl font-semibold text-white mb-4">계산 결과</h3>
+          <h3 className="text-xl font-semibold text-black mb-4">계산 결과</h3>
           
           {/* 몬스터 아머 수치 */}
           <div className="space-y-2">
             <label className="block text-sm font-medium">몬스터 아머 수치</label>
-            <div className="p-3 bg-gray-700 border border-gray-600 rounded-md">
+            <div className="p-3 bg-gray-100 border border-gray-300 rounded-md">
               {formatNumber(results.monsterArmor)}
             </div>
           </div>
@@ -280,7 +280,7 @@ export default function PenetrationCalculator() {
           {/* 유저 물리 대미지 감소율 */}
           <div className="space-y-2">
             <label className="block text-sm font-medium">유저 아머 물리 대미지 감소율</label>
-            <div className="p-3 bg-gray-700 border border-gray-600 rounded-md">
+            <div className="p-3 bg-gray-100 border border-gray-300 rounded-md">
               {formatPercentage(results.userPhyReduce)}
             </div>
           </div>
@@ -288,7 +288,7 @@ export default function PenetrationCalculator() {
           {/* 유저 비물리 대미지 감소율 */}
           <div className="space-y-2">
             <label className="block text-sm font-medium">유저 아머 비물리 대미지 감소율</label>
-            <div className="p-3 bg-gray-700 border border-gray-600 rounded-md">
+            <div className="p-3 bg-gray-100 border border-gray-300 rounded-md">
               {formatPercentage(results.userNonPhyReduce)}
             </div>
           </div>
@@ -296,35 +296,35 @@ export default function PenetrationCalculator() {
           {/* 최종 계산 결과 */}
           <div className="space-y-2">
             <label className="block text-sm font-medium">적 아머에 의한 물리 대미지 감소율</label>
-            <div className="p-3 bg-gray-700 border border-gray-600 rounded-md">
+            <div className="p-3 bg-gray-100 border border-gray-300 rounded-md">
               {formatPercentage(results.monsterArmorPhyReduce)}
             </div>
           </div>
 
           <div className="space-y-2">
             <label className="block text-sm font-medium">적 아머에 의한 비물리 대미지 감소율</label>
-            <div className="p-3 bg-gray-700 border border-gray-600 rounded-md">
+            <div className="p-3 bg-gray-100 border border-gray-300 rounded-md">
               {formatPercentage(results.monsterArmorNonPhyReduce)}
             </div>
           </div>
 
           <div className="space-y-2">
             <label className="block text-sm font-medium">적 저항에 의한 원소 대미지 감소율</label>
-            <div className="p-3 bg-gray-700 border border-gray-600 rounded-md">
+            <div className="p-3 bg-gray-100 border border-gray-300 rounded-md">
               {formatPercentage(results.monsterResistReduce)}
             </div>
           </div>
 
           <div className="space-y-2">
             <label className="block text-sm font-medium">최종 몬스터가 받는 물리 대미지 배율</label>
-            <div className="p-3 bg-gray-700 border border-gray-600 rounded-md">
+            <div className="p-3 bg-gray-100 border border-gray-300 rounded-md">
               {formatPercentage(results.monsterFinalPhyReduce)}
             </div>
           </div>
 
           <div className="space-y-2">
             <label className="block text-sm font-medium">최종 몬스터가 받는 원소 대미지 배율</label>
-            <div className="p-3 bg-gray-700 border border-gray-600 rounded-md">
+            <div className="p-3 bg-gray-100 border border-gray-300 rounded-md">
               {formatPercentage(results.monsterFinalNonPhyReduce)}
             </div>
           </div>
@@ -333,13 +333,13 @@ export default function PenetrationCalculator() {
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <label className="block text-sm font-medium">예상 최종 대미지 (물리)</label>
-              <div className="p-3 bg-gray-700 border border-gray-600 rounded-md">
+              <div className="p-3 bg-gray-100 border border-gray-300 rounded-md">
                 {formatNumber(Math.floor(results.finalExpectPhyDmg))}
               </div>
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-medium">예상 최종 대미지 (원소/부식)</label>
-              <div className="p-3 bg-gray-700 border border-gray-600 rounded-md">
+              <div className="p-3 bg-gray-100 border border-gray-300 rounded-md">
                 {formatNumber(Math.floor(results.finalExpectEleDmg))}
               </div>
             </div>
