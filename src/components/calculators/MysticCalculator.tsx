@@ -326,7 +326,9 @@ export default function Home() {
                 <h1 className="text-4xl font-bold text-black text-center mb-8">언설리드 블레이드 미스릴 계산기</h1>
 
                 {/* 입력 섹션 */}
-                <div className="bg-gray-100 backdrop-blur-md rounded-lg p-6 mb-6">
+
+                            <div className="bg-gray-100 backdrop-blur-md rounded-lg border border-gray-300 p-6 mb-6">
+
                     <h2 className="text-2xl font-semibold text-black mb-4">설정 (수치 변경 시 반드시 계산하기 클릭)</h2>
                     <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                         <div>
@@ -413,26 +415,28 @@ export default function Home() {
                 {result && (
                     <div className="space-y-6">
                         {/* 요약 */}
-                        <div className="bg-gray-100 backdrop-blur-md rounded-lg p-6">
+
+                        <div className="bg-gray-100 backdrop-blur-md rounded-lg border border-gray-300 p-6">
                             <h2 className="text-2xl font-semibold text-black mb-4">계산 결과</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-                                <div className="bg-gray-100 rounded-lg p-4">
+                                <div className="bg-gray-100 rounded-lg border border-gray-300 p-4">
                                     <div className="text-gray-700 text-sm">총 공격 횟수</div>
                                     <div className="text-2xl font-bold text-black">{result.totalAttacks}번</div>
                                 </div>
-                                <div className="bg-gray-100 rounded-lg p-4">
+                                <div className="bg-gray-100 rounded-lg border border-gray-300 p-4">
                                     <div className="text-gray-700 text-sm">최종 미스릴</div>
                                     <div className="text-2xl font-bold text-black">{result.finalMithril}</div>
                                 </div>
-                                <div className="bg-gray-100 rounded-lg p-4">
+                                <div className="bg-gray-100 rounded-lg border border-gray-300 p-4">
                                     <div className="text-gray-700 text-sm">극진한 경배 발동</div>
                                     <div className="text-2xl font-bold text-black">{result.devotionTriggers}회</div>
                                 </div>
-                                <div className="bg-gray-100 rounded-lg p-4">
+                                <div className="bg-gray-100 rounded-lg border border-gray-300 p-4">
                                     <div className="text-gray-700 text-sm">예열 완료 시간</div>
                                     <div className="text-2xl font-bold text-yellow-400">{result.warmupTime.toFixed(2)}초</div>
                                 </div>
-                                <div className="bg-gray-100 rounded-lg p-4">
+                                <div className="bg-gray-100 rounded-lg border border-gray-300 p-4">
+
                                     <div className="text-gray-700 text-sm">상태</div>
                                     <div className={`text-2xl font-bold ${result.success ? "text-green-400" : "text-red-400"}`}>{result.success ? "예열 완료" : "실패"}</div>
                                 </div>
@@ -440,10 +444,11 @@ export default function Home() {
                         </div>
 
                         {/* 미스릴 효율성 분석 */}
-                        <div className="bg-gray-100 backdrop-blur-md rounded-lg p-6">
+                        <div className="bg-gray-100 backdrop-blur-md rounded-lg border border-gray-300 p-6">
                             <h3 className="text-xl font-semibold text-black mb-4">미스릴 효율성 분석</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div className="bg-gray-100 rounded-lg p-4">
+                                <div className="bg-gray-100 rounded-lg border border-gray-300 p-4">
+
                                     <div className="text-gray-700 text-sm">정토 상태 미스릴 수치</div>
                                     <div className={`text-2xl font-bold ${result.mithrilBalance >= 0 ? "text-green-400" : "text-red-400"}`}>
                                         {result.mithrilBalance >= 0 ? "+" : ""}
@@ -451,7 +456,9 @@ export default function Home() {
                                     </div>
                                     <div className="text-xs text-gray-600 mt-1">획득 {result.devotionMithrilPerSecond.toFixed(3)} - 소모 40.000</div>
                                 </div>
-                                <div className="bg-gray-100 rounded-lg p-4">
+
+                                <div className="bg-gray-100 rounded-lg border border-gray-300 p-4">
+
                                     <div className="text-gray-700 text-sm">지속 가능성</div>
                                     <div className={`text-2xl font-bold ${result.sustainabilityAnalysis.canSustain ? "text-green-400" : "text-red-400"}`}>{result.sustainabilityAnalysis.canSustain ? "가능" : "불가능"}</div>
                                     {!result.sustainabilityAnalysis.canSustain && <div className="text-xs text-red-300 mt-1">부족: {result.sustainabilityAnalysis.deficit.toFixed(3)}</div>}
@@ -471,19 +478,25 @@ export default function Home() {
                                 <h3 className="text-xl font-bold text-black mb-4 mt-4">정토 상태 MP 분석</h3>
 
                                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-                                    <div className="bg-gray-100 rounded-lg p-4">
+
+                                    <div className="bg-gray-100 rounded-lg border border-gray-300 p-4">
+
                                         <div className="text-gray-700 text-sm">공격당 MP 소모</div>
                                         <div className="text-2xl font-bold text-red-400">{result.sustainedMPAnalysis.mpConsumptionPerAttack.toFixed(0)}</div>
                                         <div className="text-xs text-gray-600 mt-1">최대 MP의 {additionalConsumptionRate}%</div>
                                     </div>
 
-                                    <div className="bg-gray-100 rounded-lg p-4">
+
+                                    <div className="bg-gray-100 rounded-lg border border-gray-300 p-4">
+
                                         <div className="text-gray-700 text-sm">초당 MP 소모</div>
                                         <div className="text-2xl font-bold text-red-400">{result.sustainedMPAnalysis.mpConsumptionPerSecond.toFixed(0)}</div>
                                         <div className="text-xs text-gray-600 mt-1">{attacksPerSecond} APS 기준</div>
                                     </div>
 
-                                    <div className="bg-gray-100 rounded-lg p-4">
+
+                                    <div className="bg-gray-100 rounded-lg border border-gray-300 p-4">
+
                                         <div className="text-gray-700 text-sm">최근 MP 소모</div>
                                         <div className="text-2xl font-bold text-red-400">{result.sustainedMPAnalysis.mpConsumptionPer4Second.toFixed(0)}</div>
                                         <div className="text-xs text-gray-600 mt-1">
@@ -491,7 +504,9 @@ export default function Home() {
                                         </div>
                                     </div>
                                   
-                                    <div className="bg-gray-100 rounded-lg p-4">
+
+                                    <div className="bg-gray-100 rounded-lg border border-gray-300 p-4">
+
                                         <div className="text-gray-700 text-sm">MP 수치</div>
                                         <div className={`text-2xl font-bold ${result.sustainedMPAnalysis.netMPChangePerSecond >= 0 ? "text-green-400" : "text-red-400"}`}>
                                             {result.sustainedMPAnalysis.netMPChangePerSecond >= 0 ? "+" : ""}
@@ -514,7 +529,9 @@ export default function Home() {
                         </div>
 
                         {/* 상세 테이블 */}
-                        <div className="bg-gray-100 backdrop-blur-md rounded-lg p-6">
+
+                        <div className="bg-gray-100 backdrop-blur-md rounded-lg border border-gray-300 p-6">
+
                             <h3 className="text-xl font-semibold text-black mb-4">상세 공격 내역</h3>
                             <div className="overflow-x-auto">
                                 <table className="w-full text-sm text-black">
@@ -556,7 +573,9 @@ export default function Home() {
 
                 {/* 최적화 결과 */}
                 {optimizationResults.length > 0 && (
-                    <div className="bg-gray-100 backdrop-blur-md rounded-lg p-6">
+
+                    <div className="bg-gray-100 backdrop-blur-md rounded-lg border border-gray-300 p-6">
+
                         <h3 className="text-xl font-semibold text-black mb-4">최적 설정 추천</h3>
 
                         {/* 점수 설명 */}
