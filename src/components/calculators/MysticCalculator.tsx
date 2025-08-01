@@ -379,13 +379,13 @@ export default function Home() {
                     )}
 
                     <div className="flex gap-4 mt-4">
-                        <button onClick={handleCalculate} className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-black font-semibold rounded-lg transition-colors">
+                        <button onClick={handleCalculate} className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors">
                             계산하기
                         </button>
-                        <button onClick={() => setShowOptimizationSettings(!showOptimizationSettings)} className="px-6 py-3 bg-gray-600 hover:bg-gray-700 text-black font-semibold rounded-lg transition-colors">
+                        <button onClick={() => setShowOptimizationSettings(!showOptimizationSettings)} className="px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-lg transition-colors">
                             최적화 설정
                         </button>
-                        <button onClick={optimizeSettings} disabled={isOptimizing} className="px-6 py-3 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-600 text-black font-semibold rounded-lg transition-colors">
+                        <button onClick={optimizeSettings} disabled={isOptimizing} className="px-6 py-3 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-600 text-white font-semibold rounded-lg transition-colors">
                             {isOptimizing ? "최적화 중..." : "최적 설정 찾기"}
                         </button>
                     </div>
@@ -617,7 +617,7 @@ export default function Home() {
                                                         setMaxMP(opt.maxMP);
                                                         setAdditionalConsumptionRate(opt.additionalConsumptionRate);
                                                     }}
-                                                    className="px-2 py-1 bg-blue-600 hover:bg-blue-700 text-black text-xs rounded"
+                                                    className="px-2 py-1 bg-blue-600 hover:bg-blue-700 text-white text-xs rounded"
                                                 >
                                                     적용
                                                 </button>
